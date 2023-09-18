@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://brkmh327ycklk"]
 
-[ext_resource type="PackedScene" uid="uid://cq0cv154m3m76" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
+[ext_resource type="PackedScene" uid="uid://pdmrqjofx0y3" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yldws"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
