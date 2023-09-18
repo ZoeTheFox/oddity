@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://pdmrqjofx0y3"]
+
+[ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
+
+[node name="Fighter Gen 7" type="Node3D"]
+
+[node name="Thrusters" type="Node3D" parent="."]
+
+[node name="SimpleFlightControlSystem" type="Node3D" parent="."]
+
+[node name="UserControl" type="Node3D" parent="."]
+
+[node name="Ship" type="Node3D" parent="."]
+
+[node name="fighterGen7" parent="Ship" instance=ExtResource("1_fr140")]
+
+[node name="Cameras" type="Node3D" parent="Ship" node_paths=PackedStringArray("first_person_camera", "third_person_camera")]
+script = ExtResource("2_iyjy7")
+first_person_camera = NodePath("FirstPersonCamera/TwistPivot/PitchPivot/Camera3D")
+third_person_camera = NodePath("ThirdPersonCamera/TwistPivot/PitchPivot/Camera3D")
+
+[node name="ThirdPersonCamera" type="Node3D" parent="Ship/Cameras"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.94318)
+script = ExtResource("3_wocjs")
+
+[node name="TwistPivot" type="Node3D" parent="Ship/Cameras/ThirdPersonCamera"]
+
+[node name="PitchPivot" type="Node3D" parent="Ship/Cameras/ThirdPersonCamera/TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="Ship/Cameras/ThirdPersonCamera/TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.994703, 0.102793, 0, -0.102793, 0.994703, 0, 5.238, 14.946)
+current = true
+
+[node name="FirstPersonCamera" type="Node3D" parent="Ship/Cameras"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44426, 1.7775)
+script = ExtResource("3_wocjs")
+
+[node name="TwistPivot" type="Node3D" parent="Ship/Cameras/FirstPersonCamera"]
+
+[node name="PitchPivot" type="Node3D" parent="Ship/Cameras/FirstPersonCamera/TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="Ship/Cameras/FirstPersonCamera/TwistPivot/PitchPivot"]
