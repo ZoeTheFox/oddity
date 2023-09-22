@@ -1,20 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://pdmrqjofx0y3"]
+[gd_scene load_steps=8 format=3 uid="uid://pdmrqjofx0y3"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/UserControl.gd" id="2_y8fcc"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
+[ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cmc02"]
+points = PackedVector3Array(1.8569, 1.20885, 6.53273, -0.769442, -0.87418, -6.21698, -9.68206, -4.54396, 4.0318, 9.16666, -4.54396, 5.2099, -9.38685, 4.58589, 3.73798, 9.16666, 4.58589, 4.0318, -9.68206, -4.54396, 5.79895, 0.767619, 0.148629, -6.22824, -9.38685, 4.58589, 5.2099, 9.16666, 4.58589, 5.79895, 9.16666, -4.54396, 4.0318, -1.8569, 1.21971, 6.59195, 1.8569, 0.416393, 6.53273, 0.767619, -0.875786, -6.22824, -0.769442, 0.148401, -6.21698, -9.68206, -3.36519, 5.79895, 9.16666, 3.40712, 5.79895, -1.8569, 0.420009, 6.59195, -9.09165, -4.54396, 5.79895, 8.57625, 4.58589, 5.79895, -9.68206, -3.36519, 4.0318, -8.79829, 4.58589, 3.73798)
 
 [node name="Fighter Gen 7" type="Node3D"]
 
 [node name="Thrusters" type="Node3D" parent="."]
 
-[node name="SimpleFlightControlSystem" type="Node3D" parent="."]
+[node name="SimpleFlightControlSystem" type="Node3D" parent="." node_paths=PackedStringArray("spaceship_rigid_body")]
+script = ExtResource("1_q1vmv")
+spaceship_rigid_body = NodePath("../Ship/fighterGen7/MeshInstance3D/RigidBody3D")
 
 [node name="UserControl" type="Node3D" parent="."]
+script = ExtResource("2_y8fcc")
 
 [node name="Ship" type="Node3D" parent="."]
 
 [node name="fighterGen7" parent="Ship" instance=ExtResource("1_fr140")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ship/fighterGen7"]
+visible = false
+mesh = ExtResource("4_u2t7m")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Ship/fighterGen7/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ship/fighterGen7/MeshInstance3D/RigidBody3D"]
+shape = SubResource("ConvexPolygonShape3D_cmc02")
 
 [node name="Cameras" type="Node3D" parent="Ship" node_paths=PackedStringArray("first_person_camera", "third_person_camera")]
 script = ExtResource("2_iyjy7")
