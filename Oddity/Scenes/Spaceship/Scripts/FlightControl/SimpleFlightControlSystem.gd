@@ -12,6 +12,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	spaceship_rigid_body.add_central_force(Vector3(0,0,0))
+	pass
 	
 
