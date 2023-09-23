@@ -36,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23154, 1.84959, -27.9415)
 mesh = SubResource("CylinderMesh_63hev")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, -7.47881, 0)
+transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, -9.00348, 0)
 mesh = SubResource("PlaneMesh_54ktt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
@@ -45,3 +45,4 @@ mesh = SubResource("PlaneMesh_54ktt")
 shape = SubResource("ConcavePolygonShape3D_20505")
 
 [node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
+transform = Transform3D(1, 0, 0, 0, 0.813913, 0.580987, 0, -0.580987, 0.813913, 0, 0, 0)
