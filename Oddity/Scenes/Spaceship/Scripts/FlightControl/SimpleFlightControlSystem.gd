@@ -47,3 +47,11 @@ func _on_user_control_thrust_down(throttle):
 
 func apply_thrust(direction: Vector3, force: float, throttle: float):
 	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time())
+
+
+func _on_user_control_roll_left(percent):
+	apply_torque(transform.basis.z * percent / 100.0 * 1000 * get_process_delta_time())
+
+
+func _on_user_control_roll_right(percent):
+	apply_torque(-transform.basis.z * percent / 100.0 * 1000 * get_process_delta_time())

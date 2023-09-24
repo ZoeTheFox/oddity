@@ -94,6 +94,8 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 [node name="WingCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_jbudj")
 
+[connection signal="roll_left" from="UserControl" to="." method="_on_user_control_roll_left"]
+[connection signal="roll_right" from="UserControl" to="." method="_on_user_control_roll_right"]
 [connection signal="thrust_backwards" from="UserControl" to="." method="_on_user_control_thrust_backwards"]
 [connection signal="thrust_down" from="UserControl" to="." method="_on_user_control_thrust_down"]
 [connection signal="thrust_forwards" from="UserControl" to="." method="_on_user_control_thrust_forwards"]

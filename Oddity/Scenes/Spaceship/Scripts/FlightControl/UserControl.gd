@@ -6,6 +6,8 @@ signal thrust_left(throttle)
 signal thrust_right(throttle)
 signal thrust_up(throttle)
 signal thrust_down(throttle)
+signal roll_left(percent)
+signal roll_right(percent)
 
 
 var throttle := 0.0
@@ -52,7 +54,13 @@ func _process(delta):
 		
 	if (Input.is_action_pressed("move-down")):
 		thrust_down.emit(100)
-	
+		
+	if (Input.is_action_pressed("roll-left")):
+		roll_left.emit(100)
+		
+	if (Input.is_action_pressed("roll-right")):
+		roll_right.emit(100)
+			
 	print(throttle)
 		
 
