@@ -28,23 +28,22 @@ func _process(delta):
 	pass
 	
 func _on_user_control_thrust_forwards(throttle):
-	apply_central_force(Vector3(0,0,-max_thrust_main * (throttle / 100.0)) * get_process_delta_time()) # Replace with function body.
+	apply_thrust(-transform.basis.z, max_thrust_main, throttle)
 
 func _on_user_control_thrust_backwards(throttle):
-	apply_central_force(Vector3(0,0,-max_thrust_retro * (throttle / 100.0)) * get_process_delta_time()) # Replace with function body.
-
-
-func _on_user_control_thrust_down(throttle):
-	apply_central_force(Vector3(0,-max_thrust_down * (throttle / 100.0),0 ) * get_process_delta_time()) # Replace with function body.
-
+	apply_thrust(-transform.basis.z, max_thrust_retro, throttle)
 
 func _on_user_control_thrust_left(throttle):
-	apply_central_force(Vector3(-max_thrust_left * (throttle / 100.0),0,0 ) * get_process_delta_time()) # Replace with function body.
-	
+	apply_thrust(-transform.basis.x, max_thrust_left, throttle)
 
 func _on_user_control_thrust_right(throttle):
-	apply_central_force(Vector3(max_thrust_right * (throttle / 100.0),0,0 ) * get_process_delta_time()) # Replace with function body.
-
+	apply_thrust(transform.basis.x, max_thrust_right, throttle)
 
 func _on_user_control_thrust_up(throttle):
-	apply_central_force(Vector3(0, max_thrust_up * (throttle / 100.0), 0) * get_process_delta_time())
+	apply_thrust(transform.basis.y, max_thrust_main, throttle)
+
+func _on_user_control_thrust_down(throttle):
+	apply_thrust(-transform.basis.y, max_thrust_down, throttle)
+
+func apply_thrust(direction: Vector3, force: float, throttle: float):
+	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time())
