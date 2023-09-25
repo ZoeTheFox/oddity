@@ -68,15 +68,13 @@ func _process(delta):
 	yaw.emit(mouseInput.x)
 	pitch.emit(mouseInput.y)
 	
-	
-	#print(throttle)
+	print(throttle)
 		
 		
-
 
 func _physics_process(delta):
 	mouseInput = Vector2(0,0)
-	mouseInput = Input.get_last_mouse_velocity().normalized()
+	mouseInput = Input.get_last_mouse_velocity().normalized() 
 	print("Mouse: ", mouseInput)
 
 func _on_timer_timeout():
@@ -85,4 +83,4 @@ func _on_timer_timeout():
 	
 	timer.stop()
 	
-	print("timer")
+	#print("timer")
