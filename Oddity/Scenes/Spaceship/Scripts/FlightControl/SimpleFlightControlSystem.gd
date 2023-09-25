@@ -23,39 +23,17 @@ var max_thrust_right: float
 var acceleration: Vector3 
 var v0
 
-@export
-var z: MeshInstance3D
 
-@export
-var x: MeshInstance3D
-
-@export
-var y: MeshInstance3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	thrust_multiplier = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if linear_velocity.length() >= 10:
-		thrust_multiplier = log(linear_velocity.length())
-	else:
-		thrust_multiplier = 1
-		
 	print(linear_velocity.length())
-	
-	z.scale.z = linear_velocity.z
-	z.position.z = linear_velocity.z / 2.0
-	
-		
-	x.scale.x = linear_velocity.x
-	x.position.x = linear_velocity.x / 2.0
-	
-		
-	y.scale.y = linear_velocity.y
-	y.position.y = linear_velocity.y / 2.0
+
 
 func _on_user_control_thrust_forwards(throttle):
 	apply_thrust(-transform.basis.z, max_thrust_main, throttle)

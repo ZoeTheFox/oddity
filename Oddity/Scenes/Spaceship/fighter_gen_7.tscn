@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cjx6yultmv13k"]
+[gd_scene load_steps=13 format=3 uid="uid://cjx6yultmv13k"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/UserControl.gd" id="2_y8fcc"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
 [ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/Acc_Arrows.gd" id="7_nffri"]
+[ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/acc_arrows.tscn" id="7_g13au"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rm3t2"]
 points = PackedVector3Array(9.16666, 4.58589, 5.79973, 2.39356, 0.462733, 0.793534, 2.39356, 1.34661, 0.793534, 2.39356, 0.462733, 4.32669, 9.16666, 3.40738, 4.03218, 2.68859, 1.64124, 4.32669, 8.5766, 4.58589, 4.03218, 8.5766, 3.11316, 5.79973, 5.04419, 1.34661, 1.97158, 7.98786, 4.29126, 5.79973, 2.98296, 0.462733, 4.32669, 8.87096, 4.29126, 3.73766, 2.68859, 1.64124, 1.08805, 2.68859, 0.462733, 0.793534, 5.04419, 1.34661, 4.6212, 2.39356, 1.34661, 4.32669, 9.16666, 3.40738, 5.79973, 7.98786, 3.11316, 5.79973, 9.16666, 4.58589, 4.03218, 7.69349, 2.81853, 3.14962, 2.68859, 1.34661, 0.793534, 2.98296, 0.462733, 1.08805, 8.5766, 4.58589, 5.79973, 6.221, 1.93546, 5.21022, 8.87096, 3.40738, 3.73766, 7.69349, 3.70201, 3.14962)
@@ -23,18 +23,7 @@ points = PackedVector3Array(-6.14677, 1.93546, 2.56028, -8.79806, 4.58589, 5.210
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jbudj"]
 points = PackedVector3Array(-5.85364, -1.89361, 5.21022, -2.61405, -1.30465, 0.793534, -5.26482, -2.48171, 1.97158, -3.20287, -1.89361, 4.6212, -9.09179, -4.54396, 5.79973, -9.68206, -3.36559, 4.03218, -2.61405, -0.126289, 0.793534, -2.61405, -0.126289, 4.32669, -9.09179, -4.54396, 4.03218, -9.68206, -3.36559, 5.79973, -2.61405, -1.59913, 1.08805, -2.31928, -1.30465, 4.32669, -9.68206, -4.54396, 4.03218, -2.31928, -0.126289, 0.793534, -2.31928, -0.126289, 4.32669, -7.03056, -3.66008, 3.14962, -8.50369, -3.36559, 5.79973, -2.31928, -1.30465, 0.793534, -9.68206, -4.54396, 5.79973, -3.79313, -2.18853, 4.6212, -8.50369, -4.24904, 5.79973, -8.50369, -3.07111, 3.44315, -3.79313, -2.18853, 1.67707, -7.03056, -3.66008, 5.21022, -3.20287, -0.715686, 4.6212, -7.61938, -2.48171, 5.50473, -2.61405, -1.59913, 4.32669, -8.50369, -3.95456, 3.44315)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ewhua"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arsax"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_drk52"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmic2"]
-albedo_color = Color(0, 0, 1, 1)
-
-[node name="FighterGen7" type="RigidBody3D" node_paths=PackedStringArray("z", "x", "y")]
+[node name="FighterGen7" type="RigidBody3D"]
 gravity_scale = 0.0
 script = ExtResource("1_q1vmv")
 max_thrust_main = 8000.0
@@ -43,9 +32,6 @@ max_thrust_up = 2000.0
 max_thrust_down = 2000.0
 max_thrust_left = 2000.0
 max_thrust_right = 2000.0
-z = NodePath("Acc_Arrows/Z")
-x = NodePath("Acc_Arrows/X")
-y = NodePath("Acc_Arrows/Y")
 
 [node name="Thrusters" type="Node3D" parent="."]
 
@@ -109,27 +95,8 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 [node name="WingCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_jbudj")
 
-[node name="Acc_Arrows" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.41712, 6.37403, 0)
-script = ExtResource("7_nffri")
-
-[node name="Y" type="MeshInstance3D" parent="Acc_Arrows"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-rotation_order = 0
-mesh = SubResource("BoxMesh_ewhua")
-skeleton = NodePath("../X")
-surface_material_override/0 = SubResource("StandardMaterial3D_arsax")
-
-[node name="X" type="MeshInstance3D" parent="Acc_Arrows"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = SubResource("BoxMesh_ewhua")
-surface_material_override/0 = SubResource("StandardMaterial3D_drk52")
-
-[node name="Z" type="MeshInstance3D" parent="Acc_Arrows"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = SubResource("BoxMesh_ewhua")
-skeleton = NodePath("../X")
-surface_material_override/0 = SubResource("StandardMaterial3D_tmic2")
+[node name="Acc_Arrows" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("7_g13au")]
+rigid_body = NodePath("..")
 
 [connection signal="pitch" from="UserControl" to="." method="_on_user_control_pitch"]
 [connection signal="roll_left" from="UserControl" to="." method="_on_user_control_roll_left"]
