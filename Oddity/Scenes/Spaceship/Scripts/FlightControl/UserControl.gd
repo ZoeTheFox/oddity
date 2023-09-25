@@ -8,6 +8,8 @@ signal thrust_up(throttle)
 signal thrust_down(throttle)
 signal roll_left(percent)
 signal roll_right(percent)
+signal pitch(percent)
+signal yaw(percent)
 
 
 var throttle := 0.0
@@ -15,6 +17,8 @@ var throttle := 0.0
 var throttle_deadzone : float
 @export
 var throttle_sensivity : float
+
+var mouseInput = Vector2(0,0)
 
 @onready
 var timer := $Timer
@@ -60,10 +64,20 @@ func _process(delta):
 		
 	if (Input.is_action_pressed("roll-right")):
 		roll_right.emit(100)
-			
-	print(throttle)
+	
+	yaw.emit(mouseInput.x)
+	pitch.emit(mouseInput.y)
+	
+	
+	#print(throttle)
+		
 		
 
+
+func _physics_process(delta):
+	mouseInput = Vector2(0,0)
+	mouseInput = Input.get_last_mouse_velocity().normalized()
+	print("Mouse: ", mouseInput)
 
 func _on_timer_timeout():
 	if (throttle < throttle_deadzone and throttle > -throttle_deadzone):
