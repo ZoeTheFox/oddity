@@ -38,7 +38,7 @@ func _process(delta):
 		throttle = clamp(throttle, -100.0, 100.0)
 		
 	if (throttle < throttle_deadzone and throttle > -throttle_deadzone):
-		print("deadzone")
+		#print("deadzone")
 		if (timer.is_stopped()):
 			timer.start()
 	
@@ -68,7 +68,7 @@ func _process(delta):
 	yaw.emit(mouseInput.x)
 	pitch.emit(mouseInput.y)
 	
-	print(throttle)
+	#print(throttle)
 		
 		
 

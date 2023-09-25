@@ -18,6 +18,10 @@ var max_thrust_left: float
 @export
 var max_thrust_right: float
 
+var acceleration: Vector3 
+var v0
+var r0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,8 +29,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	calculate_acceleration(delta)
+	print(acceleration)
 	
+func calculate_acceleration(delta):
+	if v0 and r0:
+		acceleration  = (linear_velocity  - v0) / delta
+		var racc = (angular_velocity - r0) / delta
+	v0 = linear_velocity
+	r0 = angular_velocity
+
 func _on_user_control_thrust_forwards(throttle):
 	apply_thrust(-transform.basis.z, max_thrust_main, throttle)
 
