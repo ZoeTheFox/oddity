@@ -12,3 +12,5 @@ func _input(event):
 			third_person_camera.current = true
 		else:
 			first_person_camera.current = true
+			
+			
