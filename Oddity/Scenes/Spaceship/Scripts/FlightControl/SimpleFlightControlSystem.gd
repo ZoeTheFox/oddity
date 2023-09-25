@@ -1,5 +1,7 @@
 extends RigidBody3D
 
+var thrust_multiplier: float
+
 @export
 var max_thrust_main: float
 
@@ -20,7 +22,15 @@ var max_thrust_right: float
 
 var acceleration: Vector3 
 var v0
-var r0
+
+@export
+var z: MeshInstance3D
+
+@export
+var x: MeshInstance3D
+
+@export
+var y: MeshInstance3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,15 +39,23 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	calculate_acceleration(delta)
-	print(acceleration)
+	if linear_velocity.length() >= 10:
+		thrust_multiplier = log(linear_velocity.length())
+	else:
+		thrust_multiplier = 1
+		
+	print(linear_velocity.length())
 	
-func calculate_acceleration(delta):
-	if v0 and r0:
-		acceleration  = (linear_velocity  - v0) / delta
-		var racc = (angular_velocity - r0) / delta
-	v0 = linear_velocity
-	r0 = angular_velocity
+	z.scale.z = linear_velocity.z
+	z.position.z = linear_velocity.z / 2.0
+	
+		
+	x.scale.x = linear_velocity.x
+	x.position.x = linear_velocity.x / 2.0
+	
+		
+	y.scale.y = linear_velocity.y
+	y.position.y = linear_velocity.y / 2.0
 
 func _on_user_control_thrust_forwards(throttle):
 	apply_thrust(-transform.basis.z, max_thrust_main, throttle)
@@ -58,7 +76,7 @@ func _on_user_control_thrust_down(throttle):
 	apply_thrust(-transform.basis.y, max_thrust_down, throttle)
 
 func apply_thrust(direction: Vector3, force: float, throttle: float):
-	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time())
+	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time() * thrust_multiplier)
 
 func _on_user_control_roll_left(percent):
 	apply_torque(transform.basis.z * percent / 100.0 * 1000 * get_process_delta_time())
