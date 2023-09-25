@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://brkmh327ycklk"]
+[gd_scene load_steps=9 format=3 uid="uid://brkmh327ycklk"]
 
 [ext_resource type="PackedScene" uid="uid://cjx6yultmv13k" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
 
@@ -21,6 +21,8 @@ glow_enabled = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_20505"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lrdhs"]
 
 [node name="Main" type="Node3D"]
 
@@ -46,3 +48,27 @@ shape = SubResource("ConcavePolygonShape3D_20505")
 
 [node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
 transform = Transform3D(0.424879, 0, 0.90525, 0, 1, 0, -0.90525, 0, 0.424879, 0, 4.14994, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(28.445, 0, 0, 0, 28.445, 0, 0, 0, 28.445, -129.531, 0, 378.871)
+mesh = SubResource("SphereMesh_lrdhs")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(28.445, 0, 0, 0, 28.445, 0, 0, 0, 28.445, -1095.12, 0, -19.5241)
+mesh = SubResource("SphereMesh_lrdhs")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(22.0878, 0, 17.9234, 0, 28.445, 0, -17.9234, 0, 22.0878, -428.685, 0, 605.027)
+mesh = SubResource("SphereMesh_lrdhs")
+
+[node name="apply_torque(-transform_basis_z * percent _ 100_0 * 1000 * get_process_delta_time())" type="MeshInstance3D" parent="."]
+transform = Transform3D(28.445, 0, 0, 0, 28.445, 0, 0, 0, 28.445, -114.825, 0, -19.5241)
+mesh = SubResource("SphereMesh_lrdhs")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(28.445, 0, 0, 0, 28.445, 0, 0, 0, 28.445, -448.47, 0, -431.318)
+mesh = SubResource("SphereMesh_lrdhs")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(28.445, 0, 0, 0, 28.445, 0, 0, 0, 28.445, -671.884, 0, 99.8056)
+mesh = SubResource("SphereMesh_lrdhs")
