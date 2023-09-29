@@ -2,6 +2,8 @@ extends RigidBody3D
 
 var thrust_multiplier: float
 
+signal speed_signal(speed)
+
 @export
 var max_thrust_main: float
 
@@ -40,14 +42,14 @@ func _process(delta):
 	calc_local_velocity()
 	calc_local_angular_velocity()
 	
-	print(velocity.length())
+	speed_signal.emit(velocity.length())
 	
 	if (thrust_left == false and thrust_right == false):
 		
 		var throttle
 		
 		var max_throttle = 100
-		var min_throttle = 10  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
+		var min_throttle = 100  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
 	
 		throttle = clamp(1.0 - abs(velocity.x) / 15, min_throttle, max_throttle)
 	
@@ -61,10 +63,10 @@ func _process(delta):
 		var throttle
 		
 		var max_throttle = 100
-		var min_throttle = 10  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
+		var min_throttle = 100  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
 	
 		throttle = clamp(1.0 - abs(velocity.y) / 15, min_throttle, max_throttle)
-		
+
 		if (velocity.y > 0):
 			apply_thrust(-transform.basis.y, max_thrust_down, throttle)
 		else:
@@ -75,7 +77,7 @@ func _process(delta):
 		var throttle
 		
 		var max_throttle = 100
-		var min_throttle = 10  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
+		var min_throttle = 100  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
 	
 		throttle = clamp(1.0 - abs(local_angular_velocity.z) / 15, min_throttle, max_throttle)
 		
@@ -103,7 +105,6 @@ func calc_local_angular_velocity():
 	# Convert the world-space angular velocity to local space
 	local_angular_velocity = transform.basis.inverse() * world_angular_velocity
 
-	print(local_angular_velocity)
 
 func _on_user_control_thrust_forwards(throttle):
 	apply_thrust(-transform.basis.z, max_thrust_main, throttle)
@@ -171,3 +172,4 @@ func _on_user_control_no_roll_right():
 
 func _on_user_control_no_roll_left():
 	roll_left = false
+

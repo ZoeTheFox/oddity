@@ -86,8 +86,9 @@ func _process(delta):
 	else:
 		no_roll_right.emit()
 	
-	yaw.emit(mouseInput.x)
-	pitch.emit(mouseInput.y)
+	if not Input.is_action_pressed("camera-look-around"):
+		yaw.emit(mouseInput.x)
+		pitch.emit(mouseInput.y)
 	
 	#print(throttle)
 		
