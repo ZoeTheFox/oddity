@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/UserControl.gd" id="2_y8fcc"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
 [ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
-[ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/acc_arrows.tscn" id="7_g13au"]
+[ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/Velocity_Arrows.tscn" id="7_8us3n"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rm3t2"]
 points = PackedVector3Array(9.16666, 4.58589, 5.79973, 2.39356, 0.462733, 0.793534, 2.39356, 1.34661, 0.793534, 2.39356, 0.462733, 4.32669, 9.16666, 3.40738, 4.03218, 2.68859, 1.64124, 4.32669, 8.5766, 4.58589, 4.03218, 8.5766, 3.11316, 5.79973, 5.04419, 1.34661, 1.97158, 7.98786, 4.29126, 5.79973, 2.98296, 0.462733, 4.32669, 8.87096, 4.29126, 3.73766, 2.68859, 1.64124, 1.08805, 2.68859, 0.462733, 0.793534, 5.04419, 1.34661, 4.6212, 2.39356, 1.34661, 4.32669, 9.16666, 3.40738, 5.79973, 7.98786, 3.11316, 5.79973, 9.16666, 4.58589, 4.03218, 7.69349, 2.81853, 3.14962, 2.68859, 1.34661, 0.793534, 2.98296, 0.462733, 1.08805, 8.5766, 4.58589, 5.79973, 6.221, 1.93546, 5.21022, 8.87096, 3.40738, 3.73766, 7.69349, 3.70201, 3.14962)
@@ -95,8 +95,15 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 [node name="WingCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_jbudj")
 
-[node name="Acc_Arrows" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("7_g13au")]
+[node name="Velocity_Arrows" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("7_8us3n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45328, 4.95195, 0)
 rigid_body = NodePath("..")
+
+[node name="Velocity_Arrows2" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("7_8us3n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.63001, 6.08609, -0.679127)
+visible = false
+rigid_body = NodePath("..")
+global = true
 
 [connection signal="pitch" from="UserControl" to="." method="_on_user_control_pitch"]
 [connection signal="roll_left" from="UserControl" to="." method="_on_user_control_roll_left"]

@@ -20,10 +20,15 @@ var max_thrust_left: float
 @export
 var max_thrust_right: float
 
-var acceleration: Vector3 
-var v0
+var velocity : Vector3
 
+var thrust_left_right: bool
 
+var vel0 : Vector3
+var acc : Vector3
+
+var user_left: float
+var user_right: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,7 +37,36 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(linear_velocity.length())
+	
+	calc_local_velocity()
+	
+	if (acc.x == 0 and velocity.x < 0):
+		apply_thrust(transform.basis.x, max_thrust_right, 10)
+		print("scream")
+
+	if (acc.x == 0 and velocity.x > 0):
+		apply_thrust(-transform.basis.x, max_thrust_right, 10)
+		print("scream")
+
+	print(acc)
+
+func calc_local_velocity():
+	
+	## https://ask.godotengine.org/123178/how-do-i-get-local-linear-velocity ##
+	
+	var b = transform.basis
+	var v_len = linear_velocity.length()
+	var v_nor = linear_velocity.normalized()
+
+	velocity.x = b.x.dot(v_nor) * v_len
+	velocity.y = b.y.dot(v_nor) * v_len
+	velocity.z = b.z.dot(v_nor) * v_len
+
+func calc_local_acceleration():
+	if vel0:
+		acc = (velocity - vel0) / get_process_delta_time()
+	
+	vel0 = velocity
 
 
 func _on_user_control_thrust_forwards(throttle):
@@ -42,6 +76,7 @@ func _on_user_control_thrust_backwards(throttle):
 	apply_thrust(-transform.basis.z, max_thrust_retro, throttle)
 
 func _on_user_control_thrust_left(throttle):
+	
 	apply_thrust(-transform.basis.x, max_thrust_left, throttle)
 
 func _on_user_control_thrust_right(throttle):

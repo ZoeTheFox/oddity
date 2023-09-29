@@ -75,7 +75,7 @@ func _process(delta):
 func _physics_process(delta):
 	mouseInput = Vector2(0,0)
 	mouseInput = Input.get_last_mouse_velocity().normalized() 
-	print("Mouse: ", mouseInput)
+	#print("Mouse: ", mouseInput)
 
 func _on_timer_timeout():
 	if (throttle < throttle_deadzone and throttle > -throttle_deadzone):
