@@ -105,9 +105,16 @@ visible = false
 rigid_body = NodePath("..")
 global = true
 
+[connection signal="no_roll_left" from="UserControl" to="." method="_on_user_control_no_roll_left"]
+[connection signal="no_roll_right" from="UserControl" to="." method="_on_user_control_no_roll_right"]
+[connection signal="no_thrust_down" from="UserControl" to="." method="_on_user_control_no_thrust_down"]
+[connection signal="no_thrust_left" from="UserControl" to="." method="_on_user_control_no_thrust_left"]
+[connection signal="no_thrust_right" from="UserControl" to="." method="_on_user_control_no_thrust_right"]
+[connection signal="no_thrust_up" from="UserControl" to="." method="_on_user_control_no_thrust_up"]
 [connection signal="pitch" from="UserControl" to="." method="_on_user_control_pitch"]
 [connection signal="roll_left" from="UserControl" to="." method="_on_user_control_roll_left"]
 [connection signal="roll_right" from="UserControl" to="." method="_on_user_control_roll_right"]
+[connection signal="throttle_signal" from="UserControl" to="." method="_on_user_control_throttle_signal"]
 [connection signal="thrust_backwards" from="UserControl" to="." method="_on_user_control_thrust_backwards"]
 [connection signal="thrust_down" from="UserControl" to="." method="_on_user_control_thrust_down"]
 [connection signal="thrust_forwards" from="UserControl" to="." method="_on_user_control_thrust_forwards"]

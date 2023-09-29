@@ -11,6 +11,13 @@ signal roll_right(percent)
 signal pitch(percent)
 signal yaw(percent)
 
+signal no_thrust_left()
+signal no_thrust_right()
+signal no_thrust_up()
+signal no_thrust_down()
+signal no_roll_left()
+signal no_roll_right()
+signal throttle_signal(throttle)
 
 var throttle := 0.0
 @export
@@ -47,23 +54,37 @@ func _process(delta):
 	else:
 		thrust_backwards.emit(throttle)
 		
+	throttle_signal.emit(throttle)
+		
 	if (Input.is_action_pressed("move-left")):
 		thrust_left.emit(100)
+	else:
+		no_thrust_left.emit()
 	
 	if (Input.is_action_pressed("move-right")):
 		thrust_right.emit(100)
+	else:
+		no_thrust_right.emit()
 		
 	if (Input.is_action_pressed("move-up")):
 		thrust_up.emit(100)
+	else:
+		no_thrust_up.emit()
 		
 	if (Input.is_action_pressed("move-down")):
 		thrust_down.emit(100)
+	else:
+		no_thrust_down.emit()
 		
 	if (Input.is_action_pressed("roll-left")):
 		roll_left.emit(100)
+	else:
+		no_roll_left.emit()
 		
 	if (Input.is_action_pressed("roll-right")):
 		roll_right.emit(100)
+	else:
+		no_roll_right.emit()
 	
 	yaw.emit(mouseInput.x)
 	pitch.emit(mouseInput.y)
