@@ -46,12 +46,7 @@ func _process(delta):
 	
 	if (thrust_left == false and thrust_right == false):
 		
-		var throttle
-		
-		var max_throttle = 100
-		var min_throttle = 100  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
-	
-		throttle = clamp(1.0 - abs(velocity.x) / 15, min_throttle, max_throttle)
+		var throttle = 100
 	
 		if (velocity.x > 0):
 			apply_thrust(-transform.basis.x, max_thrust_left, throttle)
@@ -60,12 +55,7 @@ func _process(delta):
 	
 	if (thrust_up == false and thrust_down == false):
 		
-		var throttle
-		
-		var max_throttle = 100
-		var min_throttle = 100  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
-	
-		throttle = clamp(1.0 - abs(velocity.y) / 15, min_throttle, max_throttle)
+		var throttle = 100
 
 		if (velocity.y > 0):
 			apply_thrust(-transform.basis.y, max_thrust_down, throttle)
@@ -74,12 +64,7 @@ func _process(delta):
 			
 	if (roll_left == false and roll_right == false):
 		
-		var throttle
-		
-		var max_throttle = 100
-		var min_throttle = 100  # Set a small minimum throttle value		 var max_throttle = 1.0   # Set the maximum throttle value
-	
-		throttle = clamp(1.0 - abs(local_angular_velocity.z) / 15, min_throttle, max_throttle)
+		var throttle = 100
 		
 		if (local_angular_velocity.z > 0):
 			apply_torque(-transform.basis.z * throttle / 100.0 * 1000 * get_process_delta_time())
