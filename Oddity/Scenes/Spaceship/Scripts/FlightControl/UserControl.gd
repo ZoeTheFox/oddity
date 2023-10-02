@@ -26,6 +26,7 @@ var throttle_deadzone : float
 var throttle_sensivity : float
 
 var mouseInput = Vector2(0,0)
+var mouseJoyInput = Vector2(0,0)
 
 @onready
 var timer := $Timer
@@ -87,8 +88,8 @@ func _process(delta):
 		no_roll_right.emit()
 	
 	if not Input.is_action_pressed("camera-look-around"):
-		yaw.emit(mouseInput.x)
-		pitch.emit(mouseInput.y)
+		yaw.emit(mouseInput.x / 2)
+		pitch.emit(mouseInput.y / 2)
 	
 	#print(throttle)
 		
@@ -96,8 +97,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	mouseInput = Vector2(0,0)
-	mouseInput = Input.get_last_mouse_velocity().normalized() 
-	#print("Mouse: ", mouseInput)
+	mouseInput = Input.get_last_mouse_velocity().normalized()
 
 func _on_timer_timeout():
 	if (throttle < throttle_deadzone and throttle > -throttle_deadzone):

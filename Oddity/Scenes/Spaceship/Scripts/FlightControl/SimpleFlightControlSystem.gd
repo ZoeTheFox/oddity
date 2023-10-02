@@ -50,22 +50,7 @@ func _process(delta):
 	
 	if (thrust_left == false and thrust_right == false and flight_assist):
 		
-		var throttle = 100
-		
-		print(abs(velocity.x))
-		
-		#this is temporary.
-		if (abs(velocity.x) < 50):
-			throttle = 100
-		elif (abs(velocity.x) < 30):
-			throttle = 50
-		elif (abs(velocity.x) < 15):
-			throttle = 25
-		elif (abs(velocity.x) < 5):
-			throttle = 10
-		elif (abs(velocity.x) < 2):
-			throttle = 5
-			print("fife")
+		var throttle = calc_throttle(velocity.x)
 	
 		if (velocity.x > 0):
 			apply_thrust(-transform.basis.x, max_thrust_left, throttle)
@@ -73,18 +58,7 @@ func _process(delta):
 			apply_thrust(transform.basis.x, max_thrust_right, throttle)
 	
 	if (thrust_up == false and thrust_down == false and flight_assist):
-		var throttle = 100
-		#this is temporary.
-		if (abs(velocity.y) > 30):
-			throttle = 100
-		elif (abs(velocity.y) < 30):
-			throttle = 50
-		elif (abs(velocity.y) < 15):
-			throttle = 25
-		elif (abs(velocity.y) < 5):
-			throttle = 10
-		elif (abs(velocity.y) < 2):
-			throttle = 5
+		var throttle = calc_throttle(velocity.y)
 
 		if (velocity.y > 0):
 			apply_thrust(-transform.basis.y, max_thrust_down, throttle)
@@ -94,22 +68,18 @@ func _process(delta):
 	if (roll_left == false and roll_right == false and flight_assist):
 		
 		var throttle = 100
-		#this is temporary.
-		if (abs(local_angular_velocity.z) > 30):
-			throttle = 100
-		elif (abs(local_angular_velocity.z) < 30):
-			throttle = 50
-		elif (abs(local_angular_velocity.z) < 15):
-			throttle = 25
-		elif (abs(local_angular_velocity.z) < 5):
-			throttle = 10
-		elif (abs(local_angular_velocity.z) < 2):
-			throttle = 5
 		
 		if (local_angular_velocity.z > 0):
 			apply_torque(-transform.basis.z * throttle / 100.0 * 1000 * get_process_delta_time())
 		else:
 			apply_torque(transform.basis.z * throttle / 100.0 * 1000 * get_process_delta_time())
+
+func calc_throttle(velocity):
+	if (abs(velocity) > 10):
+		return 100
+	
+	return 	(100.0 / 10) * abs(velocity)
+	
 
 func calc_local_velocity():
 	
