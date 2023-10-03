@@ -104,8 +104,7 @@ func _process(delta):
 		interpolate_torwards_vector = last_mouse_move_relative
 	
 
-	current_interpolating_vector = current_interpolating_vector.lerp(interpolate_torwards_vector, 
-	interpolation_time * delta)
+	current_interpolating_vector = current_interpolating_vector.lerp(interpolate_torwards_vector, interpolation_time * delta)
 	rotation_degrees.x = current_interpolating_vector.x
 	rotation_degrees.y = current_interpolating_vector.y
 	
