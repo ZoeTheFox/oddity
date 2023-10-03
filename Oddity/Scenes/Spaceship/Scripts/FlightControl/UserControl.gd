@@ -28,8 +28,20 @@ var throttle_sensivity : float
 var mouseInput = Vector2(0,0)
 var mouseJoyInput = Vector2(0,0)
 
+var mouse_sensivity := 0.01
+
 @onready
 var timer := $Timer
+
+var mouse_moved = false 
+
+var max_rotation  = 25
+var interpolation_time = 4
+
+var interpolation_vector_default : Vector2 = Vector2(0, 0)
+var last_mouse_move_relative : Vector2
+var interpolate_torwards_vector : Vector2
+var current_interpolating_vector : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -86,18 +98,33 @@ func _process(delta):
 		roll_right.emit(100)
 	else:
 		no_roll_right.emit()
+		
+	if mouse_moved:
+		mouse_moved = false
+		interpolate_torwards_vector = last_mouse_move_relative
 	
-	if not Input.is_action_pressed("camera-look-around"):
-		yaw.emit(mouseInput.x / 2)
-		pitch.emit(mouseInput.y / 2)
+
+	current_interpolating_vector = current_interpolating_vector.lerp(interpolate_torwards_vector, 
+	interpolation_time * delta)
+	rotation_degrees.x = current_interpolating_vector.x
+	rotation_degrees.y = current_interpolating_vector.y
 	
-	#print(throttle)
+	print("y " + str(rotation_degrees.y) + " x " + str(rotation_degrees.x))
+	
+	#if not Input.is_action_pressed("camera-look-around"):
+		#yaw.emit(mouseInput.x)
+		#pitch.emit(mouseInput.y)
+		
 		
 		
 
-func _physics_process(delta):
-	mouseInput = Vector2(0,0)
-	mouseInput = Input.get_last_mouse_velocity().normalized()
+   
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_moved = true
+		last_mouse_move_relative = Vector2(clamp(event.relative.y, -max_rotation, max_rotation), 
+		clamp(event.relative.x, -max_rotation, max_rotation)) * -1
 
 func _on_timer_timeout():
 	if (throttle < throttle_deadzone and throttle > -throttle_deadzone):
