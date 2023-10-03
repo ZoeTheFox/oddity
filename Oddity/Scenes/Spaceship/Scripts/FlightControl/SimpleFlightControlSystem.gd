@@ -65,6 +65,13 @@ func _process(delta):
 		else:
 			apply_thrust(transform.basis.y, max_thrust_up, throttle)
 			
+	if (user_throttle >= 0):
+		var throttle = calc_throttle(velocity.z)
+		
+		if (velocity.z > 0):
+			apply_thrust(-transform.basis.z, max_thrust_main, throttle)
+		
+			
 	if (roll_left == false and roll_right == false and flight_assist):
 		
 		var throttle = 100
