@@ -99,20 +99,17 @@ func _process(delta):
 	else:
 		no_roll_right.emit()
 		
-	if mouse_moved:
-		mouse_moved = false
-		interpolate_torwards_vector = last_mouse_move_relative
-	
+	interpolate_torwards_vector = last_mouse_move_relative
 
 	current_interpolating_vector = current_interpolating_vector.lerp(interpolate_torwards_vector, interpolation_time * delta)
-	rotation_degrees.x = current_interpolating_vector.x
-	rotation_degrees.y = current_interpolating_vector.y
+	rotation_degrees.x = current_interpolating_vector.x / 10
+	rotation_degrees.y = current_interpolating_vector.y / 10
 	
 	print("y " + str(rotation_degrees.y) + " x " + str(rotation_degrees.x))
 	
-	#if not Input.is_action_pressed("camera-look-around"):
-		#yaw.emit(mouseInput.x)
-		#pitch.emit(mouseInput.y)
+	if not Input.is_action_pressed("camera-look-around"):
+		yaw.emit(-rotation_degrees.y)
+		pitch.emit(-rotation_degrees.x)
 		
 		
 		
