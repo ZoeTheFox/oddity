@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjx6yultmv13k"]
+[gd_scene load_steps=16 format=3 uid="uid://cjx6yultmv13k"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
@@ -6,8 +6,10 @@
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/UserControl.gd" id="2_y8fcc"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
 [ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
+[ext_resource type="Texture2D" uid="uid://b1587k88s4fw4" path="res://Scenes/Spaceship/UI/PitchYaw/crosshair.png" id="6_xn2h1"]
 [ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/Velocity_Arrows.tscn" id="7_8us3n"]
-[ext_resource type="PackedScene" uid="uid://bfe8v0o7ohgvi" path="res://Scenes/Spaceship/UI/UI.tscn" id="8_nilws"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/PitchYawCrosshair.gd" id="7_xmu4r"]
+[ext_resource type="PackedScene" uid="uid://bfe8v0o7ohgvi" path="res://Scenes/Spaceship/UI/ThrustSpeedText/UI.tscn" id="8_nilws"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rm3t2"]
 points = PackedVector3Array(9.16666, 4.58589, 5.79973, 2.39356, 0.462733, 0.793534, 2.39356, 1.34661, 0.793534, 2.39356, 0.462733, 4.32669, 9.16666, 3.40738, 4.03218, 2.68859, 1.64124, 4.32669, 8.5766, 4.58589, 4.03218, 8.5766, 3.11316, 5.79973, 5.04419, 1.34661, 1.97158, 7.98786, 4.29126, 5.79973, 2.98296, 0.462733, 4.32669, 8.87096, 4.29126, 3.73766, 2.68859, 1.64124, 1.08805, 2.68859, 0.462733, 0.793534, 5.04419, 1.34661, 4.6212, 2.39356, 1.34661, 4.32669, 9.16666, 3.40738, 5.79973, 7.98786, 3.11316, 5.79973, 9.16666, 4.58589, 4.03218, 7.69349, 2.81853, 3.14962, 2.68859, 1.34661, 0.793534, 2.98296, 0.462733, 1.08805, 8.5766, 4.58589, 5.79973, 6.221, 1.93546, 5.21022, 8.87096, 3.40738, 3.73766, 7.69349, 3.70201, 3.14962)
@@ -70,6 +72,12 @@ script = ExtResource("3_wocjs")
 transform = Transform3D(1, 0, 0, 0, 0.994703, 0.102793, 0, -0.102793, 0.994703, 0, 5.238, 14.946)
 current = true
 
+[node name="Sprite3D" type="Sprite3D" parent="Ship/Cameras/ThirdPersonCamera/TwistPivot/PitchPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.546898, -5.2922)
+pixel_size = 0.009
+texture = ExtResource("6_xn2h1")
+script = ExtResource("7_xmu4r")
+
 [node name="FirstPersonCamera" type="Node3D" parent="Ship/Cameras"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44426, 1.7775)
 script = ExtResource("3_wocjs")
@@ -119,6 +127,7 @@ global = true
 [connection signal="no_thrust_right" from="UserControl" to="." method="_on_user_control_no_thrust_right"]
 [connection signal="no_thrust_up" from="UserControl" to="." method="_on_user_control_no_thrust_up"]
 [connection signal="pitch" from="UserControl" to="." method="_on_user_control_pitch"]
+[connection signal="pitch" from="UserControl" to="Ship/Cameras/ThirdPersonCamera/TwistPivot/PitchPivot/Camera3D/Sprite3D" method="_on_user_control_pitch"]
 [connection signal="roll_left" from="UserControl" to="." method="_on_user_control_roll_left"]
 [connection signal="roll_right" from="UserControl" to="." method="_on_user_control_roll_right"]
 [connection signal="throttle_signal" from="UserControl" to="." method="_on_user_control_throttle_signal"]
@@ -130,4 +139,5 @@ global = true
 [connection signal="thrust_right" from="UserControl" to="." method="_on_user_control_thrust_right"]
 [connection signal="thrust_up" from="UserControl" to="." method="_on_user_control_thrust_up"]
 [connection signal="yaw" from="UserControl" to="." method="_on_user_control_yaw"]
+[connection signal="yaw" from="UserControl" to="Ship/Cameras/ThirdPersonCamera/TwistPivot/PitchPivot/Camera3D/Sprite3D" method="_on_user_control_yaw"]
 [connection signal="timeout" from="UserControl/Timer" to="UserControl" method="_on_timer_timeout"]
