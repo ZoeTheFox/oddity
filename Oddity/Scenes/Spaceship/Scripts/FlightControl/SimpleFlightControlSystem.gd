@@ -109,8 +109,6 @@ func _process(delta):
 		
 		var throttle = calc_torque_throttle(local_angular_velocity.z)
 		
-		print(throttle)
-		
 		if (abs(local_angular_velocity.z) > calc_speed_at_percentage(abs(user_roll), max_roll_velocity)):
 			
 			if (local_angular_velocity.z > 0):
