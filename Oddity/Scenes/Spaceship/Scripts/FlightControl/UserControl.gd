@@ -6,19 +6,18 @@ signal thrust_left(throttle)
 signal thrust_right(throttle)
 signal thrust_up(throttle)
 signal thrust_down(throttle)
-signal roll_left(percent)
-signal roll_right(percent)
-signal pitch(percent)
-signal yaw(percent)
+signal roll(throttle)
+signal pitch(throttle)
+signal yaw(throttle)
 
 signal no_thrust_left()
 signal no_thrust_right()
 signal no_thrust_up()
 signal no_thrust_down()
-signal no_roll_left()
-signal no_roll_right()
+signal no_roll()
 signal no_pitch()
 signal no_yaw()
+
 signal throttle_signal(throttle)
 
 var throttle := 0.0
@@ -53,7 +52,6 @@ func _process(delta):
 		throttle = clamp(throttle, -100.0, 100.0)
 		
 	if (throttle < throttle_deadzone and throttle > -throttle_deadzone):
-		#print("deadzone")
 		if (timer.is_stopped()):
 			timer.start()
 	
@@ -85,38 +83,34 @@ func _process(delta):
 		no_thrust_down.emit()
 		
 	if (Input.is_action_pressed("roll-left")):
-		roll_left.emit(100)
+		roll.emit(-100)
+	elif (Input.is_action_pressed("roll-right")):
+		roll.emit(100)
 	else:
-		no_roll_left.emit()
-		
-	if (Input.is_action_pressed("roll-right")):
-		roll_right.emit(100)
-	else:
-		no_roll_right.emit()
+		no_roll.emit()
 	
 	mouse_yaw = clamp(mouse_yaw, -100, 100)
 	mouse_pitch = clamp(mouse_pitch, -100, 100)
 		
 	if not Input.is_action_pressed("camera-look-around"):
-		if (abs(mouse_yaw) > 5):
+		if (abs(mouse_yaw) > 1):
 			yaw.emit(mouse_yaw)
 		else:
 			no_yaw.emit()
 		
-		if (abs(mouse_pitch) > 5):
+		if (abs(mouse_pitch) > 1):
 			pitch.emit(mouse_pitch)
 		else:
 			no_pitch.emit()
    
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouse_yaw += lerp(0,1,clamp(event.relative.x * get_process_delta_time(),-1,1)) * 2
-		mouse_pitch += lerp(0,1,clamp(event.relative.y * get_process_delta_time(),-1,1)) * 2
+		mouse_yaw += lerp(0,1,clamp(event.relative.x * get_process_delta_time(),-1,1)) * 5
+		mouse_pitch += lerp(0,1,clamp(event.relative.y * get_process_delta_time(),-1,1)) * 5
 
 func _on_timer_timeout():
 	if (throttle < throttle_deadzone and throttle > -throttle_deadzone):
 		throttle = 0
 	
 	timer.stop()
-	
-	#print("timer")
+
