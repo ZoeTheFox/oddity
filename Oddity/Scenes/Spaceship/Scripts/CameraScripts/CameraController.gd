@@ -23,13 +23,13 @@ func _process(delta):
 	if Input.is_action_pressed("camera-look-around"):
 		twist_pivot.rotate_y(twist_input)
 		pitch_pivot.rotate_x(pitch_input)
+
 		
 	twist_input = 0
 	pitch_input = 0
 	
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = - event.relative.x * mouse_sensivity
 			pitch_input = - event.relative.y * mouse_sensivity
-		
