@@ -17,6 +17,8 @@ signal no_thrust_up()
 signal no_thrust_down()
 signal no_roll_left()
 signal no_roll_right()
+signal no_pitch()
+signal no_yaw()
 signal throttle_signal(throttle)
 
 var throttle := 0.0
@@ -33,15 +35,8 @@ var mouse_sensivity := 0.01
 @onready
 var timer := $Timer
 
-var mouse_moved = false 
-
-var max_rotation  = 25
-var interpolation_time = 4
-
-var interpolation_vector_default : Vector2 = Vector2(0, 0)
-var last_mouse_move_relative : Vector2
-var interpolate_torwards_vector : Vector2
-var current_interpolating_vector : Vector2
+var mouse_pitch : float
+var mouse_yaw : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -98,29 +93,25 @@ func _process(delta):
 		roll_right.emit(100)
 	else:
 		no_roll_right.emit()
+	
+	mouse_yaw = clamp(mouse_yaw, -100, 100)
+	mouse_pitch = clamp(mouse_pitch, -100, 100)
 		
-	interpolate_torwards_vector = last_mouse_move_relative
-
-	current_interpolating_vector = current_interpolating_vector.lerp(interpolate_torwards_vector, interpolation_time * delta)
-	rotation_degrees.x = current_interpolating_vector.x / 10
-	rotation_degrees.y = current_interpolating_vector.y / 10
-	
-	print("y " + str(rotation_degrees.y) + " x " + str(rotation_degrees.x))
-	
 	if not Input.is_action_pressed("camera-look-around"):
-		yaw.emit(-rotation_degrees.y)
-		pitch.emit(-rotation_degrees.x)
+		if (abs(mouse_yaw) > 5):
+			yaw.emit(mouse_yaw)
+		else:
+			no_yaw.emit()
 		
-		
-		
-
+		if (abs(mouse_pitch) > 5):
+			pitch.emit(mouse_pitch)
+		else:
+			no_pitch.emit()
    
-
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouse_moved = true
-		last_mouse_move_relative = Vector2(clamp(event.relative.y, -max_rotation, max_rotation), 
-		clamp(event.relative.x, -max_rotation, max_rotation)) * -1
+		mouse_yaw += lerp(0,1,clamp(event.relative.x * get_process_delta_time(),-1,1)) * 2
+		mouse_pitch += lerp(0,1,clamp(event.relative.y * get_process_delta_time(),-1,1)) * 2
 
 func _on_timer_timeout():
 	if (throttle < throttle_deadzone and throttle > -throttle_deadzone):

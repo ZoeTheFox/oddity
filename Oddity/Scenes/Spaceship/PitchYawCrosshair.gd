@@ -16,8 +16,8 @@ func _process(delta):
 
 
 func _on_user_control_yaw(percent):
-	x_offset = percent * 10
+	x_offset = percent
 
 
 func _on_user_control_pitch(percent):
-	y_offset = percent * 10
+	y_offset = -percent

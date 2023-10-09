@@ -32,6 +32,8 @@ var thrust_up: bool
 var thrust_down: bool
 var roll_right: bool
 var roll_left: bool
+var pitch : bool
+var yaw : bool
 
 @export
 var flight_assist: bool
@@ -80,6 +82,26 @@ func _process(delta):
 			apply_torque(-transform.basis.z * throttle / 100.0 * 1000 * get_process_delta_time())
 		else:
 			apply_torque(transform.basis.z * throttle / 100.0 * 1000 * get_process_delta_time())
+	
+	
+	# TODO
+	# add max yaw pitch speed and regulate it based on percentage
+	if (yaw == false):
+		var throttle = 100
+		
+		if (local_angular_velocity.y > 0):
+			apply_torque(-transform.basis.y * throttle / 100.0 * 1000 * get_process_delta_time())
+		else:
+			apply_torque(transform.basis.y * throttle / 100.0 * 1000 * get_process_delta_time())
+			
+	if (pitch == false):
+		var throttle = 100
+		
+		if (local_angular_velocity.x > 0):
+			apply_torque(-transform.basis.x * throttle / 100.0 * 1000 * get_process_delta_time())
+		else:
+			apply_torque(transform.basis.x * throttle / 100.0 * 1000 * get_process_delta_time())
+	
 
 func calc_throttle(velocity):
 	if (abs(velocity) > 10):
@@ -142,10 +164,12 @@ func _on_user_control_roll_right(percent):
 	roll_right = true
 
 func _on_user_control_pitch(percent):
-	apply_torque(-transform.basis.x * percent * 1000 * get_process_delta_time())
+	apply_torque(-transform.basis.x * 10 * percent * get_process_delta_time())
+	pitch = true
 
 func _on_user_control_yaw(percent):
-	apply_torque(-transform.basis.y * percent * 1000 * get_process_delta_time())
+	apply_torque(-transform.basis.y * 10 * percent * get_process_delta_time())
+	yaw = true
 
 
 func _on_user_control_no_thrust_right():
@@ -175,3 +199,11 @@ func _on_user_control_no_roll_right():
 func _on_user_control_no_roll_left():
 	roll_left = false
 
+
+
+func _on_user_control_no_pitch():
+	pitch = false
+
+
+func _on_user_control_no_yaw():
+	yaw = false
