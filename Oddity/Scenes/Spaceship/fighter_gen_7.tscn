@@ -44,6 +44,8 @@ max_roll_velocity = 5.0
 max_pitch_velocity = 3.0
 max_yaw_velocity = 3.0
 max_total_velocity = 300.0
+max_side_velocity = 50.0
+max_up_down_velocity = 100.0
 flight_assist = true
 
 [node name="Thrusters" type="Node3D" parent="."]
