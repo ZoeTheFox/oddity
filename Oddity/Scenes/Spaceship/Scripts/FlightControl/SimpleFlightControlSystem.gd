@@ -41,6 +41,8 @@ var max_pitch_velocity : float
 @export
 var max_yaw_velocity : float
 
+@export
+var max_total_velocity : float
 
 var velocity : Vector3
 var local_angular_velocity : Vector3
@@ -189,28 +191,34 @@ func calc_local_angular_velocity():
 	local_angular_velocity = transform.basis.inverse() * world_angular_velocity
 
 func _on_user_control_thrust_forwards(throttle):
-	fire_thrusters_forwards(throttle)
+	if (-velocity.z <= max_total_velocity):
+		fire_thrusters_forwards(throttle)
 
 func _on_user_control_thrust_backwards(throttle):
-	fire_thrusters_retro(throttle)
+	if (velocity.z <= max_total_velocity):
+		fire_thrusters_retro(throttle)
 
 func _on_user_control_thrust_left(throttle):
-	fire_thrusters_left(throttle)
+	if (-velocity.x <= max_total_velocity):
+		fire_thrusters_left(throttle)
 
 	thrust_left = true
 
 func _on_user_control_thrust_right(throttle):
-	fire_thrusters_right(throttle)
+	if (velocity.x <= max_total_velocity):
+		fire_thrusters_right(throttle)
 
 	thrust_right = true
 
 func _on_user_control_thrust_up(throttle):
-	fire_thrusters_up(throttle)
+	if (abs(velocity.y) <= max_total_velocity):
+		fire_thrusters_up(throttle)
 	
 	thrust_up = true
 
 func _on_user_control_thrust_down(throttle):
-	fire_thrusters_down(throttle)
+	if (abs(velocity.y) <= max_total_velocity):
+		fire_thrusters_down(throttle)
 	
 	thrust_down = true
 
