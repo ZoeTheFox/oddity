@@ -190,11 +190,7 @@ func calc_local_velocity():
 	velocity.z = b.z.dot(v_nor) * v_len
 	
 func calc_local_angular_velocity():
-	# Get the world-space angular velocity of the rigid body
-	var world_angular_velocity = angular_velocity
-
-	# Convert the world-space angular velocity to local space
-	local_angular_velocity = transform.basis.inverse() * world_angular_velocity
+	local_angular_velocity = transform.basis.inverse() * angular_velocity
 
 func _on_user_control_thrust_forwards(throttle):
 	if (-velocity.z <= max_total_velocity):
