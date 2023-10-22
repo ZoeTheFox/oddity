@@ -14,7 +14,7 @@ data = PackedVector3Array(0.2038, -0.7388, 0.1015, 0.2068, -0.7381, 0.0818, 0.19
 [node name="ring" type="Node3D"]
 
 [node name="RingMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(22, 0, 0, 0, 22, 0, 0, 0, 22, 0, 0, 0)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
 mesh = ExtResource("1_pcvgq")
 surface_material_override/0 = SubResource("StandardMaterial3D_gsbq6")
 
