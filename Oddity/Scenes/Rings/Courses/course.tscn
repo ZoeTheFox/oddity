@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b62vde3oekq23"]
+
+[ext_resource type="PackedScene" uid="uid://clqhhmq28yadw" path="res://Scenes/Rings/Ring/ring.tscn" id="1_ve4xj"]
+
+[node name="course" type="Node3D"]
+
+[node name="ring" parent="." instance=ExtResource("1_ve4xj")]

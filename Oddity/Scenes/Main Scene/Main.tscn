@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://brkmh327ycklk"]
+[gd_scene load_steps=10 format=3 uid="uid://brkmh327ycklk"]
 
 [ext_resource type="PackedScene" uid="uid://cjx6yultmv13k" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
+[ext_resource type="PackedScene" uid="uid://b62vde3oekq23" path="res://Scenes/Rings/Courses/course.tscn" id="2_xe5xt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yldws"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -72,3 +73,6 @@ mesh = SubResource("SphereMesh_lrdhs")
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
 transform = Transform3D(28.445, 0, 0, 0, 28.445, 0, 0, 0, 28.445, -671.884, 0, 99.8056)
 mesh = SubResource("SphereMesh_lrdhs")
+
+[node name="course" parent="." instance=ExtResource("2_xe5xt")]
+transform = Transform3D(-0.0975829, 0, -0.995227, 0, 1, 0, 0.995227, 0, -0.0975829, -0.477354, 30.8539, -112.412)
