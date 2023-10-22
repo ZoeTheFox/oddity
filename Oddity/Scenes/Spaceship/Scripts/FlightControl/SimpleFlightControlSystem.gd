@@ -69,6 +69,9 @@ var yaw : bool
 @export
 var flight_assist : bool
 
+@export
+var throttle_based_on_max_speed : bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	thrust_multiplier = 1
@@ -97,12 +100,16 @@ func _process(delta):
 			fire_thrusters_down(throttle)
 		else:
 			fire_thrusters_up(throttle)
-			
+
 	if (user_throttle >= 0):
 		var throttle = calc_throttle(velocity.z)
 		
 		if (velocity.z > 0):
 			fire_thrusters_forwards(throttle)
+			
+
+	
+	
 	
 	if (roll == false and flight_assist):
 		
@@ -193,12 +200,20 @@ func calc_local_angular_velocity():
 	local_angular_velocity = transform.basis.inverse() * angular_velocity
 
 func _on_user_control_thrust_forwards(throttle):
-	if (-velocity.z <= max_total_velocity):
-		fire_thrusters_forwards(throttle)
+	if (throttle_based_on_max_speed):
+		if (abs(velocity.z) < calc_speed_at_percentage(abs(throttle), max_total_velocity)):
+			fire_thrusters_forwards(throttle)
+	else:		
+		if (-velocity.z <= max_total_velocity):
+			fire_thrusters_forwards(throttle)
 
 func _on_user_control_thrust_backwards(throttle):
-	if (velocity.z <= max_total_velocity):
-		fire_thrusters_retro(throttle)
+	if (throttle_based_on_max_speed):
+		if (abs(velocity.z) < calc_speed_at_percentage(abs(throttle), max_total_velocity)):
+			fire_thrusters_forwards(throttle)
+	else:
+		if (velocity.z <= max_total_velocity):
+			fire_thrusters_retro(throttle)
 
 func _on_user_control_thrust_left(throttle):
 	if (-velocity.x <= max_side_velocity):
