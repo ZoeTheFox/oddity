@@ -47,9 +47,6 @@ mesh = SubResource("PlaneMesh_54ktt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_20505")
 
-[node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.14994, 0)
-
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(28.445, 0, 0, 0, 28.445, 0, 0, 0, 28.445, -129.531, 0, 378.871)
 mesh = SubResource("SphereMesh_lrdhs")
@@ -76,3 +73,5 @@ mesh = SubResource("SphereMesh_lrdhs")
 
 [node name="course" parent="." instance=ExtResource("2_xe5xt")]
 transform = Transform3D(-0.0975829, 0, -0.995227, 0, 1, 0, 0.995227, 0, -0.0975829, -0.477354, 30.8539, -112.412)
+
+[node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
