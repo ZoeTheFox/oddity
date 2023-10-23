@@ -47,7 +47,6 @@ max_total_velocity = 300.0
 max_side_velocity = 50.0
 max_up_down_velocity = 100.0
 flight_assist = true
-throttle_based_on_max_speed = true
 
 [node name="Thrusters" type="Node3D" parent="."]
 

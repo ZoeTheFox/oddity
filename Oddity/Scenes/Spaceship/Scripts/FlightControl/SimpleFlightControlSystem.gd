@@ -202,7 +202,7 @@ func calc_local_angular_velocity():
 func _on_user_control_thrust_forwards(throttle):
 	if (throttle_based_on_max_speed):
 		if (abs(velocity.z) < calc_speed_at_percentage(abs(throttle), max_total_velocity)):
-			fire_thrusters_forwards(throttle)
+			fire_thrusters_forwards(100)
 	else:		
 		if (-velocity.z <= max_total_velocity):
 			fire_thrusters_forwards(throttle)
@@ -210,7 +210,7 @@ func _on_user_control_thrust_forwards(throttle):
 func _on_user_control_thrust_backwards(throttle):
 	if (throttle_based_on_max_speed):
 		if (abs(velocity.z) < calc_speed_at_percentage(abs(throttle), max_total_velocity)):
-			fire_thrusters_forwards(throttle)
+			fire_thrusters_retro(100)
 	else:
 		if (velocity.z <= max_total_velocity):
 			fire_thrusters_retro(throttle)

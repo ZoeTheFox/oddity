@@ -1,23 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://b62vde3oekq23"]
+[gd_scene load_steps=4 format=3 uid="uid://b62vde3oekq23"]
 
+[ext_resource type="Script" path="res://Scenes/Rings/Courses/course.gd" id="1_2s1qk"]
 [ext_resource type="PackedScene" uid="uid://clqhhmq28yadw" path="res://Scenes/Rings/Ring/ring.tscn" id="1_ve4xj"]
 
-[node name="course" type="Node3D"]
+[sub_resource type="SphereMesh" id="SphereMesh_wjamf"]
 
-[node name="ring" parent="." instance=ExtResource("1_ve4xj")]
+[node name="course" type="Node3D" node_paths=PackedStringArray("RingMarker")]
+script = ExtResource("1_2s1qk")
+RingMarker = NodePath("RingMarker")
+
+[node name="RingMarker" type="MeshInstance3D" parent="."]
+transform = Transform3D(12.985, 0, 0, 0, 12.985, 0, 0, 0, 12.985, -18.0698, 0, 0)
+mesh = SubResource("SphereMesh_wjamf")
+
+[node name="Rings" type="Node3D" parent="."]
+
+[node name="ring" parent="Rings" node_paths=PackedStringArray("course") instance=ExtResource("1_ve4xj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0698, 0, 0)
+course = NodePath("../..")
 
-[node name="ring" parent="ring" instance=ExtResource("1_ve4xj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -866.56, 0, 0)
+[node name="ring2" parent="Rings" node_paths=PackedStringArray("course") instance=ExtResource("1_ve4xj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -473.825, 0, 0)
+course = NodePath("../..")
 
-[node name="ring" parent="ring/ring" instance=ExtResource("1_ve4xj")]
-transform = Transform3D(0.989382, 0, 0.145341, 0, 1, 0, -0.145341, 0, 0.989382, -1466.96, 0, 371.299)
-
-[node name="ring" parent="ring/ring/ring" instance=ExtResource("1_ve4xj")]
-transform = Transform3D(0.263604, 0, 0.964631, 0, 1, 0, -0.964631, 0, 0.263604, -487.46, 0, 3195.29)
-
-[node name="ring" parent="ring/ring/ring/ring" instance=ExtResource("1_ve4xj")]
-transform = Transform3D(0.659486, -0.600415, 0.452307, 0.702117, 0.706934, -0.0853012, -0.268535, 0.373827, 0.887774, -1510.2, -616.371, 583.531)
-
-[node name="ring" parent="ring/ring/ring/ring/ring" instance=ExtResource("1_ve4xj")]
-transform = Transform3D(0.526346, 0.716807, 0.457328, -0.22944, 0.637646, -0.735368, -0.81873, 0.282128, 0.500086, -927.051, 1451.58, 4548.09)
+[node name="ring3" parent="Rings" node_paths=PackedStringArray("course") instance=ExtResource("1_ve4xj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1361.67, 0, 0)
+course = NodePath("../..")
