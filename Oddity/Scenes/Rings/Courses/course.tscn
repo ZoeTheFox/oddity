@@ -1,17 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://b62vde3oekq23"]
+[gd_scene load_steps=5 format=3 uid="uid://b62vde3oekq23"]
 
 [ext_resource type="Script" path="res://Scenes/Rings/Courses/course.gd" id="1_2s1qk"]
 [ext_resource type="PackedScene" uid="uid://clqhhmq28yadw" path="res://Scenes/Rings/Ring/ring.tscn" id="1_ve4xj"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_wjamf"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_76oea"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66prq"]
+transparency = 1
+albedo_color = Color(0.278431, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.952941, 0.952941, 1)
+emission_energy_multiplier = 2.2
+distance_fade_mode = 3
+distance_fade_min_distance = 5.0
+distance_fade_max_distance = 332.16
 
 [node name="course" type="Node3D" node_paths=PackedStringArray("RingMarker")]
 script = ExtResource("1_2s1qk")
 RingMarker = NodePath("RingMarker")
 
 [node name="RingMarker" type="MeshInstance3D" parent="."]
-transform = Transform3D(12.985, 0, 0, 0, 12.985, 0, 0, 0, 12.985, -18.0698, 0, 0)
-mesh = SubResource("SphereMesh_wjamf")
+transform = Transform3D(-2.61197e-06, -0.66, 0, 59.755, -2.88495e-08, 0, 0, 0, 59.755, -18.0698, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_76oea")
+surface_material_override/0 = SubResource("StandardMaterial3D_66prq")
 
 [node name="Rings" type="Node3D" parent="."]
 
@@ -25,4 +37,16 @@ course = NodePath("../..")
 
 [node name="ring3" parent="Rings" node_paths=PackedStringArray("course") instance=ExtResource("1_ve4xj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1361.67, 0, 0)
+course = NodePath("../..")
+
+[node name="ring4" parent="Rings" node_paths=PackedStringArray("course") instance=ExtResource("1_ve4xj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1969, 0, 0)
+course = NodePath("../..")
+
+[node name="ring5" parent="Rings" node_paths=PackedStringArray("course") instance=ExtResource("1_ve4xj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2550, 0, 0)
+course = NodePath("../..")
+
+[node name="ring6" parent="Rings" node_paths=PackedStringArray("course") instance=ExtResource("1_ve4xj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2972, 0, 0)
 course = NodePath("../..")
