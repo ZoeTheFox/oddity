@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cjx6yultmv13k"]
+[gd_scene load_steps=17 format=3 uid="uid://cjx6yultmv13k"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
 [ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
 [ext_resource type="PackedScene" uid="uid://sbarbbx73psc" path="res://Scenes/Spaceship/UI/PitchYaw/crossahair_ui_3_rd_person.tscn" id="6_bmp3h"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraShake.gd" id="7_1k7xb"]
 [ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/Velocity_Arrows.tscn" id="7_8us3n"]
 [ext_resource type="PackedScene" uid="uid://cr7t8smpohmy4" path="res://Scenes/Spaceship/UI/PitchYaw/crosshair_ui_1_st_person.tscn" id="7_c6fve"]
 [ext_resource type="PackedScene" uid="uid://bfe8v0o7ohgvi" path="res://Scenes/Spaceship/UI/ThrustSpeedText/UI.tscn" id="8_nilws"]
@@ -93,6 +94,7 @@ script = ExtResource("3_wocjs")
 [node name="PitchPivot" type="Node3D" parent="Ship/Cameras/FirstPersonCamera/TwistPivot"]
 
 [node name="Camera3D" type="Camera3D" parent="Ship/Cameras/FirstPersonCamera/TwistPivot/PitchPivot"]
+script = ExtResource("7_1k7xb")
 
 [node name="crosshairUI1stPerson" parent="Ship/Cameras/FirstPersonCamera/TwistPivot/PitchPivot/Camera3D" instance=ExtResource("7_c6fve")]
 
@@ -127,6 +129,7 @@ global = true
 
 [node name="UI" parent="." instance=ExtResource("8_nilws")]
 
+[connection signal="accelleration_signal" from="." to="Ship/Cameras/FirstPersonCamera/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_accelleration_signal"]
 [connection signal="speed_signal" from="." to="UI" method="_on_fighter_gen_7_speed_signal"]
 [connection signal="no_pitch" from="UserControl" to="." method="_on_user_control_no_pitch"]
 [connection signal="no_roll" from="UserControl" to="." method="_on_user_control_no_roll"]
