@@ -100,12 +100,6 @@ func _process(delta):
 			fire_thrusters_down(throttle)
 		else:
 			fire_thrusters_up(throttle)
-	
-	if (throttle_based_on_max_speed and user_throttle == 0):
-		if (-velocity.z > 0):
-			fire_thrusters_retro(-calc_throttle(-velocity.z))
-		elif (velocity.z < 0):
-			fire_thrusters_forwards(abs(calc_throttle(velocity.z)))	
 			
 	if (throttle_based_on_max_speed):
 		if (-velocity.z > calc_speed_at_percentage(user_throttle, max_total_velocity) and velocity.z < 0):
