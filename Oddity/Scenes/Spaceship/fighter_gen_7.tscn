@@ -82,6 +82,7 @@ script = ExtResource("3_wocjs")
 [node name="Camera3D" type="Camera3D" parent="Ship/Cameras/ThirdPersonCamera/TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.994703, 0.102793, 0, -0.102793, 0.994703, 0, 5.238, 14.946)
 current = true
+script = ExtResource("7_1k7xb")
 
 [node name="crossahairUI3rdPerson" parent="Ship/Cameras/ThirdPersonCamera/TwistPivot/PitchPivot/Camera3D" instance=ExtResource("6_bmp3h")]
 
@@ -130,6 +131,8 @@ global = true
 [node name="UI" parent="." instance=ExtResource("8_nilws")]
 
 [connection signal="accelleration_signal" from="." to="Ship/Cameras/FirstPersonCamera/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_accelleration_signal"]
+[connection signal="speed_signal" from="." to="Ship/Cameras/ThirdPersonCamera/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_speed_signal"]
+[connection signal="speed_signal" from="." to="Ship/Cameras/FirstPersonCamera/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_speed_signal"]
 [connection signal="speed_signal" from="." to="UI" method="_on_fighter_gen_7_speed_signal"]
 [connection signal="no_pitch" from="UserControl" to="." method="_on_user_control_no_pitch"]
 [connection signal="no_roll" from="UserControl" to="." method="_on_user_control_no_roll"]
