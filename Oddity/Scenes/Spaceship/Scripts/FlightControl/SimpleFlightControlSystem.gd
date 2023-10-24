@@ -100,16 +100,24 @@ func _process(delta):
 			fire_thrusters_down(throttle)
 		else:
 			fire_thrusters_up(throttle)
-
-	if (user_throttle >= 0):
-		var throttle = calc_throttle(velocity.z)
-		
-		if (velocity.z > 0):
-			fire_thrusters_forwards(throttle)
+	
+	if (throttle_based_on_max_speed and user_throttle == 0):
+		if (-velocity.z > 0):
+			fire_thrusters_retro(-calc_throttle(-velocity.z))
+		elif (velocity.z < 0):
+			fire_thrusters_forwards(abs(calc_throttle(velocity.z)))	
 			
-
-	
-	
+	if (throttle_based_on_max_speed):
+		if (-velocity.z > calc_speed_at_percentage(user_throttle, max_total_velocity) and velocity.z < 0):
+			fire_thrusters_retro(-calc_throttle(abs(velocity.z)))
+		elif (velocity.z > calc_speed_at_percentage(-user_throttle, max_total_velocity) and velocity.z > 0):
+			fire_thrusters_forwards(calc_throttle(abs(velocity.z)))
+	else:
+		if (user_throttle >= 0):
+			var throttle = calc_throttle(velocity.z)
+			
+			if (velocity.z > 0):
+				fire_thrusters_forwards(throttle)
 	
 	if (roll == false and flight_assist):
 		
@@ -201,7 +209,7 @@ func calc_local_angular_velocity():
 
 func _on_user_control_thrust_forwards(throttle):
 	if (throttle_based_on_max_speed):
-		if (abs(velocity.z) < calc_speed_at_percentage(abs(throttle), max_total_velocity)):
+		if (-velocity.z < calc_speed_at_percentage(throttle, max_total_velocity)):
 			fire_thrusters_forwards(100)
 	else:		
 		if (-velocity.z <= max_total_velocity):
@@ -209,8 +217,8 @@ func _on_user_control_thrust_forwards(throttle):
 
 func _on_user_control_thrust_backwards(throttle):
 	if (throttle_based_on_max_speed):
-		if (abs(velocity.z) < calc_speed_at_percentage(abs(throttle), max_total_velocity)):
-			fire_thrusters_retro(100)
+		if (velocity.z < calc_speed_at_percentage(abs(throttle), max_total_velocity)):
+			fire_thrusters_retro(-100)
 	else:
 		if (velocity.z <= max_total_velocity):
 			fire_thrusters_retro(throttle)
