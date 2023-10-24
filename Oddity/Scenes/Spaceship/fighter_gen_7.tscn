@@ -33,10 +33,10 @@ angular_damp_mode = 1
 script = ExtResource("1_q1vmv")
 max_thrust_main = 8000.0
 max_thrust_retro = 5000.0
-max_thrust_up = 2000.0
-max_thrust_down = 2000.0
-max_thrust_left = 2000.0
-max_thrust_right = 2000.0
+max_thrust_up = 3500.0
+max_thrust_down = 3500.0
+max_thrust_left = 4000.0
+max_thrust_right = 4000.0
 max_roll_force = 300.0
 max_pitch_force = 300.0
 max_yaw_force = 300.0
@@ -47,6 +47,7 @@ max_total_velocity = 300.0
 max_side_velocity = 50.0
 max_up_down_velocity = 100.0
 flight_assist = true
+throttle_based_on_max_speed = true
 
 [node name="Thrusters" type="Node3D" parent="."]
 
