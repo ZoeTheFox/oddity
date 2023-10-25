@@ -54,7 +54,7 @@ throttle_based_on_max_speed = true
 
 [node name="UserControl" type="Node3D" parent="."]
 script = ExtResource("2_y8fcc")
-throttle_deadzone = 7.0
+throttle_deadzone = 2.0
 throttle_sensivity = 80.0
 
 [node name="Timer" type="Timer" parent="UserControl"]
