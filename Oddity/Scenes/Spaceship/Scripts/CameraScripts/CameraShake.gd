@@ -2,16 +2,30 @@ extends Camera3D
 
 var acceleration : Vector3
 var speed : float
+var defaultPosition : Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	defaultPosition = position
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	fov = adjustFOVBasedOnSpeed(speed)
+	adjustCameraBasedOnAcceleration()
+	print(acceleration)
+
+func adjustCameraBasedOnAcceleration():
+	var currentPosition = position
 	
+	position = currentPosition + acceleration
+	
+	# Define a threshold for the acceleration values to consider as "close to 0"
+	var accelerationThreshold = 0.0001  # Adjust this threshold as needed
+
+	if acceleration.length() < accelerationThreshold:
+		# If acceleration is close to 0, reset the position to the default position
+		position = position.lerp(defaultPosition, get_process_delta_time() * 2.0)
 	
 func adjustFOVBasedOnSpeed(speed: float) -> float:
 	# Define the reasonable FOV range
@@ -30,9 +44,22 @@ func adjustFOVBasedOnSpeed(speed: float) -> float:
 
 	return fov
 
+func logarithmicTransform(vector):
+	# Logarithmic scaling factor to adjust the intensity of the transformation
+	var logFactor = 0.001
+	var maxMovement = 0.0015
+
+	var transformedVector = Vector3()
+
+	# Apply the logarithmic transformation to each component of the vector
+	transformedVector.x = clamp(log(1 + abs(vector.x)) * sign(vector.x) * logFactor, -maxMovement, maxMovement)
+	transformedVector.y = clamp(log(1 + abs(vector.y)) * sign(vector.y) * logFactor, -maxMovement, maxMovement)
+	transformedVector.z = clamp(log(1 + abs(vector.z)) * sign(vector.z) * logFactor, -maxMovement, maxMovement)
+
+	return -transformedVector
 
 func _on_fighter_gen_7_accelleration_signal(accelaration):
-	self.acceleration = accelaration
+	self.acceleration = logarithmicTransform(accelaration)
 
 
 func _on_fighter_gen_7_speed_signal(speed):
