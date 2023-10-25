@@ -16,10 +16,8 @@ func _input(event):
 	if Input.is_action_just_released("camera-switch-view"):
 		if (not is_first_person):
 			setDefaultPosition.emit(third_person_position)
-			first_person_camera.position = first_person_camera.position.lerp(third_person_position, get_process_delta_time() * 2.0)
 			is_first_person = true
 		else:
 			setDefaultPosition.emit(Vector3.ZERO)
-			first_person_camera.position = first_person_camera.position.lerp(Vector3.ZERO, get_process_delta_time() * 2.0)
 			is_first_person = false
 

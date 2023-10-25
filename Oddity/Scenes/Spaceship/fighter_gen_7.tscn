@@ -138,3 +138,4 @@ global = true
 [connection signal="yaw" from="UserControl" to="." method="_on_user_control_yaw"]
 [connection signal="yaw" from="UserControl" to="Ship/Cameras/ViewCam/TwistPivot/PitchPivot/Camera3D/crosshairUI1stPerson" method="_on_user_control_yaw"]
 [connection signal="timeout" from="UserControl/Timer" to="UserControl" method="_on_timer_timeout"]
+[connection signal="setDefaultPosition" from="Ship/Cameras" to="Ship/Cameras/ViewCam/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_set_default_position"]

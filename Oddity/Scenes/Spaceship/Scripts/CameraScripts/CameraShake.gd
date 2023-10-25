@@ -49,9 +49,9 @@ func adjustFOVBasedOnSpeed(speed: float) -> float:
 
 func logarithmicTransform(vector):
 	# Logarithmic scaling factor to adjust the intensity of the transformation
-	var logFactor = 0.01
+	var logFactor = 0.025
 	#var maxMovement = 0.0015
-	var maxMovement = 2.5
+	var maxMovement = 3
 	
 	var transformedVector = Vector3()
 
@@ -68,3 +68,7 @@ func _on_fighter_gen_7_accelleration_signal(accelaration):
 
 func _on_fighter_gen_7_speed_signal(speed):
 	self.speed = speed
+
+
+func _on_cameras_set_default_position(defaultPosition):
+	self.defaultPosition = self.defaultPosition.lerp(defaultPosition, get_process_delta_time() * 2.0)
