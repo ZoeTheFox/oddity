@@ -13,7 +13,7 @@ func _ready():
 func _process(delta):
 	fov = adjustFOVBasedOnSpeed(speed)
 	adjustCameraBasedOnAcceleration()
-	print(position)
+	#print(position)
 
 func adjustCameraBasedOnAcceleration():
 	var currentPosition = position
