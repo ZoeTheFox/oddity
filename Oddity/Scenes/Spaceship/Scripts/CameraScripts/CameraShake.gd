@@ -13,19 +13,22 @@ func _ready():
 func _process(delta):
 	fov = adjustFOVBasedOnSpeed(speed)
 	adjustCameraBasedOnAcceleration()
-	print(acceleration)
+	print(position)
 
 func adjustCameraBasedOnAcceleration():
 	var currentPosition = position
-	
-	position = currentPosition + acceleration
-	
-	# Define a threshold for the acceleration values to consider as "close to 0"
-	var accelerationThreshold = 0.0001  # Adjust this threshold as needed
-
-	if acceleration.length() < accelerationThreshold:
-		# If acceleration is close to 0, reset the position to the default position
-		position = position.lerp(defaultPosition, get_process_delta_time() * 2.0)
+#
+	position = position.lerp(acceleration + defaultPosition, get_process_delta_time() * 2.0)
+#	position = position.lerp(acceleration, get_process_delta_time() * 2.0)
+#
+#	position = currentPosition + acceleration
+#
+#	# Define a threshold for the acceleration values to consider as "close to 0"
+#	var accelerationThreshold = 0.0001  # Adjust this threshold as needed
+#
+#	if acceleration.length() < accelerationThreshold:
+#		# If acceleration is close to 0, reset the position to the default position
+#		position = position.lerp(defaultPosition, get_process_delta_time() * 2.0)
 	
 func adjustFOVBasedOnSpeed(speed: float) -> float:
 	# Define the reasonable FOV range
@@ -46,9 +49,10 @@ func adjustFOVBasedOnSpeed(speed: float) -> float:
 
 func logarithmicTransform(vector):
 	# Logarithmic scaling factor to adjust the intensity of the transformation
-	var logFactor = 0.001
-	var maxMovement = 0.0015
-
+	var logFactor = 0.01
+	#var maxMovement = 0.0015
+	var maxMovement = 2.5
+	
 	var transformedVector = Vector3()
 
 	# Apply the logarithmic transformation to each component of the vector
