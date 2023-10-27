@@ -1,5 +1,7 @@
 extends Node3D
 
+## This should be made smoother ##
+
 @export
 var mouse_sensivity := 0.001
 
@@ -23,7 +25,6 @@ func _process(delta):
 	if Input.is_action_pressed("camera-look-around"):
 		twist_pivot.rotate_y(twist_input)
 		pitch_pivot.rotate_x(pitch_input)
-
 		
 	twist_input = 0
 	pitch_input = 0
