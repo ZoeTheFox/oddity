@@ -8,6 +8,7 @@ var min_fov : float
 var max_fov : float
 var logFactor : float
 var maxMovement : float
+var camera_shake_factor : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,28 +18,19 @@ func _ready():
 	max_fov = 90.0
 	logFactor = 0.025
 	maxMovement = 3
+	camera_shake_factor = 30
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	fov = adjustFOVBasedOnSpeed(speed)
 	adjustCameraBasedOnAcceleration()
-	#print(position)
+	camera_shake()
 
 func adjustCameraBasedOnAcceleration():
 	var currentPosition = position
 #
 	position = position.lerp(acceleration + defaultPosition, get_process_delta_time() * 2.0)
-#	position = position.lerp(acceleration, get_process_delta_time() * 2.0)
-#
-#	position = currentPosition + acceleration
-#
-#	# Define a threshold for the acceleration values to consider as "close to 0"
-#	var accelerationThreshold = 0.0001  # Adjust this threshold as needed
-#
-#	if acceleration.length() < accelerationThreshold:
-#		# If acceleration is close to 0, reset the position to the default position
-#		position = position.lerp(defaultPosition, get_process_delta_time() * 2.0)
 	
 func adjustFOVBasedOnSpeed(speed: float) -> float:
 	# Define the minimum and maximum speeds for mapping
@@ -53,9 +45,12 @@ func adjustFOVBasedOnSpeed(speed: float) -> float:
 
 	return fov
 
-func logarithmicTransform(vector):
+func camera_shake():
+	var offset =  Vector2(randf(), randf()) * acceleration.length() / camera_shake_factor
+	h_offset = offset.x
+	v_offset = offset.y
 
-	
+func logarithmicTransform(vector):
 	var transformedVector = Vector3()
 
 	# Apply the logarithmic transformation to each component of the vector
@@ -84,8 +79,10 @@ func _on_cameras_is_first_person_signal(is_first_person):
 		max_fov = 90.0
 		logFactor = 0.025
 		maxMovement = 3
+		camera_shake_factor = 5
 	else:
 		min_fov = 80.0
 		max_fov = 110.0
 		logFactor = 0.2
 		maxMovement = 40
+		camera_shake_factor = 100
