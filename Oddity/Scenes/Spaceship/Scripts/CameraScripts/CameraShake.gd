@@ -4,9 +4,19 @@ var acceleration : Vector3
 var speed : float
 var defaultPosition : Vector3
 
+var min_fov : float
+var max_fov : float
+var logFactor : float
+var maxMovement : float
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	defaultPosition = position
+	
+	min_fov = 60.0
+	max_fov = 90.0
+	logFactor = 0.025
+	maxMovement = 3
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,10 +41,6 @@ func adjustCameraBasedOnAcceleration():
 #		position = position.lerp(defaultPosition, get_process_delta_time() * 2.0)
 	
 func adjustFOVBasedOnSpeed(speed: float) -> float:
-	# Define the reasonable FOV range
-	var min_fov = 60.0  # Minimum FOV
-	var max_fov = 90.0  # Maximum FOV
-
 	# Define the minimum and maximum speeds for mapping
 	var min_speed = -400.0
 	var max_speed = 400.0
@@ -48,10 +54,7 @@ func adjustFOVBasedOnSpeed(speed: float) -> float:
 	return fov
 
 func logarithmicTransform(vector):
-	# Logarithmic scaling factor to adjust the intensity of the transformation
-	var logFactor = 0.025
-	#var maxMovement = 0.0015
-	var maxMovement = 3
+
 	
 	var transformedVector = Vector3()
 
@@ -73,3 +76,16 @@ func _on_fighter_gen_7_speed_signal(speed):
 
 func _on_cameras_set_default_position(defaultPosition):
 	self.defaultPosition = defaultPosition
+
+
+func _on_cameras_is_first_person_signal(is_first_person):
+	if (is_first_person):
+		min_fov = 60.0
+		max_fov = 90.0
+		logFactor = 0.025
+		maxMovement = 3
+	else:
+		min_fov = 80.0
+		max_fov = 110.0
+		logFactor = 0.2
+		maxMovement = 40

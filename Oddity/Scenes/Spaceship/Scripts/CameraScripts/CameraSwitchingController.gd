@@ -1,6 +1,7 @@
 extends Node3D
 
 signal setDefaultPosition(defaultPosition : Vector3)
+signal is_first_person_signal(is_first_person : bool)
 
 @export
 var first_person_camera := Camera3D
@@ -20,7 +21,9 @@ func _input(event):
 			animation.play("SwitchCameraToThirdPersonView")
 			setDefaultPosition.emit(third_person_position)
 			is_first_person = false
+			is_first_person_signal.emit(is_first_person)
 		elif (not is_first_person and not animation.is_playing()):
 			animation.play_backwards("SwitchCameraToThirdPersonView")
 			is_first_person = true
 			setDefaultPosition.emit(Vector3.ZERO)
+			is_first_person_signal.emit(is_first_person)
