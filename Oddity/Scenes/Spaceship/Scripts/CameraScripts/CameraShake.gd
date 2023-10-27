@@ -4,49 +4,78 @@ var acceleration : Vector3
 var speed : float
 var defaultPosition : Vector3
 
-var min_fov : float
-var max_fov : float
-var logFactor : float
-var maxMovement : float
-var camera_shake_factor : float
+@export_category("First Person Settings")
+
+@export_range(50, 170, 0.5)
+var min_fov_first_person : float
+
+@export_range(50, 170, 0.5)
+var max_fov_first_person : float
+
+@export
+var maximum_movement_first_person : float
+
+@export
+var acceleration_movement_factor_first_person : float
+
+@export
+var camera_shake_strength_first_person : float
+
+@export_category("Third Person Settings")
+
+@export_range(50, 170, 0.5)
+var min_fov_third_person : float
+
+@export_range(50, 170, 0.5)
+var max_fov_third_person : float
+
+@export
+var maximum_movement_third_person : float
+
+@export
+var acceleration_movement_factor_third_person : float
+
+@export
+var camera_shake_strength_third_person : float
+
+var current_min_fov : float
+var current_max_fov : float
+var current_acceleration_movement_factor : float
+var current_max_movement : float
+var current_camera_shake_strength : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	defaultPosition = position
 	
-	min_fov = 60.0
-	max_fov = 90.0
-	logFactor = 0.025
-	maxMovement = 3
-	camera_shake_factor = 30
-
+	current_min_fov = min_fov_first_person
+	current_max_fov = max_fov_first_person
+	current_acceleration_movement_factor = acceleration_movement_factor_first_person
+	current_max_movement = maximum_movement_first_person
+	current_camera_shake_strength = camera_shake_strength_first_person
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	fov = adjustFOVBasedOnSpeed(speed)
-	adjustCameraBasedOnAcceleration()
+	adjust_fov()
+	adjust_camera_position()
 	camera_shake()
-
-func adjustCameraBasedOnAcceleration():
-	var currentPosition = position
-#
+	
+func adjust_camera_position():
 	position = position.lerp(acceleration + defaultPosition, get_process_delta_time() * 2.0)
 	
-func adjustFOVBasedOnSpeed(speed: float) -> float:
+func adjust_fov():
 	# Define the minimum and maximum speeds for mapping
 	var min_speed = -400.0
 	var max_speed = 400.0
 
 	# Ensure that the speed is within the specified range
-	speed = clamp(speed, min_speed, max_speed)
+	var current_speed = clamp(speed, min_speed, max_speed)
 
 	# Calculate the FOV based on speed using linear mapping
-	var fov = lerp(min_fov, max_fov, (speed - min_speed) / (max_speed - min_speed))
-
-	return fov
+	fov = lerp(current_min_fov, current_max_fov, (current_speed - min_speed) / (max_speed - min_speed))
 
 func camera_shake():
-	var offset =  Vector2(randf(), randf()) * acceleration.length() / camera_shake_factor
+	var offset =  Vector2(randf(), randf()) * acceleration.length() / current_camera_shake_strength
 	h_offset = offset.x
 	v_offset = offset.y
 
@@ -54,35 +83,31 @@ func logarithmicTransform(vector):
 	var transformedVector = Vector3()
 
 	# Apply the logarithmic transformation to each component of the vector
-	transformedVector.x = clamp(log(1 + abs(vector.x)) * sign(vector.x) * logFactor, -maxMovement, maxMovement)
-	transformedVector.y = clamp(log(1 + abs(vector.y)) * sign(vector.y) * logFactor, -maxMovement, maxMovement)
-	transformedVector.z = clamp(log(1 + abs(vector.z)) * sign(vector.z) * logFactor, -maxMovement, maxMovement)
+	transformedVector.x = clamp(log(1 + abs(vector.x)) * sign(vector.x) * current_acceleration_movement_factor, -current_max_movement, current_max_movement)
+	transformedVector.y = clamp(log(1 + abs(vector.y)) * sign(vector.y) * current_acceleration_movement_factor, -current_max_movement, current_max_movement)
+	transformedVector.z = clamp(log(1 + abs(vector.z)) * sign(vector.z) * current_acceleration_movement_factor, -current_max_movement, current_max_movement)
 
 	return -transformedVector
 
 func _on_fighter_gen_7_accelleration_signal(accelaration):
 	self.acceleration = logarithmicTransform(accelaration)
 
-
 func _on_fighter_gen_7_speed_signal(speed):
 	self.speed = speed
-
-
 
 func _on_cameras_set_default_position(defaultPosition):
 	self.defaultPosition = defaultPosition
 
-
 func _on_cameras_is_first_person_signal(is_first_person):
 	if (is_first_person):
-		min_fov = 60.0
-		max_fov = 90.0
-		logFactor = 0.025
-		maxMovement = 3
-		camera_shake_factor = 5
+		current_min_fov = min_fov_first_person
+		current_max_fov = max_fov_first_person
+		current_acceleration_movement_factor = acceleration_movement_factor_first_person
+		current_max_movement = maximum_movement_first_person
+		current_camera_shake_strength = camera_shake_strength_first_person
 	else:
-		min_fov = 80.0
-		max_fov = 110.0
-		logFactor = 0.2
-		maxMovement = 40
-		camera_shake_factor = 100
+		current_min_fov = min_fov_third_person
+		current_max_fov = max_fov_third_person
+		current_acceleration_movement_factor = acceleration_movement_factor_third_person
+		current_max_movement = maximum_movement_third_person
+		current_camera_shake_strength = camera_shake_strength_third_person

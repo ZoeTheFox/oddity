@@ -121,6 +121,16 @@ script = ExtResource("3_wocjs")
 [node name="Camera3D" type="Camera3D" parent="Ship/Cameras/ViewCam/TwistPivot/PitchPivot"]
 current = true
 script = ExtResource("7_1k7xb")
+min_fov_first_person = 60.0
+max_fov_first_person = 90.0
+maximum_movement_first_person = 3.0
+acceleration_movement_factor_first_person = 0.025
+camera_shake_strength_first_person = 15.0
+min_fov_third_person = 80.0
+max_fov_third_person = 110.0
+maximum_movement_third_person = 0.2
+acceleration_movement_factor_third_person = 0.2
+camera_shake_strength_third_person = 100.0
 
 [node name="CameraViewSwitchAnimator" type="AnimationPlayer" parent="Ship/Cameras/ViewCam/TwistPivot/PitchPivot/Camera3D"]
 libraries = {
