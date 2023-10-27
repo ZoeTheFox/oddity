@@ -4,6 +4,7 @@ var thrust_multiplier : float
 var torque_multiplier : float
 
 signal speed_signal(speed)
+signal accelleration_signal(accelaration : Vector3)
 
 @export
 var max_thrust_main : float
@@ -53,6 +54,9 @@ var max_up_down_velocity : float
 var velocity : Vector3
 var local_angular_velocity : Vector3
 
+var velocity_last_frame : Vector3
+var acceleration : Vector3
+
 var user_throttle : float
 var user_pitch : float
 var user_yaw : float
@@ -82,8 +86,10 @@ func _ready():
 func _process(delta):
 	calc_local_velocity()
 	calc_local_angular_velocity()
+	calc_accelleration()
 	
 	speed_signal.emit(velocity.length())
+	accelleration_signal.emit(acceleration)
 	
 	if (thrust_left == false and thrust_right == false and flight_assist):
 		var throttle = calc_throttle(velocity.x)
@@ -184,7 +190,12 @@ func calc_torque_throttle(velocity):
 	if (abs(velocity) > 1):
 		return 100
 	
-	return (100.0 / 2) * abs(velocity) 
+	return (100.0 / 2) * abs(velocity)
+	
+func calc_accelleration():
+	acceleration = (velocity - velocity_last_frame) / get_process_delta_time();
+	
+	velocity_last_frame = velocity
 
 func calc_local_velocity():
 	
@@ -204,7 +215,7 @@ func calc_local_angular_velocity():
 func _on_user_control_thrust_forwards(throttle):
 	if (throttle_based_on_max_speed):
 		if (-velocity.z < calc_speed_at_percentage(throttle, max_total_velocity)):
-			fire_thrusters_forwards(100)
+			fire_thrusters_forwards(calc_throttle(calc_speed_at_percentage(throttle, max_total_velocity) - abs(velocity.z)))
 	else:		
 		if (-velocity.z <= max_total_velocity):
 			fire_thrusters_forwards(throttle)
@@ -212,7 +223,7 @@ func _on_user_control_thrust_forwards(throttle):
 func _on_user_control_thrust_backwards(throttle):
 	if (throttle_based_on_max_speed):
 		if (velocity.z < calc_speed_at_percentage(abs(throttle), max_total_velocity)):
-			fire_thrusters_retro(-100)
+			fire_thrusters_retro(-calc_throttle(calc_speed_at_percentage(abs(throttle), max_total_velocity) - abs(velocity.z)))
 	else:
 		if (velocity.z <= max_total_velocity):
 			fire_thrusters_retro(throttle)
