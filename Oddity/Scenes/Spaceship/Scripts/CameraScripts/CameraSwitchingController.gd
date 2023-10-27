@@ -7,7 +7,7 @@ signal is_first_person_signal(is_first_person : bool)
 var camera = $CameraPivots/TwistPivot/PitchPivot/Camera3D
 
 @onready
-var animation = $ViewCam/TwistPivot/PitchPivot/Camera3D/CameraViewSwitchAnimator
+var animation = $CameraPivots/TwistPivot/PitchPivot/Camera3D/CameraViewSwitchAnimator
 
 var is_first_person = true
 
