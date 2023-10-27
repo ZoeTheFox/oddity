@@ -70,5 +70,6 @@ func _on_fighter_gen_7_speed_signal(speed):
 	self.speed = speed
 
 
+
 func _on_cameras_set_default_position(defaultPosition):
-	self.defaultPosition = self.defaultPosition.lerp(defaultPosition, get_process_delta_time() * 2.0)
+	self.defaultPosition = defaultPosition
