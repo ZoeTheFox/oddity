@@ -150,6 +150,7 @@ shape = SubResource("ConvexPolygonShape3D_jbudj")
 
 [node name="Velocity_Arrows" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("7_8us3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45328, 4.95195, 0)
+visible = false
 rigid_body = NodePath("..")
 
 [node name="Velocity_Arrows2" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("7_8us3n")]
