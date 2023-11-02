@@ -1,7 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://brkmh327ycklk"]
+[gd_scene load_steps=15 format=3 uid="uid://brkmh327ycklk"]
 
 [ext_resource type="PackedScene" uid="uid://cjx6yultmv13k" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
 [ext_resource type="PackedScene" uid="uid://b62vde3oekq23" path="res://Scenes/Rings/Courses/course.tscn" id="2_xe5xt"]
+[ext_resource type="PackedScene" uid="uid://dyxd153um4jts" path="res://Scenes/Asteroids/Asteroid1/asteroid.tscn" id="3_u2npq"]
+[ext_resource type="PackedScene" uid="uid://shh8auldct3c" path="res://Scenes/Asteroids/Asteroid2/asteroid2.tscn" id="4_5ae42"]
+[ext_resource type="PackedScene" uid="uid://b0aonjt38k577" path="res://Scenes/Asteroids/Asteroid3/asteroid3.tscn" id="5_4cwrq"]
+[ext_resource type="PackedScene" uid="uid://c527cwrk74hl6" path="res://Scenes/Asteroids/Asteroid4/asteroid4.tscn" id="6_30qqj"]
+[ext_resource type="PackedScene" uid="uid://bnu63p65tn5dw" path="res://Scenes/Asteroids/Asteroid5/asteroid5.tscn" id="7_yalli"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yldws"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -75,3 +80,20 @@ mesh = SubResource("SphereMesh_lrdhs")
 transform = Transform3D(-0.0975829, 0, -0.995227, 0, 1, 0, 0.995227, 0, -0.0975829, -0.477354, 30.8539, -798.968)
 
 [node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
+
+[node name="Asteroids" type="Node3D" parent="."]
+
+[node name="asteroid2" parent="Asteroids" instance=ExtResource("4_5ae42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1462, -0.765028, -94.5317)
+
+[node name="asteroid" parent="Asteroids" instance=ExtResource("3_u2npq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2707, 0, -95.2667)
+
+[node name="Asteroid3" parent="Asteroids" instance=ExtResource("5_4cwrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3743, 10.6951, -61.999)
+
+[node name="asteroid4" parent="Asteroids" instance=ExtResource("6_30qqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8517, -4.91197, -45.3)
+
+[node name="asteroid5" parent="Asteroids" instance=ExtResource("7_yalli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.62003, 6.03681, -131.583)

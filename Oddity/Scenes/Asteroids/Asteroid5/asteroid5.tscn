@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnu63p65tn5dw"]
+
+[ext_resource type="Script" path="res://Scenes/Asteroids/Asteroid5/asteroid5_rotation.gd" id="1_l3hkp"]
+[ext_resource type="ArrayMesh" uid="uid://bciuxknd0axpy" path="res://Assets/Asteroids/Asteroid_5/OBJ/asteroid_5.obj" id="2_l3wib"]
+[ext_resource type="Texture2D" uid="uid://d3pj8om171102" path="res://Assets/Asteroids/Asteroid_5/GLB/asteroid_5_plastered_stone_wall_diff_4k.png" id="3_ku60w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1oe8"]
+albedo_texture = ExtResource("3_ku60w")
+
+[node name="asteroid5" type="Node3D"]
+script = ExtResource("1_l3hkp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_l3wib")
+surface_material_override/0 = SubResource("StandardMaterial3D_a1oe8")
