@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://brkmh327ycklk"]
+[gd_scene load_steps=22 format=3 uid="uid://brkmh327ycklk"]
 
 [ext_resource type="PackedScene" uid="uid://cjx6yultmv13k" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
 [ext_resource type="Texture2D" uid="uid://bvl3yjmevktcf" path="res://Assets/SkyBox/skyboxv2.exr" id="1_g3xlb"]
@@ -59,8 +59,8 @@ emission_energy_multiplier = 0.75
 material = SubResource("StandardMaterial3D_sbghy")
 
 [sub_resource type="Curve" id="Curve_xdhdi"]
-_data = [Vector2(0.00649349, 0.473684), 0.0, 0.0, 0, 0, Vector2(0.519481, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0.515789), 0.0, 0.0, 0, 0, Vector2(0.245902, 0.778947), 0.0, 0.0, 0, 0, Vector2(0.495902, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="CurveTexture" id="CurveTexture_rd2vx"]
 curve = SubResource("Curve_xdhdi")
@@ -77,8 +77,8 @@ initial_velocity_min = 0.5
 initial_velocity_max = 1.0
 angular_velocity_min = 1.0
 angular_velocity_max = 5.0
-scale_min = 0.1
-scale_max = 0.3
+scale_min = 0.0
+scale_max = 0.5
 scale_curve = SubResource("CurveTexture_rd2vx")
 color = Color(0, 0.482353, 1, 1)
 
@@ -92,6 +92,8 @@ subsurf_scatter_skin_mode = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_wgsrx"]
 material = SubResource("StandardMaterial3D_v6v6u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0iopf"]
 
 [node name="Main" type="Node3D"]
 
@@ -156,3 +158,7 @@ transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0.0322262, -0.091
 amount = 512
 process_material = SubResource("ParticleProcessMaterial_rcuqy")
 draw_pass_1 = SubResource("BoxMesh_wgsrx")
+
+[node name="thruster1" type="GPUParticles3D" parent="FighterGen7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4869, 0, 0)
+process_material = SubResource("ParticleProcessMaterial_0iopf")
