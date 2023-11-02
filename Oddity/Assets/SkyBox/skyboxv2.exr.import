@@ -2,10 +2,10 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvl3yjmevktcf"
+uid="uid://cv0a5sj1gpyo3"
 path="res://.godot/imported/skyboxv2.exr-d98b28aa26fc40e88cd459e5a627fdd7.ctex"
 metadata={
-"vram_texture": false
+"vram_texture": true
 }
 
 [deps]
