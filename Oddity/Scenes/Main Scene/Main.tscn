@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://brkmh327ycklk"]
 
 [ext_resource type="PackedScene" uid="uid://cjx6yultmv13k" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
-[ext_resource type="Texture2D" uid="uid://cv0a5sj1gpyo3" path="res://Assets/SkyBox/skyboxv2.exr" id="1_g3xlb"]
+[ext_resource type="Texture2D" uid="uid://bvl3yjmevktcf" path="res://Assets/SkyBox/skyboxv2.exr" id="1_g3xlb"]
 [ext_resource type="PackedScene" uid="uid://b62vde3oekq23" path="res://Scenes/Rings/Courses/course.tscn" id="2_xe5xt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_46trt"]
