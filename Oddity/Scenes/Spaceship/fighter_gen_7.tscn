@@ -24,12 +24,11 @@ emission_sphere_radius = 0.1
 particle_flag_align_y = true
 particle_flag_rotate_y = true
 direction = Vector3(0, 0, 1)
-spread = 0.0
+spread = 4.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 0.1
-initial_velocity_max = 1.0
-angular_velocity_min = 0.1
+initial_velocity_max = 2.0
 angular_velocity_max = 1.0
+damping_max = 0.98
 scale_min = 0.1
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_4pm23")
@@ -44,6 +43,7 @@ emission_energy_multiplier = 0.75
 
 [sub_resource type="BoxMesh" id="BoxMesh_8hvvo"]
 material = SubResource("StandardMaterial3D_sbghy")
+size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="Curve" id="Curve_v0d0x"]
 _data = [Vector2(0, 0.515789), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.504762, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -57,15 +57,16 @@ emission_shape = 1
 emission_sphere_radius = 0.02
 particle_flag_align_y = true
 direction = Vector3(0, 0, 1)
-spread = 0.0
+spread = 1.0
+flatness = 1.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 0.5
-initial_velocity_max = 1.0
-angular_velocity_min = 1.0
+initial_velocity_max = 1.5
 angular_velocity_max = 5.0
-scale_min = 0.1
+damping_max = 0.5
+scale_min = 0.0
 scale_curve = SubResource("CurveTexture_rd2vx")
 color = Color(0, 0.482353, 1, 1)
+collision_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6v6u"]
 vertex_color_use_as_albedo = true
@@ -77,9 +78,10 @@ subsurf_scatter_skin_mode = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_iy85d"]
 material = SubResource("StandardMaterial3D_v6v6u")
+size = Vector3(0.05, 0.05, 0.05)
 
 [sub_resource type="Curve" id="Curve_pfjht"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.495238, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.523809, 0.852632), -0.736842, -0.736842, 0, 0, Vector2(1, 0), -2.02632, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_igfwv"]
@@ -87,17 +89,25 @@ curve = SubResource("Curve_pfjht")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kbmvj"]
 particle_flag_align_y = true
+particle_flag_rotate_y = true
 direction = Vector3(0, 1, 0)
-spread = 2.0
-flatness = 0.1
+spread = 1.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 1.0
-initial_velocity_max = 1.0
-scale_min = 0.1
+initial_velocity_max = 1.25
+angular_velocity_min = 1.0
+angular_velocity_max = 1.0
+damping_min = 0.01
+damping_max = 0.5
+scale_min = 0.0
 scale_curve = SubResource("CurveTexture_igfwv")
+color = Color(0.498039, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyjmg"]
 vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.498039, 1, 1, 1)
+emission_energy_multiplier = 1.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_dbk38"]
 material = SubResource("StandardMaterial3D_hyjmg")
@@ -191,10 +201,10 @@ throttle_based_on_max_speed = true
 transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, 0, 5.5)
 layers = 2
 amount = 1024
-lifetime = 0.75
-speed_scale = 16.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
-fract_delta = false
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_mpfmj")
 draw_pass_1 = SubResource("BoxMesh_8hvvo")
 
@@ -202,9 +212,9 @@ draw_pass_1 = SubResource("BoxMesh_8hvvo")
 transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, 0, 5.5)
 amount = 512
 lifetime = 2.0
-speed_scale = 16.0
+speed_scale = 24.0
 fixed_fps = 256
-fract_delta = false
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_jxq0y")
 draw_pass_1 = SubResource("BoxMesh_iy85d")
 
@@ -213,201 +223,201 @@ transform = Transform3D(2, 0, 0, 0, 1.53209, -0.642788, 0, 1.28558, 0.766044, 0,
 
 [node name="wing_top_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 6.35, 2.9, 3.9)
-amount = 1024
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+amount = 256
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="wing_top_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -6.35, 2.9, 3.9)
-amount = 1024
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+amount = 256
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="wing_bottom_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, 6.35, -2.9, 3.9)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="wing_bottom_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-0.866025, 0.5, 0, -0.5, -0.866025, 0, 0, 0, 1, -6.35, -2.9, 3.9)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="top_middle_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.975, 0.65, -1.375)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="top_middle_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.975, 0.65, -1.375)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="bottom_middle_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -0.86, -1.175, -0.7)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="bottom_middle_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.86, -1.175, -0.7)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="front_bottom" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.8, -6)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="front_top" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, -6.35)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="front_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 0.875, -0.3, -6.2)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="front_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.875, -0.3, -6.2)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="back_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.775, -0.2, 4.525)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="back_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 1.775, -0.2, 4.525)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="back_bottom_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.32048, -1.25, 4.44)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="middle_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 1.35, -0.2, 0)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="middle_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.35, -0.2, 0)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="back_bottom_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1.32, -1.25, 4.44)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="back_top_left" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.425, 1.25, 5.925)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="back_top_right" type="GPUParticles3D" parent="Thrusters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.425, 1.25, 5.925)
 amount = 256
-lifetime = 8.0
-speed_scale = 16.0
-randomness = 1.0
+lifetime = 1.25
+speed_scale = 8.0
 fixed_fps = 256
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
