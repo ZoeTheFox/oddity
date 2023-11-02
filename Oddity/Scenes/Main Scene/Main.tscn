@@ -1,20 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://brkmh327ycklk"]
+[gd_scene load_steps=21 format=3 uid="uid://brkmh327ycklk"]
 
 [ext_resource type="PackedScene" uid="uid://cjx6yultmv13k" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
+[ext_resource type="Texture2D" uid="uid://bvl3yjmevktcf" path="res://Assets/SkyBox/skyboxv2.exr" id="1_g3xlb"]
 [ext_resource type="PackedScene" uid="uid://b62vde3oekq23" path="res://Scenes/Rings/Courses/course.tscn" id="2_xe5xt"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yldws"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_46trt"]
+panorama = ExtResource("1_g3xlb")
 
 [sub_resource type="Sky" id="Sky_7ow04"]
-sky_material = SubResource("ProceduralSkyMaterial_yldws")
+sky_material = SubResource("PanoramaSkyMaterial_46trt")
+radiance_size = 4
 
 [sub_resource type="Environment" id="Environment_af0w1"]
 background_mode = 2
 sky = SubResource("Sky_7ow04")
+sky_rotation = Vector3(4.71239, 0, 0)
 tonemap_mode = 2
 glow_enabled = true
+glow_normalized = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_63hev"]
 
@@ -24,6 +27,71 @@ glow_enabled = true
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_lrdhs"]
+
+[sub_resource type="Curve" id="Curve_n4vs6"]
+_data = [Vector2(0, 0.505263), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.295082, 0), 0.256842, 0.256842, 0, 0, Vector2(0.72, 0.494737), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_4pm23"]
+curve = SubResource("Curve_n4vs6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ynfis"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 0)
+spread = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+angular_velocity_max = 5.0
+damping_max = 1.0
+scale_min = 0.0
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_4pm23")
+color = Color(0.533333, 0.533333, 0.533333, 0.533333)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbghy"]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.678431, 0.847059, 0.901961, 1)
+emission_energy_multiplier = 0.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_niluq"]
+material = SubResource("StandardMaterial3D_sbghy")
+
+[sub_resource type="Curve" id="Curve_xdhdi"]
+_data = [Vector2(0.00649349, 0.473684), 0.0, 0.0, 0, 0, Vector2(0.519481, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_rd2vx"]
+curve = SubResource("Curve_xdhdi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rcuqy"]
+emission_shape = 1
+emission_sphere_radius = 0.02
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 1.0
+flatness = 0.1
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angular_velocity_min = 1.0
+angular_velocity_max = 5.0
+scale_min = 0.1
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_rd2vx")
+color = Color(0, 0.482353, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6v6u"]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0, 0.482353, 1, 1)
+emission_energy_multiplier = 10.0
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wgsrx"]
+material = SubResource("StandardMaterial3D_v6v6u")
 
 [node name="Main" type="Node3D"]
 
@@ -75,3 +143,16 @@ mesh = SubResource("SphereMesh_lrdhs")
 transform = Transform3D(-0.0975829, 0, -0.995227, 0, 1, 0, 0.995227, 0, -0.0975829, -0.477354, 30.8539, -798.968)
 
 [node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
+
+[node name="OuterGlow" type="GPUParticles3D" parent="FighterGen7"]
+transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0.0322262, -0.0917703, 5.39184)
+layers = 2
+amount = 256
+process_material = SubResource("ParticleProcessMaterial_ynfis")
+draw_pass_1 = SubResource("BoxMesh_niluq")
+
+[node name="InnerGlow" type="GPUParticles3D" parent="FighterGen7"]
+transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0.0322262, -0.0917703, 5.39184)
+amount = 512
+process_material = SubResource("ParticleProcessMaterial_rcuqy")
+draw_pass_1 = SubResource("BoxMesh_wgsrx")
