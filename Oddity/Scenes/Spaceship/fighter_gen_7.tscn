@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjx6yultmv13k"]
+[gd_scene load_steps=33 format=3 uid="uid://cjx6yultmv13k"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
@@ -10,6 +10,101 @@
 [ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/Velocity_Arrows.tscn" id="7_8us3n"]
 [ext_resource type="PackedScene" uid="uid://cr7t8smpohmy4" path="res://Scenes/Spaceship/UI/PitchYaw/crosshair_ui_1_st_person.tscn" id="7_c6fve"]
 [ext_resource type="PackedScene" uid="uid://bfe8v0o7ohgvi" path="res://Scenes/Spaceship/UI/ThrustSpeedText/UI.tscn" id="8_nilws"]
+
+[sub_resource type="Curve" id="Curve_xsv15"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504762, 0), 0.256842, 0.256842, 0, 0, Vector2(0.72, 0.494737), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4pm23"]
+curve = SubResource("Curve_xsv15")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpfmj"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 1.0
+angular_velocity_min = 0.1
+angular_velocity_max = 1.0
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_4pm23")
+color = Color(0.533333, 0.533333, 0.533333, 0.533333)
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbghy"]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.678431, 0.847059, 0.901961, 1)
+emission_energy_multiplier = 0.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_8hvvo"]
+material = SubResource("StandardMaterial3D_sbghy")
+
+[sub_resource type="Curve" id="Curve_v0d0x"]
+_data = [Vector2(0, 0.515789), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.504762, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_rd2vx"]
+curve = SubResource("Curve_v0d0x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jxq0y"]
+emission_shape = 1
+emission_sphere_radius = 0.02
+particle_flag_align_y = true
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angular_velocity_min = 1.0
+angular_velocity_max = 5.0
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_rd2vx")
+color = Color(0, 0.482353, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6v6u"]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0, 0.482353, 1, 1)
+emission_energy_multiplier = 10.0
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_iy85d"]
+material = SubResource("StandardMaterial3D_v6v6u")
+
+[sub_resource type="Curve" id="Curve_pfjht"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.495238, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_igfwv"]
+curve = SubResource("Curve_pfjht")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kbmvj"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 2.0
+flatness = 0.1
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_igfwv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyjmg"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_dbk38"]
+material = SubResource("StandardMaterial3D_hyjmg")
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 16
 
 [sub_resource type="Animation" id="Animation_b1nji"]
 resource_name = "SwitchCameraToThirdPersonView"
@@ -91,6 +186,230 @@ flight_assist = true
 throttle_based_on_max_speed = true
 
 [node name="Thrusters" type="Node3D" parent="."]
+
+[node name="OuterGlow" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, 0, 5.5)
+layers = 2
+amount = 1024
+lifetime = 0.75
+speed_scale = 16.0
+fixed_fps = 256
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_mpfmj")
+draw_pass_1 = SubResource("BoxMesh_8hvvo")
+
+[node name="InnerGlow" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, 0, 5.5)
+amount = 512
+lifetime = 2.0
+speed_scale = 16.0
+fixed_fps = 256
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_jxq0y")
+draw_pass_1 = SubResource("BoxMesh_iy85d")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Thrusters"]
+transform = Transform3D(2, 0, 0, 0, 1.53209, -0.642788, 0, 1.28558, 0.766044, 0, 1, 4.5)
+
+[node name="wing_top_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 6.35, 2.9, 3.9)
+amount = 1024
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="wing_top_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -6.35, 2.9, 3.9)
+amount = 1024
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="wing_bottom_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, 6.35, -2.9, 3.9)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="wing_bottom_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-0.866025, 0.5, 0, -0.5, -0.866025, 0, 0, 0, 1, -6.35, -2.9, 3.9)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="top_middle_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.975, 0.65, -1.375)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="top_middle_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.975, 0.65, -1.375)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="bottom_middle_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -0.86, -1.175, -0.7)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="bottom_middle_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.86, -1.175, -0.7)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="front_bottom" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.8, -6)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="front_top" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, -6.35)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="front_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 0.875, -0.3, -6.2)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="front_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.875, -0.3, -6.2)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="back_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.775, -0.2, 4.525)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="back_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 1.775, -0.2, 4.525)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="back_bottom_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 1.32048, -1.25, 4.44)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="middle_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 1.35, -0.2, 0)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="middle_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.35, -0.2, 0)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="back_bottom_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1.32, -1.25, 4.44)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="back_top_left" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.425, 1.25, 5.925)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
+
+[node name="back_top_right" type="GPUParticles3D" parent="Thrusters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.425, 1.25, 5.925)
+amount = 256
+lifetime = 8.0
+speed_scale = 16.0
+randomness = 1.0
+fixed_fps = 256
+process_material = SubResource("ParticleProcessMaterial_kbmvj")
+draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="UserControl" type="Node3D" parent="."]
 script = ExtResource("2_y8fcc")
