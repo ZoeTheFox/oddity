@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1587k88s4fw4"
-path.s3tc="res://.godot/imported/crosshair.png-91670e481767994368b358c0bb5f6519.s3tc.ctex"
+uid="uid://by7u6g7gfpff3"
+path.s3tc="res://.godot/imported/crosshair-round.png-cbab24a2f3fb0fd21778ec7e5ad3d3d4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Spaceship/UI/PitchYaw/crosshair.png"
-dest_files=["res://.godot/imported/crosshair.png-91670e481767994368b358c0bb5f6519.s3tc.ctex"]
+source_file="res://Scenes/Spaceship/UI/Crosshair/crosshair-round.png"
+dest_files=["res://.godot/imported/crosshair-round.png-cbab24a2f3fb0fd21778ec7e5ad3d3d4.s3tc.ctex"]
 
 [params]
 

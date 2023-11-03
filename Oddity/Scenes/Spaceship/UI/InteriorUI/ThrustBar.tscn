@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgf8dwq20dfn3"]
 
-[ext_resource type="PackedScene" uid="uid://dcrgqef52ouim" path="res://Scenes/Spaceship/UI/ThrustBarInterior/ThrustBar2D.tscn" id="1_6ellf"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/UI/ThrustBarInterior/ThrustBar.gd" id="1_j0yq7"]
+[ext_resource type="PackedScene" uid="uid://dcrgqef52ouim" path="res://Scenes/Spaceship/UI/InteriorUI/ThrustBar2D.tscn" id="1_6ellf"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/UI/InteriorUI/ThrustBar.gd" id="1_j0yq7"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gaf51"]
 viewport_path = NodePath("SubViewport")
