@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjx6yultmv13k"]
+[gd_scene load_steps=21 format=3 uid="uid://cjx6yultmv13k"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
@@ -8,8 +8,11 @@
 [ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraShake.gd" id="7_1k7xb"]
 [ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/Velocity_Arrows.tscn" id="7_8us3n"]
-[ext_resource type="PackedScene" uid="uid://cr7t8smpohmy4" path="res://Scenes/Spaceship/UI/PitchYaw/crosshair_ui_1_st_person.tscn" id="7_c6fve"]
-[ext_resource type="PackedScene" uid="uid://bfe8v0o7ohgvi" path="res://Scenes/Spaceship/UI/ThrustSpeedText/UI.tscn" id="8_nilws"]
+[ext_resource type="PackedScene" uid="uid://cr7t8smpohmy4" path="res://Scenes/Spaceship/UI/Crosshair/crosshair.tscn" id="7_c6fve"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/UI/InteriorUI/SpeedUI.gd" id="8_0jh2p"]
+[ext_resource type="PackedScene" uid="uid://bgf8dwq20dfn3" path="res://Scenes/Spaceship/UI/InteriorUI/ThrustBar.tscn" id="9_p60qj"]
+[ext_resource type="PackedScene" uid="uid://y7nouloq56us" path="res://Scenes/Spaceship/UI/ExteriorUI/ExteriorUI.tscn" id="10_hq4ty"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/UI/ExteriorUI/ExteriorUI.gd" id="11_1okw4"]
 
 [sub_resource type="Animation" id="Animation_b1nji"]
 resource_name = "SwitchCameraToThirdPersonView"
@@ -132,12 +135,40 @@ maximum_movement_third_person = 0.2
 acceleration_movement_factor_third_person = 0.2
 camera_shake_strength_third_person = 100.0
 
+[node name="Crosshair" parent="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" instance=ExtResource("7_c6fve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.06799)
+visible = false
+
 [node name="CameraViewSwitchAnimator" type="AnimationPlayer" parent="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D"]
 libraries = {
 "": SubResource("AnimationLibrary_5p352")
 }
 
-[node name="crosshairUI1stPerson" parent="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" instance=ExtResource("7_c6fve")]
+[node name="UI" type="Node3D" parent="."]
+
+[node name="InteriorUI" type="Node3D" parent="UI"]
+
+[node name="SpeedUI" type="Label3D" parent="UI/InteriorUI"]
+transform = Transform3D(0.824723, -0.251608, 0.506483, 0.0378511, 0.918129, 0.394469, -0.564268, -0.306157, 0.766726, -0.430985, 0.726422, 0.508235)
+pixel_size = 0.002
+modulate = Color(0.772549, 0.47451, 0.145098, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Test"
+font_size = 74
+script = ExtResource("8_0jh2p")
+
+[node name="ThrustBar" parent="UI/InteriorUI" instance=ExtResource("9_p60qj")]
+transform = Transform3D(0.143435, 0, -0.0815555, 0, 0.165, 0, 0.0815555, 0, 0.143435, 0.396223, 0.726971, 0.475676)
+
+[node name="Crosshair" parent="UI/InteriorUI" instance=ExtResource("7_c6fve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4316, 0.50529)
+is_first_person_crosshair = true
+
+[node name="ExteriorUI" type="Node3D" parent="UI"]
+
+[node name="ExteriorUI" parent="UI/ExteriorUI" instance=ExtResource("10_hq4ty")]
+visible = false
+script = ExtResource("11_1okw4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -169,11 +200,10 @@ visible = false
 rigid_body = NodePath("..")
 global = true
 
-[node name="UI" parent="." instance=ExtResource("8_nilws")]
-
 [connection signal="accelleration_signal" from="." to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_accelleration_signal"]
 [connection signal="speed_signal" from="." to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_speed_signal"]
-[connection signal="speed_signal" from="." to="UI" method="_on_fighter_gen_7_speed_signal"]
+[connection signal="speed_signal" from="." to="UI/InteriorUI/SpeedUI" method="_on_fighter_gen_7_speed_signal"]
+[connection signal="speed_signal" from="." to="UI/ExteriorUI/ExteriorUI" method="_on_fighter_gen_7_speed_signal"]
 [connection signal="no_pitch" from="UserControl" to="." method="_on_user_control_no_pitch"]
 [connection signal="no_roll" from="UserControl" to="." method="_on_user_control_no_roll"]
 [connection signal="no_thrust_down" from="UserControl" to="." method="_on_user_control_no_thrust_down"]
@@ -182,10 +212,12 @@ global = true
 [connection signal="no_thrust_up" from="UserControl" to="." method="_on_user_control_no_thrust_up"]
 [connection signal="no_yaw" from="UserControl" to="." method="_on_user_control_no_yaw"]
 [connection signal="pitch" from="UserControl" to="." method="_on_user_control_pitch"]
-[connection signal="pitch" from="UserControl" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/crosshairUI1stPerson" method="_on_user_control_pitch"]
+[connection signal="pitch" from="UserControl" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_user_control_pitch"]
+[connection signal="pitch" from="UserControl" to="UI/InteriorUI/Crosshair" method="_on_user_control_pitch"]
 [connection signal="roll" from="UserControl" to="." method="_on_user_control_roll"]
 [connection signal="throttle_signal" from="UserControl" to="." method="_on_user_control_throttle_signal"]
-[connection signal="throttle_signal" from="UserControl" to="UI" method="_on_user_control_throttle_signal"]
+[connection signal="throttle_signal" from="UserControl" to="UI/InteriorUI/ThrustBar" method="_on_user_control_throttle_signal"]
+[connection signal="throttle_signal" from="UserControl" to="UI/ExteriorUI/ExteriorUI" method="_on_user_control_throttle_signal"]
 [connection signal="thrust_backwards" from="UserControl" to="." method="_on_user_control_thrust_backwards"]
 [connection signal="thrust_down" from="UserControl" to="." method="_on_user_control_thrust_down"]
 [connection signal="thrust_forwards" from="UserControl" to="." method="_on_user_control_thrust_forwards"]
@@ -193,7 +225,10 @@ global = true
 [connection signal="thrust_right" from="UserControl" to="." method="_on_user_control_thrust_right"]
 [connection signal="thrust_up" from="UserControl" to="." method="_on_user_control_thrust_up"]
 [connection signal="yaw" from="UserControl" to="." method="_on_user_control_yaw"]
-[connection signal="yaw" from="UserControl" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/crosshairUI1stPerson" method="_on_user_control_yaw"]
+[connection signal="yaw" from="UserControl" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_user_control_yaw"]
+[connection signal="yaw" from="UserControl" to="UI/InteriorUI/Crosshair" method="_on_user_control_yaw"]
 [connection signal="timeout" from="UserControl/Timer" to="UserControl" method="_on_timer_timeout"]
 [connection signal="is_first_person_signal" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_is_first_person_signal"]
+[connection signal="is_first_person_signal" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_cameras_is_first_person_signal"]
+[connection signal="is_first_person_signal" from="Ship/Cameras" to="UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
 [connection signal="set_default_position" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_set_default_position"]

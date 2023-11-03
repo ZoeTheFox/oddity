@@ -1,7 +1,5 @@
 extends Control
 
-var speeda : float
-var throttlea : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,12 +8,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$MarginContainer/HBoxContainer/RichTextLabel.text = "speed: " + str(speeda) + "\nThrottle: " + str(throttlea)
+	pass
 
 
 func _on_fighter_gen_7_speed_signal(speed):
-	speeda = speed
-
+	$Speed.text = str(round(speed)) + "m/s"
 
 func _on_user_control_throttle_signal(throttle):
-	throttlea = throttle
+	$ThrustBar2D.value = abs(throttle)
+
+
+func _on_cameras_is_first_person_signal(is_first_person):
+	if (is_first_person):
+		hide()
+	else:
+		show()
