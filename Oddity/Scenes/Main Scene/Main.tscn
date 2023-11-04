@@ -1,20 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://brkmh327ycklk"]
+[gd_scene load_steps=11 format=3 uid="uid://brkmh327ycklk"]
 
-[ext_resource type="PackedScene" uid="uid://cjx6yultmv13k" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
+[ext_resource type="PackedScene" uid="uid://cpb2nlkghtm13" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
+[ext_resource type="Texture2D" uid="uid://cv0a5sj1gpyo3" path="res://Assets/SkyBox/skyboxv2.exr" id="1_g3xlb"]
 [ext_resource type="PackedScene" uid="uid://b62vde3oekq23" path="res://Scenes/Rings/Courses/course.tscn" id="2_xe5xt"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yldws"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_46trt"]
+panorama = ExtResource("1_g3xlb")
 
 [sub_resource type="Sky" id="Sky_7ow04"]
-sky_material = SubResource("ProceduralSkyMaterial_yldws")
+sky_material = SubResource("PanoramaSkyMaterial_46trt")
+radiance_size = 4
 
 [sub_resource type="Environment" id="Environment_af0w1"]
 background_mode = 2
 sky = SubResource("Sky_7ow04")
+sky_rotation = Vector3(4.71239, 0, 0)
 tonemap_mode = 2
 glow_enabled = true
+glow_normalized = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_63hev"]
 

@@ -70,6 +70,19 @@ var roll : bool
 var pitch : bool
 var yaw : bool
 
+signal fire_thrusters_main_signal(throttle)
+signal fire_thrusters_retro_signal(throttle)
+signal fire_thrusters_up_signal(throttle)
+signal fire_thrusters_down_signal(throttle)
+signal fire_thrusters_left_signal(throttle)
+signal fire_thrusters_right_signal(throttle)
+signal fire_thrusters_roll_left_signal(throttle)
+signal fire_thrusters_roll_right_signal(throttle)
+signal fire_thrusters_pitch_up_signal(throttle)
+signal fire_thrusters_pitch_down_signal(throttle)
+signal fire_thrusters_yaw_left_signal(throttle)
+signal fire_thrusters_yaw_right_signal(throttle)
+
 @export
 var flight_assist : bool
 
@@ -110,8 +123,10 @@ func _process(delta):
 	if (throttle_based_on_max_speed):
 		if (-velocity.z > calc_speed_at_percentage(user_throttle, max_total_velocity) and velocity.z < 0):
 			fire_thrusters_retro(-calc_throttle(abs(velocity.z)))
+			#print(str(-velocity.z) + " " + str(calc_speed_at_percentage(user_throttle, max_total_velocity)))
 		elif (velocity.z > calc_speed_at_percentage(-user_throttle, max_total_velocity) and velocity.z > 0):
 			fire_thrusters_forwards(calc_throttle(abs(velocity.z)))
+			#print(str(velocity.z) + " " + str(calc_speed_at_percentage(-user_throttle, max_total_velocity)))
 	else:
 		if (user_throttle >= 0):
 			var throttle = calc_throttle(velocity.z)
@@ -178,7 +193,7 @@ func _process(delta):
 				fire_thrusters_pitch(throttle)
 			else:
 				fire_thrusters_pitch(-throttle)
-	
+
 
 func calc_throttle(velocity):
 	if (abs(velocity) > 10):
@@ -278,30 +293,50 @@ func _on_user_control_yaw(throttle):
 
 func fire_thrusters_forwards(throttle):
 	apply_local_thrust(-transform.basis.z, max_thrust_main, throttle)
+	fire_thrusters_main_signal.emit(throttle)
 	
 func fire_thrusters_retro(throttle):
 	apply_local_thrust(-transform.basis.z, max_thrust_retro, throttle)
+	fire_thrusters_retro_signal.emit(abs(throttle))
 
 func fire_thrusters_left(throttle):
 	apply_local_thrust(-transform.basis.x, max_thrust_left, throttle)
+	fire_thrusters_left_signal.emit(throttle)
 
 func fire_thrusters_right(throttle):
 	apply_local_thrust(transform.basis.x, max_thrust_right, throttle)
+	fire_thrusters_right_signal.emit(throttle)
 
 func fire_thrusters_up(throttle):
 	apply_local_thrust(transform.basis.y, max_thrust_up, throttle)
+	fire_thrusters_up_signal.emit(throttle)
 	
 func fire_thrusters_down(throttle):
 	apply_local_thrust(-transform.basis.y, max_thrust_down, throttle)
-	
+	fire_thrusters_down_signal.emit(throttle)
+		
 func fire_thrusters_roll(throttle):
 	apply_local_torque(-transform.basis.z, max_roll_force, throttle)
+	if (throttle > 0):
+		fire_thrusters_roll_right_signal.emit(throttle)
+	else:
+		fire_thrusters_roll_left_signal.emit(-throttle)
 
 func fire_thrusters_pitch(throttle):
 	apply_local_torque(-transform.basis.x, max_pitch_force, throttle)
 	
+	if (throttle > 0):
+		fire_thrusters_pitch_up_signal.emit(throttle)
+	else:
+		fire_thrusters_pitch_down_signal.emit(-throttle)
+	
 func fire_thrusters_yaw(throttle):
 	apply_local_torque(-transform.basis.y, max_yaw_force, throttle)
+	
+	if (throttle > 0):
+		fire_thrusters_yaw_right_signal.emit(throttle)
+	else:
+		fire_thrusters_yaw_left_signal.emit(-throttle)
 
 func apply_local_thrust(direction : Vector3, force : float, throttle : float):
 	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time() * thrust_multiplier)
