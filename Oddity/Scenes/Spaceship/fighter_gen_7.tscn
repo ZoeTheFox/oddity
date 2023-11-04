@@ -118,7 +118,7 @@ rings = 16
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xdhxs"]
 emission_shape = 3
-emission_box_extents = Vector3(0, 0.5, 1)
+emission_box_extents = Vector3(0, 0.5, 0)
 particle_flag_align_y = true
 particle_flag_rotate_y = true
 direction = Vector3(0, 0, -1)
@@ -461,7 +461,7 @@ process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 
 [node name="Reverse_right" type="GPUParticles3D" parent="Thrusters"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 1.35, -0.25, -1.8)
+transform = Transform3D(0.999657, 0, -0.0261769, 0, 1, 0, 0.0261769, 0, 0.999657, 1.35, -0.25, -1.8)
 amount = 256
 lifetime = 3.0
 speed_scale = 24.0
@@ -471,7 +471,7 @@ process_material = SubResource("ParticleProcessMaterial_xdhxs")
 draw_pass_1 = SubResource("BoxMesh_iy85d")
 
 [node name="Reverse_left" type="GPUParticles3D" parent="Thrusters"]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -1.35, -0.25, -1.8)
+transform = Transform3D(0.999657, 0, 0.0261769, 0, 1, 0, -0.0261769, 0, 0.999657, -1.35, -0.25, -1.8)
 amount = 256
 lifetime = 3.0
 speed_scale = 24.0
