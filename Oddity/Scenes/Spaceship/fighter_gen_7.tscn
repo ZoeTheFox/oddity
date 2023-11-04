@@ -526,6 +526,21 @@ process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
 script = ExtResource("5_3nlff")
 
+[node name="TimerLeft" type="Timer" parent="Thrusters"]
+process_callback = 0
+wait_time = 0.05
+one_shot = true
+
+[node name="TimerDown" type="Timer" parent="Thrusters"]
+process_callback = 0
+wait_time = 0.05
+one_shot = true
+
+[node name="TimerRight" type="Timer" parent="Thrusters"]
+process_callback = 0
+wait_time = 0.05
+one_shot = true
+
 [node name="TimerUp" type="Timer" parent="Thrusters"]
 process_callback = 0
 wait_time = 0.05
@@ -627,6 +642,9 @@ global = true
 [connection signal="speed_signal" from="." to="UI" method="_on_fighter_gen_7_speed_signal"]
 [connection signal="timeout" from="Thrusters/Main/Timer" to="Thrusters/Main" method="_on_timer_timeout"]
 [connection signal="timeout" from="Thrusters/Retro/Timer" to="Thrusters/Retro" method="_on_timer_timeout"]
+[connection signal="timeout" from="Thrusters/TimerLeft" to="Thrusters" method="_on_timer_left_timeout"]
+[connection signal="timeout" from="Thrusters/TimerDown" to="Thrusters" method="_on_timer_down_timeout"]
+[connection signal="timeout" from="Thrusters/TimerRight" to="Thrusters" method="_on_timer_right_timeout"]
 [connection signal="timeout" from="Thrusters/TimerUp" to="Thrusters" method="_on_timer_up_timeout"]
 [connection signal="no_pitch" from="UserControl" to="." method="_on_user_control_no_pitch"]
 [connection signal="no_roll" from="UserControl" to="." method="_on_user_control_no_roll"]

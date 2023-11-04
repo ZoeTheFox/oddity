@@ -314,7 +314,6 @@ func fire_thrusters_up(throttle):
 func fire_thrusters_down(throttle):
 	apply_local_thrust(-transform.basis.y, max_thrust_down, throttle)
 	fire_thrusters_down_signal.emit(throttle)
-	print("up" + str(throttle))
 		
 func fire_thrusters_roll(throttle):
 	apply_local_torque(-transform.basis.z, max_roll_force, throttle)
