@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv5q0qqaueq1p"
-path="res://.godot/imported/Hi_Bingus.png-049f5c3dbbee00d4e34ff346a3290b94.ctex"
+uid="uid://uoxlx85dlkxi"
+path="res://.godot/imported/oddity_splasch_screen.png-b518efd8738438298fdd4dbfa4a44254.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hi_Bingus.png"
-dest_files=["res://.godot/imported/Hi_Bingus.png-049f5c3dbbee00d4e34ff346a3290b94.ctex"]
+source_file="res://oddity_splasch_screen.png"
+dest_files=["res://.godot/imported/oddity_splasch_screen.png-b518efd8738438298fdd4dbfa4a44254.ctex"]
 
 [params]
 
