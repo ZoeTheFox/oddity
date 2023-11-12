@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=40 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_retro.gd" id="4_v3nv6"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_mav_thruster.gd" id="5_3nlff"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraShake.gd" id="7_1k7xb"]
-[ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/Velocity_Arrows.tscn" id="7_8us3n"]
 [ext_resource type="PackedScene" uid="uid://cr7t8smpohmy4" path="res://Scenes/Spaceship/UI/Crosshair/crosshair.tscn" id="7_c6fve"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/UI/InteriorUI/SpeedUI.gd" id="8_0jh2p"]
 [ext_resource type="PackedScene" uid="uid://bgf8dwq20dfn3" path="res://Scenes/Spaceship/UI/InteriorUI/ThrustBar.tscn" id="9_p60qj"]
@@ -643,17 +642,6 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 
 [node name="WingCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_jbudj")
-
-[node name="Velocity_Arrows" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("7_8us3n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45328, 4.95195, 0)
-visible = false
-rigid_body = NodePath("..")
-
-[node name="Velocity_Arrows2" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("7_8us3n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.63001, 6.08609, -0.679127)
-visible = false
-rigid_body = NodePath("..")
-global = true
 
 [connection signal="accelleration_signal" from="." to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_accelleration_signal"]
 [connection signal="fire_thrusters_down_signal" from="." to="Thrusters" method="_on_fighter_gen_7_fire_thrusters_down_signal"]
