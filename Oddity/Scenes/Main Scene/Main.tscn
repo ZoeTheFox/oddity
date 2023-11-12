@@ -29,6 +29,13 @@ emission_energy_multiplier = 30.0
 
 [node name="Main" type="Node3D"]
 
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.213703, 0.340815, -0.91552, -0.622456, 0.674789, 0.396495, 0.752914, 0.654603, 0.0679381, -3.44035, 22.1304, -4.91917)
+light_color = Color(1, 1, 0.85098, 1)
+light_energy = 2.098
+light_indirect_energy = 1.627
+shadow_enabled = true
+
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.625, 0.345994, -0.69976, -0.433013, 0.899519, 0.0580127, 0.649519, 0.266747, 0.712019, -5.40885, 10.4925, -2.45609)
 light_color = Color(1, 1, 0.85098, 1)
@@ -38,7 +45,7 @@ shadow_enabled = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.0171515, -0.482602, -0.875672, 0.652812, 0.668769, -0.355787, 0.757326, -0.565547, 0.326519, -13.5073, -11.5643, 860.107)
-light_energy = 0.1
+light_energy = 1.512
 light_indirect_energy = 0.686
 shadow_enabled = true
 
