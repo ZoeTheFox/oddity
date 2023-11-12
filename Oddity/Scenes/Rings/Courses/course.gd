@@ -12,7 +12,7 @@ func _ready():
 		course_rings.append(_i)
 
 
-func ship_flew_through_ring():
+func ship_flew_through_ring():	
 	if (rings_flown_through == 0):
 		RingMarker.show()
 	
@@ -20,6 +20,9 @@ func ship_flew_through_ring():
 		
 		rings_flown_through = 0
 		RingMarker.hide()
+		
+		for _i in course_rings:
+			_i.enable_trigger()
 		
 		return 0;
 		

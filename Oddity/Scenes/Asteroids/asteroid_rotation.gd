@@ -6,7 +6,7 @@ var final_rotation : Vector3
 func _ready():
 	var rng = RandomNumberGenerator.new()
 	var rotation_direction = Vector3(rng.randf_range(-1, 1), rng.randf_range(-1, 1), rng.randf_range(-1, 1)).normalized()
-	var rotation_speed = rng.randf_range(0.1, 2)
+	var rotation_speed = rng.randf_range(0.1, 1.5)
 	
 	
 	final_rotation = rotation_direction * rotation_speed
