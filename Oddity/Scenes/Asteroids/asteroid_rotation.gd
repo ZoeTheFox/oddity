@@ -11,7 +11,6 @@ func _ready():
 	
 	final_rotation = rotation_direction * rotation_speed
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	rotate(Vector3(1, 0, 0), final_rotation.x * delta)
