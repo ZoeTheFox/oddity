@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fk6wxfswd7ir"
-path.bptc="res://.godot/imported/skyboxv3.exr-8534b5bbda895b9ed8f009dd0047172c.bptc.ctex"
+uid="uid://di2v5n6t0c6g1"
+path="res://.godot/imported/skyboxv3.exr-8534b5bbda895b9ed8f009dd0047172c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/SkyBox/skyboxv3.exr"
-dest_files=["res://.godot/imported/skyboxv3.exr-8534b5bbda895b9ed8f009dd0047172c.bptc.ctex"]
+dest_files=["res://.godot/imported/skyboxv3.exr-8534b5bbda895b9ed8f009dd0047172c.ctex"]
 
 [params]
 
