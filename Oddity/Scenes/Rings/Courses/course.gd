@@ -26,8 +26,6 @@ func ship_flew_through_ring():
 	rings_flown_through += 1
 	
 	RingMarker.global_position = course_rings[rings_flown_through].global_position
-	
-
-	
+	RingMarker.rotation = course_rings[rings_flown_through].rotation + Vector3(0, 0, 1.5708)
 	
 
