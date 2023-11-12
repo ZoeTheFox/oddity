@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://brkmh327ycklk"]
+[gd_scene load_steps=12 format=3 uid="uid://brkmh327ycklk"]
 
 [ext_resource type="PackedScene" uid="uid://cpb2nlkghtm13" path="res://Scenes/Spaceship/fighter_gen_7.tscn" id="1_2ddtf"]
 [ext_resource type="Texture2D" uid="uid://cv0a5sj1gpyo3" path="res://Assets/SkyBox/skyboxv2.exr" id="1_g3xlb"]
 [ext_resource type="PackedScene" uid="uid://b62vde3oekq23" path="res://Scenes/Rings/Courses/course.tscn" id="2_xe5xt"]
+[ext_resource type="PackedScene" uid="uid://ceilc28yahn5i" path="res://Scenes/Asteroids/Asteroid-Assets/Asteroid1.tscn" id="4_ispk3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_46trt"]
 panorama = ExtResource("1_g3xlb")
@@ -78,3 +79,12 @@ mesh = SubResource("SphereMesh_lrdhs")
 transform = Transform3D(-0.0975829, 0, -0.995227, 0, 1, 0, 0.995227, 0, -0.0975829, -0.477354, 30.8539, -798.968)
 
 [node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
+
+[node name="Asteroid1" parent="." instance=ExtResource("4_ispk3")]
+transform = Transform3D(6.905, 0, 0, 0, 6.905, 0, 0, 0, 6.905, 47.9228, 11.5562, 26.0903)
+
+[node name="Asteroid2" parent="." instance=ExtResource("4_ispk3")]
+transform = Transform3D(12.52, 0, 0, 0, 12.52, 0, 0, 0, 12.52, 28.2489, 0, -61.8135)
+
+[node name="Asteroid3" parent="." instance=ExtResource("4_ispk3")]
+transform = Transform3D(6.42874, 0, 2.2917, 0, 6.825, 0, -2.2917, 0, 6.42874, -20.977, 29.8225, 0)
