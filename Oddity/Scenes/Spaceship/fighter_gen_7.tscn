@@ -577,6 +577,7 @@ script = ExtResource("3_wocjs")
 
 [node name="Camera3D" type="Camera3D" parent="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot"]
 current = true
+far = 50000.0
 script = ExtResource("7_1k7xb")
 min_fov_first_person = 60.0
 max_fov_first_person = 90.0
