@@ -32,5 +32,3 @@ environment = SubResource("Environment_af0w1")
 transform = Transform3D(-0.0975829, 0, -0.995227, 0, 1, 0, 0.995227, 0, -0.0975829, -0.477354, 30.8539, -798.968)
 
 [node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
-
-[node name="Asteroids" type="Node3D" parent="."]
