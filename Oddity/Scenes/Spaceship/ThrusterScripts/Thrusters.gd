@@ -48,6 +48,7 @@ func _on_fighter_gen_7_fire_thrusters_right_signal(throttle):
 
 
 func _on_fighter_gen_7_fire_thrusters_roll_left_signal(throttle):
+	$TimerRollLeft.start()
 	$wing_top_left.fire(throttle)
 	$top_middle_left.fire(throttle)
 	$back_top_left.fire(throttle)
@@ -56,6 +57,7 @@ func _on_fighter_gen_7_fire_thrusters_roll_left_signal(throttle):
 	$back_bottom_right.fire(throttle)
 
 func _on_fighter_gen_7_fire_thrusters_roll_right_signal(throttle):
+	$TimerRollRight.start()
 	$wing_bottom_left.fire(throttle)
 	$bottom_middle_left.fire(throttle)
 	$back_bottom_left.fire(throttle)
@@ -98,3 +100,11 @@ func _on_timer_right_timeout():
 
 func _on_timer_left_timeout():
 	_on_fighter_gen_7_fire_thrusters_left_signal(0)
+
+
+func _on_timer_roll_right_timeout():
+	_on_fighter_gen_7_fire_thrusters_roll_right_signal(0)
+
+
+func _on_timer_roll_left_timeout():
+	_on_fighter_gen_7_fire_thrusters_roll_left_signal(0)
