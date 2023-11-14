@@ -548,6 +548,16 @@ process_callback = 0
 wait_time = 0.05
 one_shot = true
 
+[node name="TimerRollRight" type="Timer" parent="Thrusters"]
+process_callback = 0
+wait_time = 0.05
+one_shot = true
+
+[node name="TimerRollLeft" type="Timer" parent="Thrusters"]
+process_callback = 0
+wait_time = 0.05
+one_shot = true
+
 [node name="UserControl" type="Node3D" parent="."]
 script = ExtResource("2_y8fcc")
 throttle_deadzone = 2.0
@@ -665,6 +675,8 @@ shape = SubResource("ConvexPolygonShape3D_jbudj")
 [connection signal="timeout" from="Thrusters/TimerDown" to="Thrusters" method="_on_timer_down_timeout"]
 [connection signal="timeout" from="Thrusters/TimerRight" to="Thrusters" method="_on_timer_right_timeout"]
 [connection signal="timeout" from="Thrusters/TimerUp" to="Thrusters" method="_on_timer_up_timeout"]
+[connection signal="timeout" from="Thrusters/TimerRollRight" to="Thrusters" method="_on_timer_roll_right_timeout"]
+[connection signal="timeout" from="Thrusters/TimerRollLeft" to="Thrusters" method="_on_timer_roll_left_timeout"]
 [connection signal="no_pitch" from="UserControl" to="." method="_on_user_control_no_pitch"]
 [connection signal="no_roll" from="UserControl" to="." method="_on_user_control_no_roll"]
 [connection signal="no_thrust_down" from="UserControl" to="." method="_on_user_control_no_thrust_down"]
