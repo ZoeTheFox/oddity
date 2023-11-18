@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=41 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
+[ext_resource type="PackedScene" uid="uid://ca8w1ch33w85y" path="res://Scenes/Spaceship/Scripts/Input/KeyboardAndMouseInput.tscn" id="2_ovskj"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/Thrusters.gd" id="2_xxok4"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/UserControl.gd" id="2_y8fcc"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_main.gd" id="3_lpkxo"]
@@ -652,6 +653,8 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 
 [node name="WingCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_jbudj")
+
+[node name="KeyboardAndMouseInput" parent="." instance=ExtResource("2_ovskj")]
 
 [connection signal="accelleration_signal" from="." to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_accelleration_signal"]
 [connection signal="fire_thrusters_down_signal" from="." to="Thrusters" method="_on_fighter_gen_7_fire_thrusters_down_signal"]
