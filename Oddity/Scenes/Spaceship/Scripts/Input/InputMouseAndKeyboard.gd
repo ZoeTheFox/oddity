@@ -32,8 +32,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(str(movement_vector) + " " + str(rotation_vector))
-	
 	movement_vector.x = 0
 	movement_vector.y = 0
 	rotation_vector.z = 0
@@ -78,20 +76,17 @@ func _process(delta):
 		
 	## Yaw
 	
-	print(mouse_yaw)
-	
 	rotation_vector.x = clamp(mouse_yaw, -1, 1)
 	rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
 
 	## Pitch
+	
 	rotation_vector.y = clamp(mouse_pitch, -1, 1)
 	rotation_vector.y = rotation_vector.y * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
 	
 	send_movement_vector.emit(movement_vector)
 	send_rotation_vector.emit(rotation_vector)
 	
-
-
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_yaw += lerp(0,1,clamp(event.relative.x * get_process_delta_time(),-1,1)) * mouse_sensitivity
