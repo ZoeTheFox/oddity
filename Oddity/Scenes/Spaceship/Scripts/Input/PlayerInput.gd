@@ -16,26 +16,6 @@ var mouse_sensitivity : float
 @export
 var mouse_sensitivity_curve : Curve
 
-@export_category("Axis-Values")
-
-@export
-var is_pitch_axis : bool
-
-@export
-var is_yaw_axis : bool
-
-@export
-var is_roll_axis : bool
-
-@export
-var is_lateral_axis : bool
-
-@export
-var is_vertical_axis : bool
-
-@export
-var is_throttle_axis : bool
-
 var mouse_pitch : float
 var mouse_yaw : float
 
@@ -51,7 +31,7 @@ func _process(delta):
 	movement_vector.y = 0
 	rotation_vector.z = 0
 
-	## Forwards - Backwards
+	## Throttle
 	
 	if (Input.is_action_pressed("throttle-forwards")):
 		movement_vector.z -= throttle_sensitivity * delta
