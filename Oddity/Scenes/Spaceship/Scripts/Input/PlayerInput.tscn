@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://ca8w1ch33w85y"]
 
-[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/Input/InputMouseAndKeyboard.gd" id="1_sp8kk"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/Input/PlayerInput.gd" id="1_j28q0"]
 
 [sub_resource type="Curve" id="Curve_k6xlh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="KeyboardAndMouseInput" type="Node3D"]
-script = ExtResource("1_sp8kk")
+[node name="PlayerInput" type="Node3D"]
+script = ExtResource("1_j28q0")
 throttle_sensitivity = 0.8
 throttle_deadzone = 0.15
 mouse_sensitivity = 0.2
