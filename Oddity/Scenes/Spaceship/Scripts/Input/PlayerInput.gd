@@ -16,6 +16,26 @@ var mouse_sensitivity : float
 @export
 var mouse_sensitivity_curve : Curve
 
+@export_category("Axis-Values")
+
+@export
+var is_pitch_axis : bool
+
+@export
+var is_yaw_axis : bool
+
+@export
+var is_roll_axis : bool
+
+@export
+var is_lateral_axis : bool
+
+@export
+var is_vertical_axis : bool
+
+@export
+var is_throttle_axis : bool
+
 var mouse_pitch : float
 var mouse_yaw : float
 
