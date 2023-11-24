@@ -372,3 +372,42 @@ func _on_user_control_no_roll():
 	roll = false
 
 
+
+
+func _on_player_input_send_movement_vector(movement_vector: Vector3):
+	# Assuming movement_vector is normalized and in the range [-1, 1]
+
+	# Forward/Backward Thrust
+	if movement_vector.z > 0:
+		_on_user_control_thrust_forwards(movement_vector.z * 100)
+	elif movement_vector.z < 0:
+		_on_user_control_thrust_backwards(-movement_vector.z * 100)
+
+	# Left/Right Thrust
+	if movement_vector.x < 0:
+		_on_user_control_thrust_left(abs(movement_vector.x) * 100)
+		_on_user_control_no_thrust_right()
+	elif movement_vector.x > 0:
+		_on_user_control_thrust_right(movement_vector.x * 100)
+		_on_user_control_no_thrust_left()
+		
+	# Up/Down Thrust
+	if movement_vector.y < 0:
+		_on_user_control_thrust_down(abs(movement_vector.y) * 100)
+		_on_user_control_no_thrust_up()
+	elif movement_vector.y > 0:
+		_on_user_control_thrust_up(movement_vector.y * 100)
+		_on_user_control_no_thrust_down()
+
+
+func _on_player_input_send_rotation_vector(rotation_vector):
+	# Assuming rotation_vector is normalized and in the range [-1, 1]
+
+	# Roll
+	_on_user_control_roll(rotation_vector.z * 100)
+
+	# Pitch
+	_on_user_control_pitch(-rotation_vector.y * 100)
+
+	# Yaw
+	_on_user_control_yaw(rotation_vector.x * 100)
