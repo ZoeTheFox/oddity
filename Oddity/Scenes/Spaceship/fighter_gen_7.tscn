@@ -1,7 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=42 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/OldSimpleFlightControlSystem.gd" id="1_jaxhy"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/Thrusters.gd" id="2_xxok4"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_main.gd" id="3_lpkxo"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://y7nouloq56us" path="res://Scenes/Spaceship/UI/ExteriorUI/ExteriorUI.tscn" id="10_hq4ty"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/UI/ExteriorUI/ExteriorUI.gd" id="11_1okw4"]
 [ext_resource type="PackedScene" uid="uid://ca8w1ch33w85y" path="res://Scenes/Spaceship/Scripts/Input/PlayerInput.tscn" id="16_dljen"]
+[ext_resource type="PackedScene" uid="uid://cu2pi0cv7n5v0" path="res://Scenes/Spaceship/Scripts/ShipStats/ShipStats.tscn" id="17_obsua"]
+[ext_resource type="PackedScene" uid="uid://bxnepkoil8so3" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.tscn" id="18_fkptq"]
 
 [sub_resource type="Curve" id="Curve_v0d0x"]
 _data = [Vector2(0, 0.515789), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.504762, 1), 0.0, 0.0, 0, 0, Vector2(0.756477, 0.621053), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -198,7 +200,7 @@ points = PackedVector3Array(-5.85364, -1.89361, 5.21022, -2.61405, -1.30465, 0.7
 gravity_scale = 0.0
 linear_damp_mode = 1
 angular_damp_mode = 1
-script = ExtResource("1_q1vmv")
+script = ExtResource("1_jaxhy")
 max_thrust_main = 8000.0
 max_thrust_retro = 5000.0
 max_thrust_up = 3500.0
@@ -644,6 +646,12 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 shape = SubResource("ConvexPolygonShape3D_jbudj")
 
 [node name="PlayerInput" parent="." instance=ExtResource("16_dljen")]
+
+[node name="ShipStats" parent="." instance=ExtResource("17_obsua")]
+test = 10.0
+
+[node name="SimpleFlightControlSystem" parent="." node_paths=PackedStringArray("ship_stats") instance=ExtResource("18_fkptq")]
+ship_stats = NodePath("../ShipStats")
 
 [connection signal="accelleration_signal" from="." to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_accelleration_signal"]
 [connection signal="fire_thrusters_down_signal" from="." to="Thrusters" method="_on_fighter_gen_7_fire_thrusters_down_signal"]
