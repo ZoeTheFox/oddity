@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.gd" id="1_q1vmv"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/Thrusters.gd" id="2_xxok4"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/FlightControl/UserControl.gd" id="2_y8fcc"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_main.gd" id="3_lpkxo"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
 [ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bgf8dwq20dfn3" path="res://Scenes/Spaceship/UI/InteriorUI/ThrustBar.tscn" id="9_p60qj"]
 [ext_resource type="PackedScene" uid="uid://y7nouloq56us" path="res://Scenes/Spaceship/UI/ExteriorUI/ExteriorUI.tscn" id="10_hq4ty"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/UI/ExteriorUI/ExteriorUI.gd" id="11_1okw4"]
+[ext_resource type="PackedScene" uid="uid://ca8w1ch33w85y" path="res://Scenes/Spaceship/Scripts/Input/PlayerInput.tscn" id="16_dljen"]
 
 [sub_resource type="Curve" id="Curve_v0d0x"]
 _data = [Vector2(0, 0.515789), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.504762, 1), 0.0, 0.0, 0, 0, Vector2(0.756477, 0.621053), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -558,16 +558,6 @@ process_callback = 0
 wait_time = 0.05
 one_shot = true
 
-[node name="UserControl" type="Node3D" parent="."]
-script = ExtResource("2_y8fcc")
-throttle_deadzone = 2.0
-throttle_sensivity = 80.0
-
-[node name="Timer" type="Timer" parent="UserControl"]
-process_callback = 0
-wait_time = 0.578
-one_shot = true
-
 [node name="Ship" type="Node3D" parent="."]
 
 [node name="fighterGen7" parent="Ship" instance=ExtResource("1_fr140")]
@@ -653,6 +643,8 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 [node name="WingCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_jbudj")
 
+[node name="PlayerInput" parent="." instance=ExtResource("16_dljen")]
+
 [connection signal="accelleration_signal" from="." to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_accelleration_signal"]
 [connection signal="fire_thrusters_down_signal" from="." to="Thrusters" method="_on_fighter_gen_7_fire_thrusters_down_signal"]
 [connection signal="fire_thrusters_left_signal" from="." to="Thrusters" method="_on_fighter_gen_7_fire_thrusters_left_signal"]
@@ -677,31 +669,9 @@ shape = SubResource("ConvexPolygonShape3D_jbudj")
 [connection signal="timeout" from="Thrusters/TimerUp" to="Thrusters" method="_on_timer_up_timeout"]
 [connection signal="timeout" from="Thrusters/TimerRollRight" to="Thrusters" method="_on_timer_roll_right_timeout"]
 [connection signal="timeout" from="Thrusters/TimerRollLeft" to="Thrusters" method="_on_timer_roll_left_timeout"]
-[connection signal="no_pitch" from="UserControl" to="." method="_on_user_control_no_pitch"]
-[connection signal="no_roll" from="UserControl" to="." method="_on_user_control_no_roll"]
-[connection signal="no_thrust_down" from="UserControl" to="." method="_on_user_control_no_thrust_down"]
-[connection signal="no_thrust_left" from="UserControl" to="." method="_on_user_control_no_thrust_left"]
-[connection signal="no_thrust_right" from="UserControl" to="." method="_on_user_control_no_thrust_right"]
-[connection signal="no_thrust_up" from="UserControl" to="." method="_on_user_control_no_thrust_up"]
-[connection signal="no_yaw" from="UserControl" to="." method="_on_user_control_no_yaw"]
-[connection signal="pitch" from="UserControl" to="." method="_on_user_control_pitch"]
-[connection signal="pitch" from="UserControl" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_user_control_pitch"]
-[connection signal="pitch" from="UserControl" to="UI/InteriorUI/Crosshair" method="_on_user_control_pitch"]
-[connection signal="roll" from="UserControl" to="." method="_on_user_control_roll"]
-[connection signal="throttle_signal" from="UserControl" to="." method="_on_user_control_throttle_signal"]
-[connection signal="throttle_signal" from="UserControl" to="UI/InteriorUI/ThrustBar" method="_on_user_control_throttle_signal"]
-[connection signal="throttle_signal" from="UserControl" to="UI/ExteriorUI/ExteriorUI" method="_on_user_control_throttle_signal"]
-[connection signal="thrust_backwards" from="UserControl" to="." method="_on_user_control_thrust_backwards"]
-[connection signal="thrust_down" from="UserControl" to="." method="_on_user_control_thrust_down"]
-[connection signal="thrust_forwards" from="UserControl" to="." method="_on_user_control_thrust_forwards"]
-[connection signal="thrust_left" from="UserControl" to="." method="_on_user_control_thrust_left"]
-[connection signal="thrust_right" from="UserControl" to="." method="_on_user_control_thrust_right"]
-[connection signal="thrust_up" from="UserControl" to="." method="_on_user_control_thrust_up"]
-[connection signal="yaw" from="UserControl" to="." method="_on_user_control_yaw"]
-[connection signal="yaw" from="UserControl" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_user_control_yaw"]
-[connection signal="yaw" from="UserControl" to="UI/InteriorUI/Crosshair" method="_on_user_control_yaw"]
-[connection signal="timeout" from="UserControl/Timer" to="UserControl" method="_on_timer_timeout"]
 [connection signal="is_first_person_signal" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_is_first_person_signal"]
 [connection signal="is_first_person_signal" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_cameras_is_first_person_signal"]
 [connection signal="is_first_person_signal" from="Ship/Cameras" to="UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
 [connection signal="set_default_position" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_set_default_position"]
+[connection signal="send_movement_vector" from="PlayerInput" to="." method="_on_player_input_send_movement_vector"]
+[connection signal="send_rotation_vector" from="PlayerInput" to="." method="_on_player_input_send_rotation_vector"]
