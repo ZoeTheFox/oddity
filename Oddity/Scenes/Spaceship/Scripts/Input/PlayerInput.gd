@@ -8,6 +8,9 @@ var throttle_sensitivity : float
 @export_range(0, 1)
 var throttle_deadzone : float
 
+@export
+var is_throttle_axis : bool
+
 @export_category("Mouse")
 
 @export
@@ -15,6 +18,9 @@ var mouse_sensitivity : float
 
 @export
 var mouse_sensitivity_curve : Curve
+
+@export
+var use_mouse_for_movement : bool
 
 var mouse_pitch : float
 var mouse_yaw : float
@@ -33,11 +39,14 @@ func _process(delta):
 
 	## Throttle
 	
-	if (Input.is_action_pressed("throttle-forwards")):
-		movement_vector.z -= throttle_sensitivity * delta
-	
-	if (Input.is_action_pressed("throttle-backwards")):
-		movement_vector.z += throttle_sensitivity * delta
+	if (is_throttle_axis):
+		movement_vector.z = Input.get_axis("throttle-backwards", "throttle-forwards")
+	else:
+		if (Input.is_action_pressed("throttle-forwards")):
+			movement_vector.z -= throttle_sensitivity * delta
+		
+		if (Input.is_action_pressed("throttle-backwards")):
+			movement_vector.z += throttle_sensitivity * delta
 	
 	movement_vector.z = clamp(movement_vector.z, -1, 1)
 	
@@ -47,40 +56,36 @@ func _process(delta):
 	
 	## Left - Right
 	
-	if (Input.is_action_pressed("move-left")):
-		movement_vector.x += 1.0
-	
-	if (Input.is_action_pressed("move-right")):
-		movement_vector.x -= 1.0
+	movement_vector.x = Input.get_axis("move-left", "move-right")
 	
 	## Up - Down
 	
-	if (Input.is_action_pressed("move-up")):
-		movement_vector.y += 1.0
-	
-	if (Input.is_action_pressed("move-down")):
-		movement_vector.y -= 1.0
+	movement_vector.y = Input.get_axis("move-down", "move-up")
 		
 	## Roll
 	
-	if (Input.is_action_pressed("roll-left")):
-		rotation_vector.z -= 1.0
-	
-	if (Input.is_action_pressed("roll-right")):
-		rotation_vector.z += 1.0
-		
+	rotation_vector.z = Input.get_axis("roll-left", "roll-right")
+
 	## Yaw
 	
-	rotation_vector.x = clamp(mouse_yaw, -1, 1)
-	rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
+	if (use_mouse_for_movement):
+		rotation_vector.x = clamp(mouse_yaw, -1, 1)
+		rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
+	else:
+		rotation_vector.x = Input.get_axis("yaw-left", "yaw-right")
 
 	## Pitch
 	
-	rotation_vector.y = clamp(mouse_pitch, -1, 1)
-	rotation_vector.y = rotation_vector.y * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
-	
+	if (use_mouse_for_movement):
+		rotation_vector.y = clamp(mouse_pitch, -1, 1)
+		rotation_vector.y = rotation_vector.y * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
+	else:
+		rotation_vector.y = Input.get_axis("pitch-down", "pitch-up")
+		
 	send_movement_vector.emit(movement_vector)
 	send_rotation_vector.emit(rotation_vector)
+	
+	print(str(movement_vector) + " " + str(rotation_vector))
 	
 func _input(event):
 	if event is InputEventMouseMotion:

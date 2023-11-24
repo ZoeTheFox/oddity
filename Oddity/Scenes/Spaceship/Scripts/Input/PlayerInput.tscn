@@ -10,6 +10,7 @@ point_count = 2
 script = ExtResource("1_j28q0")
 throttle_sensitivity = 0.8
 throttle_deadzone = 0.15
+is_throttle_axis = true
 mouse_sensitivity = 0.2
 mouse_sensitivity_curve = SubResource("Curve_k6xlh")
 
