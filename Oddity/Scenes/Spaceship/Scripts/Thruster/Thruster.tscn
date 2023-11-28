@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl7fyywe4oqux"]
+
+[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/Thruster/ThrustPosition.gd" id="1_buobr"]
+
+[node name="Thruster" type="Node3D"]
+script = ExtResource("1_buobr")
+
+[node name="ParticleFX" type="Node3D" parent="."]
+
+[node name="ThrustPosition" type="Node3D" parent="."]
