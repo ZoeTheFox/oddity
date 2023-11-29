@@ -629,6 +629,8 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 shape = SubResource("ConvexPolygonShape3D_jbudj")
 
 [node name="PlayerInput" parent="." instance=ExtResource("16_dljen")]
+is_throttle_axis = false
+use_mouse_for_movement = true
 
 [node name="ShipStats" parent="." instance=ExtResource("17_obsua")]
 test = 10.0
@@ -637,10 +639,14 @@ test = 10.0
 ship_stats = NodePath("../ShipStats")
 
 [node name="Thrusters" parent="." instance=ExtResource("18_dj4rr")]
-main_thrusters = [NodePath("Thruster")]
+main_thrusters = [NodePath("Thruster"), NodePath("Thruster2")]
 
 [node name="Thruster" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79402, -3.16529)
+thruster_force = 69.0
+
+[node name="Thruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
+thruster_force = 66.0
 
 [connection signal="timeout" from="ThrustersOld/Main/Timer" to="ThrustersOld/Main" method="_on_timer_timeout"]
 [connection signal="timeout" from="ThrustersOld/Retro/Timer" to="ThrustersOld/Retro" method="_on_timer_timeout"]
@@ -658,3 +664,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79402, -3.16529)
 [connection signal="send_rotation_vector" from="PlayerInput" to="." method="_on_player_input_send_rotation_vector"]
 
 [editable path="Thrusters/Thruster"]
+[editable path="Thrusters/Thruster2"]
