@@ -66,9 +66,8 @@ var yaw_left_thrusters : Array
 func _ready():
 	for thruster in main_thrusters:
 		print(get_node(thruster).thruster_force)
-		get_node(thruster).thruster_force = 20
-	for thruster in main_thrusters:
-		print(get_node(thruster).thruster_force)
+
+
 
 
 

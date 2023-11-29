@@ -203,6 +203,7 @@ linear_damp_mode = 1
 angular_damp_mode = 1
 
 [node name="ThrustersOld" type="Node3D" parent="."]
+visible = false
 script = ExtResource("2_xxok4")
 
 [node name="Main" type="Node3D" parent="ThrustersOld"]
@@ -642,7 +643,7 @@ ship_stats = NodePath("../ShipStats")
 main_thrusters = [NodePath("Thruster"), NodePath("Thruster2")]
 
 [node name="Thruster" parent="Thrusters" instance=ExtResource("19_mnngf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79402, -3.16529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79402, 7.89133)
 thruster_force = 69.0
 
 [node name="Thruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
