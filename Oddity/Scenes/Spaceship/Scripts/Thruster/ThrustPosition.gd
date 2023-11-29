@@ -1,4 +1,6 @@
 extends Node3D
 
-func placeholder():
-	print($ThrustPosition.position)
+@export_category("Thruster Capacity")
+
+@export
+var thruster_force : float
