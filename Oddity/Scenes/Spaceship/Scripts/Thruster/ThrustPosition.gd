@@ -5,18 +5,12 @@ extends Node3D
 @export
 var thruster_force : float
 
-@onready
-var thrust_position = Vector3.ZERO
+@export
+var thruster_health_points : float
 
-@onready
-var thrust_vector = Vector3(0, 0, -thruster_force)
+func take_damage(damage):
+	thruster_health_points -= damage
+	thruster_health_points = clamp(thruster_health_points, 0, thruster_health_points)
 
-func _ready():
-	#print(thrust_vector)
-	
-	thrust_vector = thrust_vector.rotated(Vector3(1,0,0), rotation.x)
-	thrust_vector = thrust_vector.rotated(Vector3(0,1,0), rotation.y)
-	thrust_vector = thrust_vector.rotated(Vector3(0,0,1), rotation.z)
-	
-	#print(thrust_vector)
-	#print(thrust_vector.length())
+func fire_thruster(amount):
+	$ParticleFX.get_child(0).amount_ratio = amount

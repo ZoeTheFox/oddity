@@ -11,6 +11,9 @@ signal output_local_angular_velocity(local_angular_velocity)
 
 var output_thrusters : Dictionary
 
+@export_range(0, 1)
+var temp : float
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -27,7 +30,8 @@ func _process(delta):
 	
 	for t in output_thrusters:
 		var thrust = get_node("Thrusters/" + str(t))
-		apply_force(thrust.thrust_vector * output_thrusters[t], thrust.thrust_position)
+		
+	get_node("Thrusters/" + "MainThruster").fire_thruster(temp)
 		
 	
 func calc_accelleration():
@@ -53,3 +57,44 @@ func calc_local_angular_velocity():
 
 func _on_simple_flight_control_system_output(output_thrusters):
 	self.output_thrusters = output_thrusters
+
+
+func _on_simple_flight_control_system_fly_left(force):
+	pass # Replace with function body.
+
+
+func _on_simple_flight_control_system_fly_right(force):
+	pass # Replace with function body.
+
+#func fire_thrusters_forwards(throttle):
+	#apply_local_thrust(-transform.basis.z, max_thrust_main, throttle)
+	#
+#func fire_thrusters_retro(throttle):
+	#apply_local_thrust(-transform.basis.z, max_thrust_retro, throttle)
+#
+#func fire_thrusters_left(throttle):
+	#apply_local_thrust(-transform.basis.x, max_thrust_left, throttle)
+#
+#func fire_thrusters_right(throttle):
+	#apply_local_thrust(transform.basis.x, max_thrust_right, throttle)
+#
+#func fire_thrusters_up(throttle):
+	#apply_local_thrust(transform.basis.y, max_thrust_up, throttle)
+	#
+#func fire_thrusters_down(throttle):
+	#apply_local_thrust(-transform.basis.y, max_thrust_down, throttle)
+		#
+#func fire_thrusters_roll(throttle):
+	#apply_local_torque(-transform.basis.z, max_roll_force, throttle)
+#
+#func fire_thrusters_pitch(throttle):
+	#apply_local_torque(-transform.basis.x, max_pitch_force, throttle)
+	#
+#func fire_thrusters_yaw(throttle):
+	#apply_local_torque(-transform.basis.y, max_yaw_force, throttle)
+#
+#func apply_local_thrust(direction : Vector3, force : float, throttle : float):
+	#apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time() * thrust_multiplier)
+#
+#func apply_local_torque(direction : Vector3, force : float, throttle : float):
+	#apply_torque(direction * (throttle / 100.0) * force * get_process_delta_time() * torque_multiplier)

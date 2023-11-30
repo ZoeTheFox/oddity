@@ -65,6 +65,9 @@ var local_angular_velocity : Vector3
 
 signal output(output_thrusters)
 
+signal fly_left(force)
+signal fly_right(force)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -77,14 +80,18 @@ func _process(delta):
 	if (movement_vector.x > 0):
 		for t in left_thrusters:
 			output_thrusters[t] = movement_vector.x
+			
+		fly_left.emit(movement_vector.x)
+		
 
 	if (movement_vector.x < 0):
 		for t in right_thrusters:
 			output_thrusters[t] = -movement_vector.x
 	
+		fly_right.emit(-movement_vector.x)
 	
 	output.emit(output_thrusters)
-	#print(output_thrusters)
+	print(output_thrusters)
 
 func _on_player_input_send_movement_vector(movement_vector):
 	self.movement_vector = movement_vector
