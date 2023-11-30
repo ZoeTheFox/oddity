@@ -713,27 +713,27 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.293
 thruster_force = 100.0
 
 [node name="RCSLeftThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.781, 0, -6.192)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.781, -0.252564, -6.192)
 thruster_force = 100.0
 
 [node name="RCSLeftThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.49, 0, -0.027)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.49, -0.170812, -0.027)
 thruster_force = 100.0
 
 [node name="RCSLeftThruster3" parent="Thrusters" instance=ExtResource("19_mnngf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.809, 0, 4.559)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.809, -0.185651, 4.559)
 thruster_force = 100.0
 
 [node name="RCSRightThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.781, 0, -6.192)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.781, -0.252564, -6.192)
 thruster_force = 100.0
 
 [node name="RCSRightThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49, 0, -0.027)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49, -0.170812, -0.027)
 thruster_force = 100.0
 
 [node name="RCSRightThruster3" parent="Thrusters" instance=ExtResource("19_mnngf")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.809, 0, 4.559)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.809, -0.185651, 4.559)
 thruster_force = 100.0
 
 [node name="RCSTopWingThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]

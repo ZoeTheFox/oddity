@@ -85,7 +85,7 @@ func _process(delta):
 	send_movement_vector.emit(movement_vector)
 	send_rotation_vector.emit(rotation_vector)
 	
-	#print(str(movement_vector) + " " + str(rotation_vector))
+	print(str(movement_vector) + " " + str(rotation_vector))
 	
 func _input(event):
 	if event is InputEventMouseMotion:

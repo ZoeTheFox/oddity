@@ -6,7 +6,7 @@ extends Node3D
 var thruster_force : float
 
 @onready
-var thrust_position = global_position
+var thrust_position = Vector3.ZERO
 
 @onready
 var thrust_vector = Vector3(0, 0, -thruster_force)
