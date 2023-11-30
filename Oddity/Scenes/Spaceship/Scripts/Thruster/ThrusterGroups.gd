@@ -62,8 +62,6 @@ var yaw_right_thrusters : Array
 @export
 var yaw_left_thrusters : Array
 
-var thruster_1
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

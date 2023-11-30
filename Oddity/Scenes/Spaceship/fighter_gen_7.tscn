@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://cpb2nlkghtm13"]
 
-[ext_resource type="Script" path="res://Scenes/Spaceship/temp.gd" id="1_f2sm7"]
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/thruster_control.gd" id="1_pxur1"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/Thrusters.gd" id="2_xxok4"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_main.gd" id="3_lpkxo"]
@@ -202,7 +202,7 @@ points = PackedVector3Array(-5.85364, -1.89361, 5.21022, -2.61405, -1.30465, 0.7
 gravity_scale = 0.0
 linear_damp_mode = 1
 angular_damp_mode = 1
-script = ExtResource("1_f2sm7")
+script = ExtResource("1_pxur1")
 
 [node name="ThrustersOld" type="Node3D" parent="."]
 visible = false
@@ -636,13 +636,26 @@ is_throttle_axis = false
 use_mouse_for_movement = true
 
 [node name="ShipStats" parent="." instance=ExtResource("17_obsua")]
+unique_name_in_owner = true
 test = 10.0
 
-[node name="SimpleFlightControlSystem" parent="." node_paths=PackedStringArray("ship_stats") instance=ExtResource("18_fkptq")]
-ship_stats = NodePath("../ShipStats")
+[node name="SimpleFlightControlSystem" parent="." instance=ExtResource("18_fkptq")]
+unique_name_in_owner = true
 
 [node name="Thrusters" parent="." instance=ExtResource("18_dj4rr")]
+unique_name_in_owner = true
 main_thrusters = [NodePath("MainThruster")]
+retro_thrusters = [NodePath("RetroThruster1"), NodePath("RetroThruster2")]
+left_thrusters = [NodePath("RCSLeftThruster1"), NodePath("RCSLeftThruster2"), NodePath("RCSLeftThruster3")]
+right_thrusters = [NodePath("RCSRightThruster1"), NodePath("RCSRightThruster2"), NodePath("RCSRightThruster3")]
+top_thrusters = [NodePath("RCSTopThruster1"), NodePath("RCSTopThruster2"), NodePath("RCSTopThruster3"), NodePath("RCSTopThruster4"), NodePath("RCSTopThruster5"), NodePath("RCSTopWingThruster1"), NodePath("RCSTopWingThruster2")]
+bottom_thrusters = [NodePath("RCSBottomThruster1"), NodePath("RCSBottomThruster2"), NodePath("RCSBottomThruster3"), NodePath("RCSBottomThruster4"), NodePath("RCSBottomThruster5"), NodePath("RCSBottomWingThruster1"), NodePath("RCSBottomWingThruster2")]
+roll_right_thrusters = [NodePath("RCSTopThruster2"), NodePath("RCSTopThruster4"), NodePath("RCSTopWingThruster1"), NodePath("RCSTopThruster3"), NodePath("RCSTopThruster5"), NodePath("RCSBottomWingThruster2")]
+roll_left_thrusters = [NodePath("RCSTopThruster3"), NodePath("RCSTopThruster5"), NodePath("RCSTopWingThruster2"), NodePath("RCSBottomThruster2"), NodePath("RCSBottomThruster4"), NodePath("RCSBottomWingThruster1")]
+pitch_up_thrusters = [NodePath("RCSBottomThruster1"), NodePath("RCSTopThruster4"), NodePath("RCSTopThruster5")]
+pitch_down_thrusters = [NodePath("RCSTopThruster1"), NodePath("RCSBottomThruster4"), NodePath("RCSBottomThruster5")]
+yaw_right_thrusters = [NodePath("RCSLeftThruster1"), NodePath("RCSRightThruster3")]
+yaw_left_thrusters = [NodePath("RCSRightThruster1"), NodePath("RCSLeftThruster3")]
 
 [node name="MainThruster" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.03356)
@@ -651,7 +664,7 @@ thruster_force = 5000.0
 [node name="ThrustPosition" parent="Thrusters/MainThruster" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="RetroThruster" parent="Thrusters" instance=ExtResource("19_mnngf")]
+[node name="RetroThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.4, 0, -1.72)
 thruster_force = 2000.0
 
@@ -659,6 +672,89 @@ thruster_force = 2000.0
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.4, 0, -1.72)
 thruster_force = 2000.0
 
+[node name="RCSTopThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.25995, -6.33182)
+thruster_force = 100.0
+
+[node name="RCSTopThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.993086, 0.80773, -1.38341)
+thruster_force = 100.0
+
+[node name="RCSTopThruster3" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.993, 0.808, -1.383)
+thruster_force = 100.0
+
+[node name="RCSTopThruster4" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.46162, 1.29696, 5.9374)
+thruster_force = 100.0
+
+[node name="RCSTopThruster5" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.462, 1.297, 5.937)
+thruster_force = 100.0
+
+[node name="RCSBottomThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.815, -6.00045)
+thruster_force = 100.0
+
+[node name="RCSBottomThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.856302, -1.20667, -0.686276)
+thruster_force = 100.0
+
+[node name="RCSBottomThruster3" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.856, -1.207, -0.686)
+thruster_force = 100.0
+
+[node name="RCSBottomThruster4" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.29265, -1.33242, 4.47518)
+thruster_force = 100.0
+
+[node name="RCSBottomThruster5" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.293, -1.332, 4.475)
+thruster_force = 100.0
+
+[node name="RCSLeftThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.781, 0, -6.192)
+thruster_force = 100.0
+
+[node name="RCSLeftThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.49, 0, -0.027)
+thruster_force = 100.0
+
+[node name="RCSLeftThruster3" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.809, 0, 4.559)
+thruster_force = 100.0
+
+[node name="RCSRightThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.781, 0, -6.192)
+thruster_force = 100.0
+
+[node name="RCSRightThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49, 0, -0.027)
+thruster_force = 100.0
+
+[node name="RCSRightThruster3" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.809, 0, 4.559)
+thruster_force = 100.0
+
+[node name="RCSTopWingThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.29303, 2.8828, 3.9292)
+thruster_force = 100.0
+
+[node name="RCSTopWingThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.293, 2.883, 3.929)
+thruster_force = 100.0
+
+[node name="RCSBottomWingThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 6.66258, -3.01632, 3.97729)
+thruster_force = 100.0
+
+[node name="RCSBottomWingThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6.663, -3.016, 3.977)
+thruster_force = 100.0
+
+[connection signal="output_acceleration" from="." to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_acceleration"]
+[connection signal="output_local_angular_velocity" from="." to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_local_angular_velocity"]
+[connection signal="output_velocity" from="." to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="timeout" from="ThrustersOld/Main/Timer" to="ThrustersOld/Main" method="_on_timer_timeout"]
 [connection signal="timeout" from="ThrustersOld/Retro/Timer" to="ThrustersOld/Retro" method="_on_timer_timeout"]
 [connection signal="timeout" from="ThrustersOld/TimerLeft" to="ThrustersOld" method="_on_timer_left_timeout"]
@@ -671,5 +767,8 @@ thruster_force = 2000.0
 [connection signal="is_first_person_signal" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_cameras_is_first_person_signal"]
 [connection signal="is_first_person_signal" from="Ship/Cameras" to="UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
 [connection signal="set_default_position" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_set_default_position"]
+[connection signal="send_movement_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_movement_vector"]
+[connection signal="send_rotation_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_rotation_vector"]
+[connection signal="output" from="SimpleFlightControlSystem" to="." method="_on_simple_flight_control_system_output"]
 
 [editable path="Thrusters/MainThruster"]

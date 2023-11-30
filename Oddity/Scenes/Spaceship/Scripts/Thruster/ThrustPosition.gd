@@ -12,11 +12,11 @@ var thrust_position = global_position
 var thrust_vector = Vector3(0, 0, -thruster_force)
 
 func _ready():
-	print(thrust_vector)
+	#print(thrust_vector)
 	
 	thrust_vector = thrust_vector.rotated(Vector3(1,0,0), rotation.x)
 	thrust_vector = thrust_vector.rotated(Vector3(0,1,0), rotation.y)
 	thrust_vector = thrust_vector.rotated(Vector3(0,0,1), rotation.z)
 	
-	print(thrust_vector)
-	print(thrust_vector.length())
+	#print(thrust_vector)
+	#print(thrust_vector.length())
