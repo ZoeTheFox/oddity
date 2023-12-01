@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=48 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/thruster_control.gd" id="1_pxur1"]
@@ -189,6 +189,10 @@ points = PackedVector3Array(-5.85364, -1.89361, 5.21022, -2.61405, -1.30465, 0.7
 [sub_resource type="Curve" id="Curve_v42ei"]
 _data = [Vector2(0, 0), 0.0, 7.09578, 0, 0, Vector2(0.095082, 0.504599), 4.6739, 4.6739, 0, 0, Vector2(0.213115, 0.820631), 0.895511, 0.895511, 0, 0, Vector2(0.983607, 1), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Curve" id="Curve_nhltq"]
+_data = [Vector2(0, 0), 0.0, 20.8633, 0, 0, Vector2(0.0590164, 0.69251), 0.868377, 0.868377, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="FighterGen7" type="RigidBody3D"]
 mass = 10.0
@@ -632,7 +636,9 @@ is_forwards_axis_based_on_speed = true
 is_lateral_axis_based_on_speed = true
 is_vertical_axis_based_on_speed = true
 max_velocity = 200.0
+max_yaw_velocity = 10.0
 controller_curve = SubResource("Curve_v42ei")
+rotation_control_curve = SubResource("Curve_nhltq")
 
 [node name="Thrusters" parent="." instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true

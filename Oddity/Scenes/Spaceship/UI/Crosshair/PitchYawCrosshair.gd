@@ -37,5 +37,5 @@ func _on_cameras_is_first_person_signal(is_first_person):
 
 
 func _on_player_input_send_rotation_vector(rotation_vector):
-	x_offset = rotation_vector.x * 100
-	y_offset = rotation_vector.y * -100
+	x_offset = rotation_vector.y * 100
+	y_offset = rotation_vector.x * -100

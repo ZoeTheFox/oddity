@@ -27,6 +27,7 @@ func _process(delta):
 	
 	output_acceleration.emit(acceleration)
 	output_velocity.emit(velocity)
+	output_local_angular_velocity.emit(local_angular_velocity)
 	
 	for t in output_thrusters:
 		var thrust = get_node("Thrusters/" + str(t))
@@ -97,4 +98,4 @@ func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
 
 
 func _on_simple_flight_control_system_output_torque_vector(torque_vector):
-	pass # Replace with function body.
+	apply_torque(torque_vector)

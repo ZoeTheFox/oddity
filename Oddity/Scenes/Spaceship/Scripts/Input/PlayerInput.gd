@@ -72,21 +72,21 @@ func _process(delta):
 	## Yaw
 	
 	if (use_mouse_for_movement):
-		rotation_vector.x = clamp(mouse_yaw, -1, 1)
+		rotation_vector.y = clamp(mouse_yaw, -1, 1)
 		
 		if (use_mouse_curve):
-			rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
+			rotation_vector.y = rotation_vector.y * mouse_sensitivity_curve.sample(abs(rotation_vector.y)) 
 	else:
-		rotation_vector.x = Input.get_axis("yaw-left", "yaw-right")
+		rotation_vector.y = Input.get_axis("yaw-left", "yaw-right")
 
 	## Pitch
 	
 	if (use_mouse_for_movement):
-		rotation_vector.y = clamp(mouse_pitch, -1, 1)
+		rotation_vector.x = clamp(mouse_pitch, -1, 1)
 		if (use_mouse_curve):
-			rotation_vector.y = rotation_vector.y * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
+			rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
 	else:
-		rotation_vector.y = Input.get_axis("pitch-down", "pitch-up")
+		rotation_vector.x = Input.get_axis("pitch-down", "pitch-up")
 		
 	send_movement_vector.emit(movement_vector)
 	send_rotation_vector.emit(rotation_vector)
