@@ -29,17 +29,13 @@ func _process(delta):
 	crosshairSprite.offset.x = x_offset / scale
 	crosshairSprite.offset.y = y_offset / scale
 
-
-func _on_user_control_yaw(percent):
-	x_offset = percent
-
-
-func _on_user_control_pitch(percent):
-	y_offset = -percent
-
-
 func _on_cameras_is_first_person_signal(is_first_person):
 	if (is_first_person and not is_first_person_crosshair):
 		hide()
 	else:
 		show()
+
+
+func _on_player_input_send_rotation_vector(rotation_vector):
+	x_offset = rotation_vector.x * 100
+	y_offset = rotation_vector.y * -100

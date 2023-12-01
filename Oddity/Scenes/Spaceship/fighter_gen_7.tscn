@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=47 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/thruster_control.gd" id="1_pxur1"]
@@ -184,7 +184,14 @@ points = PackedVector3Array(-6.14677, 1.93546, 2.56028, -8.79806, 4.58589, 5.210
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jbudj"]
 points = PackedVector3Array(-5.85364, -1.89361, 5.21022, -2.61405, -1.30465, 0.793534, -5.26482, -2.48171, 1.97158, -3.20287, -1.89361, 4.6212, -9.09179, -4.54396, 5.79973, -9.68206, -3.36559, 4.03218, -2.61405, -0.126289, 0.793534, -2.61405, -0.126289, 4.32669, -9.09179, -4.54396, 4.03218, -9.68206, -3.36559, 5.79973, -2.61405, -1.59913, 1.08805, -2.31928, -1.30465, 4.32669, -9.68206, -4.54396, 4.03218, -2.31928, -0.126289, 0.793534, -2.31928, -0.126289, 4.32669, -7.03056, -3.66008, 3.14962, -8.50369, -3.36559, 5.79973, -2.31928, -1.30465, 0.793534, -9.68206, -4.54396, 5.79973, -3.79313, -2.18853, 4.6212, -8.50369, -4.24904, 5.79973, -8.50369, -3.07111, 3.44315, -3.79313, -2.18853, 1.67707, -7.03056, -3.66008, 5.21022, -3.20287, -0.715686, 4.6212, -7.61938, -2.48171, 5.50473, -2.61405, -1.59913, 4.32669, -8.50369, -3.95456, 3.44315)
 
+[sub_resource type="Curve" id="Curve_r0men"]
+
+[sub_resource type="Curve" id="Curve_v42ei"]
+_data = [Vector2(0, 0), 0.0, 7.09578, 0, 0, Vector2(0.095082, 0.504599), 4.6739, 4.6739, 0, 0, Vector2(0.213115, 0.820631), 0.895511, 0.895511, 0, 0, Vector2(0.983607, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [node name="FighterGen7" type="RigidBody3D"]
+mass = 10.0
 gravity_scale = 0.0
 linear_damp_mode = 1
 angular_damp_mode = 1
@@ -610,6 +617,8 @@ shape = SubResource("ConvexPolygonShape3D_jbudj")
 
 [node name="PlayerInput" parent="." instance=ExtResource("16_dljen")]
 is_throttle_axis = false
+mouse_sensitivity = 0.5
+mouse_sensitivity_curve = SubResource("Curve_r0men")
 use_mouse_for_movement = true
 
 [node name="ShipStats" parent="." instance=ExtResource("17_obsua")]
@@ -619,7 +628,11 @@ test = 10.0
 [node name="SimpleFlightControlSystem" parent="." instance=ExtResource("18_fkptq")]
 unique_name_in_owner = true
 flight_assist = true
+is_forwards_axis_based_on_speed = true
+is_lateral_axis_based_on_speed = true
+is_vertical_axis_based_on_speed = true
 max_velocity = 200.0
+controller_curve = SubResource("Curve_v42ei")
 
 [node name="Thrusters" parent="." instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
@@ -754,6 +767,7 @@ thruster_force = 100.0
 [connection signal="is_first_person_signal" from="Ship/Cameras" to="UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
 [connection signal="set_default_position" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_set_default_position"]
 [connection signal="send_movement_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_movement_vector"]
+[connection signal="send_rotation_vector" from="PlayerInput" to="UI/InteriorUI/Crosshair" method="_on_player_input_send_rotation_vector"]
 [connection signal="send_rotation_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_rotation_vector"]
 [connection signal="output" from="SimpleFlightControlSystem" to="." method="_on_simple_flight_control_system_output"]
 [connection signal="output_thrust_vector" from="SimpleFlightControlSystem" to="." method="_on_simple_flight_control_system_output_thrust_vector"]
