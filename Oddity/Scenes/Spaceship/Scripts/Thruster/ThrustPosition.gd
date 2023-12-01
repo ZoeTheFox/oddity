@@ -13,4 +13,5 @@ func take_damage(damage):
 	thruster_health_points = clamp(thruster_health_points, 0, thruster_health_points)
 
 func fire_thruster(amount):
-	$ParticleFX.get_child(0).amount_ratio = amount
+	for p in $ParticleFX.get_children():
+		p.amount_ratio = amount

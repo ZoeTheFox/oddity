@@ -63,10 +63,18 @@ var acceleration : Vector3
 var local_angular_velocity : Vector3
 
 
-signal output(output_thrusters)
+signal output(output_thrusters : Dictionary)
 
-signal fly_left(force)
-signal fly_right(force)
+signal output_thrust_vector(thrust_vector : Vector3)
+signal output_torque_vector(torque_vector : Vector3)
+
+var thrust_vector : Vector3
+var torque_vector : Vector3
+
+var output_thrusters : Dictionary
+
+@export
+var max_velocity : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -74,24 +82,44 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var output_thrusters : Dictionary
+	output_thrusters.clear()
+	
+	thrust_vector = Vector3.ZERO
+	torque_vector = Vector3.ZERO
 	
 	# Lateral Axis
+	
+	# right
+	
+	if (movement_vector.x == 0 and flight_assist):
+		if (velocity.x < 0):
+			move_ship_right(1)
+		elif (velocity.x > 0):
+			move_ship_left(1)
+	
 	if (movement_vector.x > 0):
-		for t in left_thrusters:
-			output_thrusters[t] = movement_vector.x
-			
-		fly_left.emit(movement_vector.x)
-		
-
+		move_ship_right(movement_vector.x)
+	# left
 	if (movement_vector.x < 0):
-		for t in right_thrusters:
-			output_thrusters[t] = -movement_vector.x
+		move_ship_left(-movement_vector.x)
 	
-		fly_right.emit(-movement_vector.x)
+	print(thrust_vector)
 	
-	output.emit(output_thrusters)
-	print(output_thrusters)
+	output_thrust_vector.emit(thrust_vector)
+	output_torque_vector.emit(torque_vector)
+
+func move_ship_left(thrust_percentage : float):
+	for t in right_thrusters:
+		output_thrusters[t] = thrust_percentage
+		thrust_vector.x = %Thrusters.right_thrust_force * -thrust_percentage
+
+func move_ship_right(thrust_percentage : float):
+	for t in left_thrusters:
+		output_thrusters[t] = thrust_percentage
+		thrust_vector.x = %Thrusters.left_thrust_force * thrust_percentage
+
+func calculate_desired_velocity(percentage : float) -> float:
+	return abs(percentage) * max_velocity
 
 func _on_player_input_send_movement_vector(movement_vector):
 	self.movement_vector = movement_vector

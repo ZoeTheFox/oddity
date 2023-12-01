@@ -5,9 +5,9 @@ var local_angular_velocity : Vector3
 var velocity_last_frame : Vector3
 var acceleration : Vector3
 
-signal output_velocity(velocity)
-signal output_acceleration(acceleration)
-signal output_local_angular_velocity(local_angular_velocity)
+signal output_velocity(velocity : Vector3)
+signal output_acceleration(acceleration : Vector3)
+signal output_local_angular_velocity(local_angular_velocity : Vector3)
 
 var output_thrusters : Dictionary
 
@@ -58,14 +58,6 @@ func calc_local_angular_velocity():
 func _on_simple_flight_control_system_output(output_thrusters):
 	self.output_thrusters = output_thrusters
 
-
-func _on_simple_flight_control_system_fly_left(force):
-	pass # Replace with function body.
-
-
-func _on_simple_flight_control_system_fly_right(force):
-	pass # Replace with function body.
-
 #func fire_thrusters_forwards(throttle):
 	#apply_local_thrust(-transform.basis.z, max_thrust_main, throttle)
 	#
@@ -92,9 +84,17 @@ func _on_simple_flight_control_system_fly_right(force):
 	#
 #func fire_thrusters_yaw(throttle):
 	#apply_local_torque(-transform.basis.y, max_yaw_force, throttle)
-#
-#func apply_local_thrust(direction : Vector3, force : float, throttle : float):
-	#apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time() * thrust_multiplier)
-#
-#func apply_local_torque(direction : Vector3, force : float, throttle : float):
-	#apply_torque(direction * (throttle / 100.0) * force * get_process_delta_time() * torque_multiplier)
+
+func apply_local_thrust(direction : Vector3, force : float, throttle : float):
+	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time())
+
+func apply_local_torque(direction : Vector3, force : float, throttle : float):
+	apply_torque(direction * (throttle / 100.0) * force * get_process_delta_time())
+
+
+func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
+	apply_central_force(thrust_vector) # Replace with function body.
+
+
+func _on_simple_flight_control_system_output_torque_vector(torque_vector):
+	pass # Replace with function body.
