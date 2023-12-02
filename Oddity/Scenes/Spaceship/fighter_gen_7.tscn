@@ -200,7 +200,6 @@ gravity_scale = 0.0
 linear_damp_mode = 1
 angular_damp_mode = 1
 script = ExtResource("1_pxur1")
-temp = 1.0
 
 [node name="ThrustersOld" type="Node3D" parent="."]
 visible = false
@@ -620,10 +619,8 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 shape = SubResource("ConvexPolygonShape3D_jbudj")
 
 [node name="PlayerInput" parent="." instance=ExtResource("16_dljen")]
-is_throttle_axis = false
 mouse_sensitivity = 0.5
 mouse_sensitivity_curve = SubResource("Curve_r0men")
-use_mouse_for_movement = true
 
 [node name="ShipStats" parent="." instance=ExtResource("17_obsua")]
 unique_name_in_owner = true
@@ -632,11 +629,9 @@ test = 10.0
 [node name="SimpleFlightControlSystem" parent="." instance=ExtResource("18_fkptq")]
 unique_name_in_owner = true
 flight_assist = true
-is_forwards_axis_based_on_speed = true
 is_lateral_axis_based_on_speed = true
-is_vertical_axis_based_on_speed = true
 max_velocity = 200.0
-max_yaw_velocity = 10.0
+max_yaw_velocity = 5.0
 controller_curve = SubResource("Curve_v42ei")
 rotation_control_curve = SubResource("Curve_nhltq")
 

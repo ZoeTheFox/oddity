@@ -105,6 +105,8 @@ func _process(delta):
 	thrust_vector = Vector3.ZERO
 	torque_vector = Vector3.ZERO
 	
+	print("velocity: " + str(velocity))
+	
 	# Lateral Axis
 	if (flight_assist):
 		var desired_velocity = 0
@@ -115,6 +117,8 @@ func _process(delta):
 			desired_velocity = calculate_desired_velocity(movement_vector.x)
 			velocity_delta = calculate_velocity_delta(velocity.x, desired_velocity)
 			desired_thrust = calculate_desired_thrust(velocity_delta)
+			
+			#print("Velocity: " + str(velocity.x) + " Desired Velocity: " + str(desired_velocity) + " Thrust: " + str(desired_thrust) + " Difference: " + str(velocity_delta))
 			
 			if (velocity_delta > 0):
 				move_ship_left(desired_thrust)
@@ -164,9 +168,9 @@ func _process(delta):
 		
 		desired_velocity = calculate_desired_angular_velocity(rotation_vector.y, max_yaw_velocity)
 		velocity_delta = calculate_velocity_delta(-local_angular_velocity.y, desired_velocity)
-		desired_thrust = calculate_desired_thrust(velocity_delta)
+		desired_thrust = calculate_desired_torque(velocity_delta, max_yaw_velocity)
 		
-		print(str(local_angular_velocity.y) + " " + str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
+		#print(str(local_angular_velocity.y) + " " + str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
 		
 		if (velocity_delta > 0):
 			yaw_ship_left(desired_thrust)
@@ -178,6 +182,7 @@ func _process(delta):
 	
 	output_thrust_vector.emit(thrust_vector)
 	output_torque_vector.emit(torque_vector)
+	output.emit(output_thrusters)
 
 func move_ship_left(thrust_percentage : float):
 	for t in right_thrusters:
@@ -264,7 +269,18 @@ func calculate_desired_thrust(velocity_delta : float) -> float:
 
 	#print(thrust)
 	
-	# Sicherstellen, dass der Wert zwischen 0 und 1 bleibt
+	return clamp(thrust, 0.0, 1.0)
+
+func calculate_desired_torque(velocity_delta : float, max_angular_velocity : float) -> float:
+	var normalized_velocity_delta = clamp(abs(velocity_delta) / max_angular_velocity, 0.0, 1.0)
+
+	#print(normalized_velocity_delta)
+
+	# Ermitteln des entsprechenden Werts auf der Kurve
+	var thrust = rotation_control_curve.sample(normalized_velocity_delta)
+
+	#print(thrust)
+	
 	return clamp(thrust, 0.0, 1.0)
 
 func _on_player_input_send_movement_vector(movement_vector):

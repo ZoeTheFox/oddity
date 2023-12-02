@@ -24,16 +24,19 @@ func _process(delta):
 	calc_accelleration()
 	calc_local_velocity()
 	calc_local_angular_velocity()
-	
+
+		
+
 	output_acceleration.emit(acceleration)
 	output_velocity.emit(velocity)
 	output_local_angular_velocity.emit(local_angular_velocity)
 	
+	print("velo: " + str(linear_velocity))
+
+	
 	for t in output_thrusters:
 		var thrust = get_node("Thrusters/" + str(t))
-		
-	get_node("Thrusters/" + "MainThruster").fire_thruster(temp)
-		
+	
 	
 func calc_accelleration():
 	acceleration = (velocity - velocity_last_frame) / get_process_delta_time();
@@ -59,33 +62,6 @@ func calc_local_angular_velocity():
 func _on_simple_flight_control_system_output(output_thrusters):
 	self.output_thrusters = output_thrusters
 
-#func fire_thrusters_forwards(throttle):
-	#apply_local_thrust(-transform.basis.z, max_thrust_main, throttle)
-	#
-#func fire_thrusters_retro(throttle):
-	#apply_local_thrust(-transform.basis.z, max_thrust_retro, throttle)
-#
-#func fire_thrusters_left(throttle):
-	#apply_local_thrust(-transform.basis.x, max_thrust_left, throttle)
-#
-#func fire_thrusters_right(throttle):
-	#apply_local_thrust(transform.basis.x, max_thrust_right, throttle)
-#
-#func fire_thrusters_up(throttle):
-	#apply_local_thrust(transform.basis.y, max_thrust_up, throttle)
-	#
-#func fire_thrusters_down(throttle):
-	#apply_local_thrust(-transform.basis.y, max_thrust_down, throttle)
-		#
-#func fire_thrusters_roll(throttle):
-	#apply_local_torque(-transform.basis.z, max_roll_force, throttle)
-#
-#func fire_thrusters_pitch(throttle):
-	#apply_local_torque(-transform.basis.x, max_pitch_force, throttle)
-	#
-#func fire_thrusters_yaw(throttle):
-	#apply_local_torque(-transform.basis.y, max_yaw_force, throttle)
-
 func apply_local_thrust(direction : Vector3, force : float, throttle : float):
 	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time())
 
@@ -94,6 +70,18 @@ func apply_local_torque(direction : Vector3, force : float, throttle : float):
 
 
 func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
+	var b = transform.basis
+	var t_len = thrust_vector.length()
+	var t_nor = thrust_vector.normalized()
+
+	print("1" + str(thrust_vector))
+
+	thrust_vector.x = b.x.dot(t_nor) * t_len
+	thrust_vector.y = b.y.dot(t_nor) * t_len
+	thrust_vector.z = b.z.dot(t_nor) * t_len
+	
+	print("2" + str(thrust_vector))
+	
 	apply_central_force(thrust_vector) # Replace with function body.
 
 
