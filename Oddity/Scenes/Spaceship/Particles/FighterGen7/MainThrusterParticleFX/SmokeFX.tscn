@@ -37,6 +37,7 @@ size = Vector3(0.1, 0.1, 0.1)
 [node name="SmokeFX" type="GPUParticles3D"]
 layers = 2
 amount = 1024
+amount_ratio = 0.0
 lifetime = 1.25
 speed_scale = 8.0
 fixed_fps = 256

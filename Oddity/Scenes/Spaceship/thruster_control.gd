@@ -36,7 +36,9 @@ func _process(delta):
 	
 	for t in output_thrusters:
 		var thrust = get_node("Thrusters/" + str(t))
+		thrust.fire_thruster(output_thrusters[t])
 	
+	print(output_thrusters)	
 	
 func calc_accelleration():
 	acceleration = (velocity - velocity_last_frame) / get_process_delta_time();

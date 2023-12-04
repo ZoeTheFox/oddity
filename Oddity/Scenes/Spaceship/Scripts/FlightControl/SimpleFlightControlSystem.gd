@@ -138,9 +138,9 @@ func _process(delta):
 			
 			#print(str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
 			
-			if (velocity_delta < 0):
+			if (velocity_delta > 0):
 				move_ship_forward(desired_thrust)
-			elif (velocity_delta > 0):
+			elif (velocity_delta < 0):
 				move_ship_backward(desired_thrust)
 	
 	# vertical
@@ -154,9 +154,9 @@ func _process(delta):
 			velocity_delta = calculate_velocity_delta(velocity.y, desired_velocity)
 			desired_thrust = calculate_desired_thrust(velocity_delta)
 			
-			if (velocity_delta > 0):
+			if (velocity_delta < 0):
 				move_ship_up(desired_thrust)
-			elif (velocity_delta < 0):
+			elif (velocity_delta > 0):
 				move_ship_down(desired_thrust)	
 	
 	# yaw
@@ -232,42 +232,42 @@ func move_ship_right(thrust_percentage : float):
 		output_thrusters[t] = thrust_percentage
 
 func move_ship_forward(thrust_percentage : float):
-	thrust_vector.z = %Thrusters.main_thrust_force * thrust_percentage
-			
+	thrust_vector.z = %Thrusters.main_thrust_force * -thrust_percentage
+	
 	for t in main_thrusters:
 		output_thrusters[t] = thrust_percentage
 
 func move_ship_backward(thrust_percentage : float):
-	thrust_vector.z = %Thrusters.retro_thrust_force * -thrust_percentage
-			
+	thrust_vector.z = %Thrusters.retro_thrust_force * thrust_percentage
+
 	for t in retro_thrusters:
 		output_thrusters[t] = thrust_percentage
 
 
 func move_ship_up(thrust_percentage : float):
-	thrust_vector.y = %Thrusters.bottom_thrust_force * -thrust_percentage
+	thrust_vector.y = %Thrusters.bottom_thrust_force * thrust_percentage
 	
 	for t in bottom_thrusters:
 		output_thrusters[t] = thrust_percentage
 
 
 func move_ship_down(thrust_percentage : float):
-	thrust_vector.y = %Thrusters.top_thrust_force * thrust_percentage
+	thrust_vector.y = %Thrusters.top_thrust_force * -thrust_percentage
 	
 	for t in top_thrusters:
 		output_thrusters[t] = thrust_percentage
 
 
 func roll_ship_right(thrust_percentage : float):
-	torque_vector.z = %Thrusters.roll_left_thrust_force * thrust_percentage
+	torque_vector.z = %Thrusters.roll_right_thrust_force * thrust_percentage
 	
-	for t in roll_left_thrusters:
+	for t in roll_right_thrusters:
 		output_thrusters[t] = thrust_percentage
 
 func roll_ship_left(thrust_percentage : float):
-	torque_vector.z = %Thrusters.roll_right_thrust_force * -thrust_percentage
+	torque_vector.z = %Thrusters.roll_left_thrust_force * -thrust_percentage
 	
-	for t in roll_right_thrusters:
+	for t in roll_left_thrusters:
 		output_thrusters[t] = thrust_percentage
 
 func pitch_ship_up(thrust_percentage : float):
