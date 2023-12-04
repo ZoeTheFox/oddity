@@ -195,7 +195,7 @@ _data = [Vector2(0, 0), 0.0, 7.09578, 0, 0, Vector2(0.095082, 0.504599), 4.6739,
 point_count = 4
 
 [sub_resource type="Curve" id="Curve_nhltq"]
-_data = [Vector2(0, 0), 0.0, 2.57675, 0, 0, Vector2(0.213115, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 2.57675, 0, 0, Vector2(0.819608, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Animation" id="Animation_ahb1g"]
@@ -1075,10 +1075,10 @@ flight_assist = true
 is_forwards_axis_based_on_speed = true
 is_lateral_axis_based_on_speed = true
 is_vertical_axis_based_on_speed = true
-max_velocity = 200.0
+max_velocity = 500.0
 max_pitch_velocity = 5.0
 max_yaw_velocity = 5.0
-max_roll_velocity = 10.0
+max_roll_velocity = 5.0
 controller_curve = SubResource("Curve_v42ei")
 rotation_control_curve = SubResource("Curve_nhltq")
 spe = 0.119

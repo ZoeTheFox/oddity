@@ -71,6 +71,9 @@ signal output_torque_vector(torque_vector : Vector3)
 var thrust_vector : Vector3
 var torque_vector : Vector3
 
+var unit_thrust_vector : Vector3
+var unit_torque_vector : Vector3
+
 var output_thrusters : Dictionary
 
 @export
@@ -104,6 +107,8 @@ func _process(delta):
 	
 	thrust_vector = Vector3.ZERO
 	torque_vector = Vector3.ZERO
+	unit_thrust_vector = Vector3.ZERO
+	unit_torque_vector = Vector3.ZERO
 	
 	#print("velocity: " + str(velocity))
 	
@@ -214,8 +219,8 @@ func _process(delta):
 		
 	#print(thrust_vector)
 	
-	%AnimationTree.set("parameters/Pitch/Blend3/blend_amount", rotation_vector.x )
-	%AnimationTree.set("parameters/Vertical/Blend3/blend_amount", -movement_vector.y)
+	%AnimationTree.set("parameters/Pitch/Blend3/blend_amount", -unit_torque_vector.x )
+	%AnimationTree.set("parameters/Vertical/Blend3/blend_amount", -unit_thrust_vector.y)
 	
 	print("thurst: " + str(movement_vector) + " torqu: " + str(rotation_vector))
 	
@@ -225,78 +230,51 @@ func _process(delta):
 
 func move_ship_left(thrust_percentage : float):
 	thrust_vector.x = %Thrusters.right_thrust_force * -thrust_percentage
-	
-	for t in right_thrusters:
-		output_thrusters[t] = thrust_percentage
+	unit_thrust_vector.x = -thrust_percentage
 	
 func move_ship_right(thrust_percentage : float):
 	thrust_vector.x = %Thrusters.left_thrust_force * thrust_percentage
-	
-	for t in left_thrusters:
-		output_thrusters[t] = thrust_percentage
+	unit_thrust_vector.x = thrust_percentage
 
 func move_ship_forward(thrust_percentage : float):
 	thrust_vector.z = %Thrusters.main_thrust_force * -thrust_percentage
+	unit_thrust_vector.z = -thrust_percentage
 	
-	for t in main_thrusters:
-		output_thrusters[t] = thrust_percentage
-
 func move_ship_backward(thrust_percentage : float):
 	thrust_vector.z = %Thrusters.retro_thrust_force * thrust_percentage
-
-	for t in retro_thrusters:
-		output_thrusters[t] = thrust_percentage
-
+	unit_thrust_vector.z = thrust_percentage
 
 func move_ship_up(thrust_percentage : float):
 	thrust_vector.y = %Thrusters.bottom_thrust_force * thrust_percentage
-	
-	for t in bottom_thrusters:
-		output_thrusters[t] = thrust_percentage
-
+	unit_thrust_vector.y = thrust_percentage
 
 func move_ship_down(thrust_percentage : float):
 	thrust_vector.y = %Thrusters.top_thrust_force * -thrust_percentage
-	
-	for t in top_thrusters:
-		output_thrusters[t] = thrust_percentage
-
+	unit_thrust_vector.y = -thrust_percentage
 
 func roll_ship_right(thrust_percentage : float):
 	torque_vector.z = %Thrusters.roll_right_thrust_force * thrust_percentage
+	unit_torque_vector.z = thrust_percentage
 	
-	for t in roll_right_thrusters:
-		output_thrusters[t] = thrust_percentage
-
 func roll_ship_left(thrust_percentage : float):
 	torque_vector.z = %Thrusters.roll_left_thrust_force * -thrust_percentage
-	
-	for t in roll_left_thrusters:
-		output_thrusters[t] = thrust_percentage
+	unit_torque_vector.z = -thrust_percentage
 
 func pitch_ship_up(thrust_percentage : float):
 	torque_vector.x = %Thrusters.pitch_down_thrust_force * thrust_percentage
-	
-	for t in pitch_down_thrusters:
-		output_thrusters[t] = thrust_percentage
+	unit_torque_vector.x = thrust_percentage
 
 func pitch_ship_down(thrust_percentage : float):
 	torque_vector.x = %Thrusters.pitch_up_thrust_force * -thrust_percentage
-	
-	for t in pitch_up_thrusters:
-		output_thrusters[t] = thrust_percentage
+	unit_torque_vector.x = -thrust_percentage
 
 func yaw_ship_right(thrust_percentage : float):
 	torque_vector.y = %Thrusters.yaw_left_thrust_force * -thrust_percentage
-	
-	for t in yaw_left_thrusters:
-		output_thrusters[t] = thrust_percentage
+	unit_torque_vector.y = -thrust_percentage
 
 func yaw_ship_left(thrust_percentage : float):
-	torque_vector.y += %Thrusters.yaw_right_thrust_force * thrust_percentage
-	
-	for t in yaw_right_thrusters:
-		output_thrusters[t] = thrust_percentage
+	torque_vector.y = %Thrusters.yaw_right_thrust_force * thrust_percentage
+	unit_torque_vector.y = thrust_percentage
 
 func calculate_desired_velocity(percentage : float) -> float:
 	return percentage * max_velocity
