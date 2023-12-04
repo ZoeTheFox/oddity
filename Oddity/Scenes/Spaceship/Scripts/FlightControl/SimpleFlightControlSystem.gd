@@ -304,7 +304,7 @@ func calculate_velocity_delta(base_velocity : float, desired_velocity : float) -
 	return (base_velocity - desired_velocity)
 
 func calculate_desired_thrust(velocity_delta : float) -> float:
-	var normalized_velocity_delta = clamp(abs(velocity_delta) / 50, 0.0, 1.0)
+	var normalized_velocity_delta = clamp(abs(velocity_delta) / max_velocity, 0.0, 1.0)
 
 	#print(normalized_velocity_delta)
 

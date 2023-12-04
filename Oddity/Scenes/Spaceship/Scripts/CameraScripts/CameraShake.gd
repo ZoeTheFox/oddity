@@ -89,12 +89,6 @@ func logarithmicTransform(vector):
 
 	return -transformedVector
 
-func _on_fighter_gen_7_accelleration_signal(accelaration):
-	self.acceleration = logarithmicTransform(accelaration)
-
-func _on_fighter_gen_7_speed_signal(speed):
-	self.speed = speed
-
 func _on_cameras_set_default_position(defaultPosition):
 	self.defaultPosition = defaultPosition
 
@@ -111,3 +105,11 @@ func _on_cameras_is_first_person_signal(is_first_person):
 		current_acceleration_movement_factor = acceleration_movement_factor_third_person
 		current_max_movement = maximum_movement_third_person
 		current_camera_shake_strength = camera_shake_strength_third_person
+
+
+func _on_fighter_gen_7_output_acceleration(acceleration):
+	self.acceleration = logarithmicTransform(acceleration)
+
+
+func _on_fighter_gen_7_output_velocity(velocity):
+	self.speed = velocity.length()

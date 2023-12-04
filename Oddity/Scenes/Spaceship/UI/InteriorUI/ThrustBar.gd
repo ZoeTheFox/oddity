@@ -1,4 +1,4 @@
 extends Node3D
 
-func _on_user_control_throttle_signal(throttle):
-	$SubViewport/ThrustBar2D.value = abs(throttle)
+func _on_player_input_send_movement_vector(movement_vector):
+	$SubViewport/ThrustBar2D.value = abs(movement_vector.z * 100)
