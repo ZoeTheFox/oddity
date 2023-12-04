@@ -105,7 +105,7 @@ func _process(delta):
 	thrust_vector = Vector3.ZERO
 	torque_vector = Vector3.ZERO
 	
-	print("velocity: " + str(velocity))
+	#print("velocity: " + str(velocity))
 	
 	# Lateral Axis
 	if (flight_assist):
@@ -118,7 +118,7 @@ func _process(delta):
 			velocity_delta = calculate_velocity_delta(velocity.x, desired_velocity)
 			desired_thrust = calculate_desired_thrust(velocity_delta)
 			
-			#print("Velocity: " + str(velocity.x) + " Desired Velocity: " + str(desired_velocity) + " Thrust: " + str(desired_thrust) + " Difference: " + str(velocity_delta))
+			print("Velocity: " + str(velocity.x) + " Desired Velocity: " + str(desired_velocity) + " Thrust: " + str(desired_thrust) + " Difference: " + str(velocity_delta))
 			
 			if (velocity_delta > 0):
 				move_ship_left(desired_thrust)
@@ -172,11 +172,11 @@ func _process(delta):
 		
 		#print(str(local_angular_velocity.y) + " " + str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
 		
-		if (velocity_delta > 0):
-			yaw_ship_left(desired_thrust)
-		elif (velocity_delta < 0):
-			yaw_ship_right(desired_thrust)	
-	
+		#if (velocity_delta > 0):
+			#yaw_ship_left(desired_thrust)
+		#elif (velocity_delta < 0):
+			#yaw_ship_right(desired_thrust)	
+	#
 	#print(thrust_vector)
 	
 	

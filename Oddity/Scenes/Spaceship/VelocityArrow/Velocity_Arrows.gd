@@ -43,6 +43,8 @@ func _process(delta):
 		vel.y = b.y.dot(v_nor) * v_len
 		vel.z = b.z.dot(v_nor) * v_len
 		
+		vel = rigid_body.velocity
+		
 		z.scale.z = vel.z
 		z.position.z = vel.z / 2.0
 

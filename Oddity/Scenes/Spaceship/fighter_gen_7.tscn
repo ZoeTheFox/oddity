@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=49 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/thruster_control.gd" id="1_pxur1"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bxnepkoil8so3" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.tscn" id="18_fkptq"]
 [ext_resource type="PackedScene" uid="uid://bl7fyywe4oqux" path="res://Scenes/Spaceship/Scripts/Thruster/Thruster.tscn" id="19_mnngf"]
 [ext_resource type="PackedScene" uid="uid://csglb1gnox6c5" path="res://Scenes/Spaceship/Particles/FighterGen7/MainThrusterParticleFX/SmokeFX.tscn" id="22_i36p4"]
+[ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/Velocity_Arrows.tscn" id="23_5crqu"]
 
 [sub_resource type="Curve" id="Curve_xsv15"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504762, 0), 0.256842, 0.256842, 0, 0, Vector2(0.72, 0.494737), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -619,8 +620,10 @@ shape = SubResource("ConvexPolygonShape3D_o4vqt")
 shape = SubResource("ConvexPolygonShape3D_jbudj")
 
 [node name="PlayerInput" parent="." instance=ExtResource("16_dljen")]
+is_throttle_axis = false
 mouse_sensitivity = 0.5
 mouse_sensitivity_curve = SubResource("Curve_r0men")
+use_mouse_for_movement = true
 
 [node name="ShipStats" parent="." instance=ExtResource("17_obsua")]
 unique_name_in_owner = true
@@ -634,6 +637,7 @@ max_velocity = 200.0
 max_yaw_velocity = 5.0
 controller_curve = SubResource("Curve_v42ei")
 rotation_control_curve = SubResource("Curve_nhltq")
+spe = 0.119
 
 [node name="Thrusters" parent="." instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
@@ -750,6 +754,17 @@ thruster_force = 100.0
 [node name="RCSBottomWingThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6.663, -3.016, 3.977)
 thruster_force = 100.0
+
+[node name="Velocity_Arrows" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("23_5crqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.15114, 3.86194, 0)
+visible = false
+rigid_body = NodePath("..")
+
+[node name="Velocity_Arrows2" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("23_5crqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52364, 3.69258, 0)
+visible = false
+rigid_body = NodePath("..")
+global = true
 
 [connection signal="output_acceleration" from="." to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_acceleration"]
 [connection signal="output_local_angular_velocity" from="." to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_local_angular_velocity"]

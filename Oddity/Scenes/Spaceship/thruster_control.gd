@@ -31,8 +31,8 @@ func _process(delta):
 	output_velocity.emit(velocity)
 	output_local_angular_velocity.emit(local_angular_velocity)
 	
-	print("velo: " + str(linear_velocity))
-
+	#print("velo: " + str(linear_velocity))
+	#print("Velocity: " + str(velocity))
 	
 	for t in output_thrusters:
 		var thrust = get_node("Thrusters/" + str(t))
@@ -44,16 +44,21 @@ func calc_accelleration():
 	velocity_last_frame = velocity
 
 func calc_local_velocity():
+	#print("basis " + str(global_transform.basis.inverse()))
 	
-	## https://ask.godotengine.org/123178/how-do-i-get-local-linear-velocity ##
-	
-	var b = transform.basis
-	var v_len = linear_velocity.length()
-	var v_nor = linear_velocity.normalized()
+	velocity = transform.basis.inverse() * linear_velocity
 
-	velocity.x = b.x.dot(v_nor) * v_len
-	velocity.y = b.y.dot(v_nor) * v_len
-	velocity.z = b.z.dot(v_nor) * v_len
+	# Now, local_velocity.x, local_velocity.y, and local_velocity.z represent the velocity along the ship's local x, y, and z axes respectivel
+
+	### https://ask.godotengine.org/123178/how-do-i-get-local-linear-velocity ##
+	#
+	#var b = transform.basis
+	#var v_len = linear_velocity.length()
+	#var v_nor = linear_velocity.normalized()
+#
+	#velocity.x = b.x.dot(v_nor) * v_len
+	#velocity.y = b.y.dot(v_nor) * v_len
+	#velocity.z = b.z.dot(v_nor) * v_len
 
 func calc_local_angular_velocity():
 	local_angular_velocity = transform.basis.inverse() * angular_velocity
@@ -70,17 +75,11 @@ func apply_local_torque(direction : Vector3, force : float, throttle : float):
 
 
 func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
-	var b = transform.basis
-	var t_len = thrust_vector.length()
-	var t_nor = thrust_vector.normalized()
-
-	print("1" + str(thrust_vector))
-
-	thrust_vector.x = b.x.dot(t_nor) * t_len
-	thrust_vector.y = b.y.dot(t_nor) * t_len
-	thrust_vector.z = b.z.dot(t_nor) * t_len
+	thrust_vector = thrust_vector * global_basis.inverse()
 	
-	print("2" + str(thrust_vector))
+	print("GLOVLA" + str(global_basis.inverse()))
+	
+	print(thrust_vector)
 	
 	apply_central_force(thrust_vector) # Replace with function body.
 
