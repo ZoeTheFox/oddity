@@ -118,7 +118,7 @@ func _process(delta):
 			velocity_delta = calculate_velocity_delta(velocity.x, desired_velocity)
 			desired_thrust = calculate_desired_thrust(velocity_delta)
 			
-			print("Velocity: " + str(velocity.x) + " Desired Velocity: " + str(desired_velocity) + " Thrust: " + str(desired_thrust) + " Difference: " + str(velocity_delta))
+			#print("Velocity: " + str(velocity.x) + " Desired Velocity: " + str(desired_velocity) + " Thrust: " + str(desired_thrust) + " Difference: " + str(velocity_delta))
 			
 			if (velocity_delta > 0):
 				move_ship_left(desired_thrust)
@@ -172,11 +172,46 @@ func _process(delta):
 		
 		#print(str(local_angular_velocity.y) + " " + str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
 		
-		#if (velocity_delta > 0):
-			#yaw_ship_left(desired_thrust)
-		#elif (velocity_delta < 0):
-			#yaw_ship_right(desired_thrust)	
-	#
+		if (velocity_delta > 0):
+			yaw_ship_left(desired_thrust)
+		elif (velocity_delta < 0):
+			yaw_ship_right(desired_thrust)	
+	
+	# Pitch
+	
+	if (flight_assist):
+		var desired_velocity = 0
+		var velocity_delta = 0
+		var desired_thrust = 0
+		
+		desired_velocity = calculate_desired_angular_velocity(rotation_vector.x, max_pitch_velocity)
+		velocity_delta = calculate_velocity_delta(-local_angular_velocity.x, desired_velocity)
+		desired_thrust = calculate_desired_torque(velocity_delta, max_pitch_velocity)
+		
+		#print(str(local_angular_velocity.y) + " " + str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
+		
+		if (velocity_delta > 0):
+			pitch_ship_up(desired_thrust)
+		elif (velocity_delta < 0):
+			pitch_ship_down(desired_thrust)	
+
+	
+	if (flight_assist):
+		var desired_velocity = 0
+		var velocity_delta = 0
+		var desired_thrust = 0
+		
+		desired_velocity = calculate_desired_angular_velocity(-rotation_vector.z, max_roll_velocity)
+		velocity_delta = calculate_velocity_delta(local_angular_velocity.z, desired_velocity)
+		desired_thrust = calculate_desired_torque(velocity_delta, max_roll_velocity)
+		
+	#	print(str(local_angular_velocity.z) + " " + str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
+		
+		if (velocity_delta > 0):
+			roll_ship_left(desired_thrust)
+		elif (velocity_delta < 0):
+			roll_ship_right(desired_thrust)	
+		
 	#print(thrust_vector)
 	
 	
@@ -269,7 +304,7 @@ func calculate_velocity_delta(base_velocity : float, desired_velocity : float) -
 	return (base_velocity - desired_velocity)
 
 func calculate_desired_thrust(velocity_delta : float) -> float:
-	var normalized_velocity_delta = clamp(abs(velocity_delta) / max_velocity, 0.0, 1.0)
+	var normalized_velocity_delta = clamp(abs(velocity_delta) / 50, 0.0, 1.0)
 
 	#print(normalized_velocity_delta)
 

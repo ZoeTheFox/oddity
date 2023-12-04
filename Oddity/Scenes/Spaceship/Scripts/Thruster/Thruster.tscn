@@ -10,6 +10,7 @@ script = ExtResource("1_buobr")
 [node name="ParticleFX" type="Node3D" parent="."]
 
 [node name="ThrustPosition" type="Node3D" parent="."]
+visible = false
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="ThrustPosition"]
 transform = Transform3D(0.052317, 0, -0.245871, 0, 0.08, 0, 0.0605222, 0, 0.212538, 0.0936526, 0, 0.191557)

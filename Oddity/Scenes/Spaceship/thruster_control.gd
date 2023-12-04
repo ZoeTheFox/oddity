@@ -76,13 +76,9 @@ func apply_local_torque(direction : Vector3, force : float, throttle : float):
 
 func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
 	thrust_vector = thrust_vector * global_basis.inverse()
-	
-	print("GLOVLA" + str(global_basis.inverse()))
-	
-	print(thrust_vector)
-	
+		
 	apply_central_force(thrust_vector) # Replace with function body.
 
 
 func _on_simple_flight_control_system_output_torque_vector(torque_vector):
-	apply_torque(torque_vector)
+	apply_torque(torque_vector * global_basis.inverse())

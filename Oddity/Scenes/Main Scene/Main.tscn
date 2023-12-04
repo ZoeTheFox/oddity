@@ -59,6 +59,7 @@ environment = SubResource("Environment_af0w1")
 transform = Transform3D(-0.0975829, 0, -0.995227, 0, 1, 0, 0.995227, 0, -0.0975829, -0.477354, 30.8539, -798.968)
 
 [node name="FighterGen7" parent="." instance=ExtResource("1_2ddtf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Star" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.000120288, -0.183458, 3560.51, 4500, -1.31134e-08, -3.05619e-12, 0.000155635, 0.237367, 2751.87, -21827.1, 2549.69, 21773.1)

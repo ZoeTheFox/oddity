@@ -40,6 +40,9 @@ func _process(delta):
 	movement_vector.y = 0
 	rotation_vector.z = 0
 
+	mouse_yaw = clamp(mouse_yaw, -1, 1)
+	mouse_pitch = clamp(mouse_pitch, -1, 1)
+
 	## Throttle
 	
 	if (is_throttle_axis):
@@ -74,8 +77,7 @@ func _process(delta):
 	if (use_mouse_for_movement):
 		rotation_vector.y = clamp(mouse_yaw, -1, 1)
 		
-		if (use_mouse_curve):
-			rotation_vector.y = rotation_vector.y * mouse_sensitivity_curve.sample(abs(rotation_vector.y)) 
+		rotation_vector.y = rotation_vector.y * mouse_sensitivity_curve.sample(abs(rotation_vector.y)) 
 	else:
 		rotation_vector.y = Input.get_axis("yaw-left", "yaw-right")
 
@@ -83,8 +85,7 @@ func _process(delta):
 	
 	if (use_mouse_for_movement):
 		rotation_vector.x = clamp(mouse_pitch, -1, 1)
-		if (use_mouse_curve):
-			rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
+		rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
 	else:
 		rotation_vector.x = Input.get_axis("pitch-down", "pitch-up")
 		
