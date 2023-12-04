@@ -214,6 +214,10 @@ func _process(delta):
 		
 	#print(thrust_vector)
 	
+	%AnimationTree.set("parameters/Pitch/Blend3/blend_amount", rotation_vector.x )
+	%AnimationTree.set("parameters/Vertical/Blend3/blend_amount", -movement_vector.y)
+	
+	print("thurst: " + str(movement_vector) + " torqu: " + str(rotation_vector))
 	
 	output_thrust_vector.emit(thrust_vector)
 	output_torque_vector.emit(torque_vector)
