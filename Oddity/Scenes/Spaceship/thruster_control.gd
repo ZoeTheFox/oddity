@@ -43,7 +43,7 @@ func _process(delta):
 	#print(output_thrusters)	
 	
 func calc_accelleration():
-	acceleration = (velocity - velocity_last_frame) / get_process_delta_time();
+	acceleration = (snapped(velocity, Vector3(0.1, 0.1, 0.1)) - snapped(velocity_last_frame, Vector3(0.1, 0.1, 0.1))) / get_process_delta_time();
 	
 	velocity_last_frame = velocity
 
