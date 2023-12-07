@@ -1454,6 +1454,8 @@ node_connections = [&"Add2", 0, &"Pitch", &"Add2", 1, &"Add2 2", &"Add2 2", 0, &
 mass = 10.0
 gravity_scale = 0.0
 inertia = Vector3(70, 70, 100)
+linear_damp_mode = 1
+angular_damp_mode = 1
 script = ExtResource("1_pxur1")
 
 [node name="Ship" type="Node3D" parent="."]
