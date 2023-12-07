@@ -141,7 +141,7 @@ func _process(delta):
 			velocity_delta = calculate_velocity_delta(velocity.z, desired_velocity)
 			desired_thrust = calculate_desired_thrust(velocity_delta)
 			
-			#print(str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
+			print(str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
 			
 			if (velocity_delta > 0):
 				move_ship_forward(desired_thrust)
@@ -217,7 +217,13 @@ func _process(delta):
 		elif (velocity_delta < 0):
 			roll_ship_right(desired_thrust)	
 		
-	#print(thrust_vector)
+	#print(unit_thrust_vector)
+	
+	if (!flight_assist):
+		if (movement_vector.z < 0):
+			move_ship_backward(movement_vector.z)
+		else:
+			move_ship_forward(movement_vector.z)
 	
 	%AnimationTree.set("parameters/Pitch/Blend3/blend_amount", -unit_torque_vector.x )
 	%AnimationTree.set("parameters/Vertical/Blend3/blend_amount", -unit_thrust_vector.y)
@@ -287,7 +293,7 @@ func calculate_desired_angular_velocity(percentage : float, max_angular_velocity
 	return percentage * max_angular_velocity;
 
 func calculate_velocity_delta(base_velocity : float, desired_velocity : float) -> float:
-	return (base_velocity - desired_velocity)
+	return base_velocity - desired_velocity
 
 func calculate_desired_thrust(velocity_delta : float) -> float:
 	var normalized_velocity_delta = clamp(abs(velocity_delta) / max_velocity, 0.0, 1.0)
