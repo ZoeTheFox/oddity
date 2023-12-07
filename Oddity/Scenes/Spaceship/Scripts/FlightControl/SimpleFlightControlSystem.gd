@@ -223,10 +223,10 @@ func _process(delta):
 	%AnimationTree.set("parameters/Vertical/Blend3/blend_amount", -unit_thrust_vector.y)
 	%AnimationTree.set("parameters/Forwards/Blend3/blend_amount", unit_thrust_vector.z)
 	%AnimationTree.set("parameters/Lateral/Blend3/blend_amount", unit_thrust_vector.x)
-	%AnimationTree.set("parameters/Yaw/Blend3/blend_amount", unit_torque_vector.z)
+	%AnimationTree.set("parameters/Yaw/Blend3/blend_amount", -unit_torque_vector.y)
 	%AnimationTree.set("parameters/Roll/Blend3/blend_amount", -unit_torque_vector.z)
 	
-	print("thurst: " + str(movement_vector) + " torqu: " + str(rotation_vector))
+	#print("thurst: " + str(movement_vector) + " torqu: " + str(rotation_vector))
 	
 	output_thrust_vector.emit(thrust_vector)
 	output_torque_vector.emit(torque_vector)
