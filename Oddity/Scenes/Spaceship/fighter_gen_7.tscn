@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=106 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/thruster_control.gd" id="1_pxur1"]
@@ -10,6 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_retro.gd" id="4_v3nv6"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_mav_thruster.gd" id="5_3nlff"]
+[ext_resource type="PackedScene" uid="uid://cekt6m8i15jo6" path="res://Scenes/Spaceship/Particles/FighterGen7/RetroThrusterParticleFX/RetroThrusterParticleFX.tscn" id="6_dngjw"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraShake.gd" id="7_1k7xb"]
 [ext_resource type="PackedScene" uid="uid://pfmpbnsgedr3" path="res://Scenes/Spaceship/Particles/FighterGen7/RCSThrusterParticleFX/RCSThrusterParticleFX.tscn" id="7_7426p"]
 [ext_resource type="PackedScene" uid="uid://cr7t8smpohmy4" path="res://Scenes/Spaceship/UI/Crosshair/crosshair.tscn" id="7_c6fve"]
@@ -260,6 +261,30 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0, 1.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thrusters/RCSTopWingThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Thrusters/RCSTopWingThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
 
 [sub_resource type="Animation" id="Animation_t3o5n"]
 resource_name = "fly_up"
@@ -323,128 +348,29 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0, 1.0]
 }
-
-[sub_resource type="Animation" id="Animation_lj4gf"]
-resource_name = "not_firing"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Thrusters/RCSBottomThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Thrusters/RCSBottomThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Thrusters/RCSBottomThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Thrusters/RCSBottomThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Thrusters/RCSBottomThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Thrusters/RCSTopThruster1/ParticleFX/top_middle_left:amount_ratio")
+tracks/5/path = NodePath("Thrusters/RCSBottomWingThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.0]
+"values": [0.0, 1.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Thrusters/RCSTopThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/6/path = NodePath("Thrusters/RCSBottomWingThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Thrusters/RCSTopThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Thrusters/RCSTopThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Thrusters/RCSTopThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_47vei"]
@@ -525,47 +451,993 @@ tracks/2/keys = {
 "values": [0.0, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_45b32"]
+resource_name = "yaw_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSLeftThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSRightThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_e05fv"]
+resource_name = "yaw_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSLeftThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSRightThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_jm88b"]
+resource_name = "roll_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSTopWingThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSBottomWingThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSTopThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters/RCSTopThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Thrusters/RCSBottomThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thrusters/RCSBottomThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_vvrkm"]
+resource_name = "roll_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSTopWingThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSBottomWingThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSTopThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters/RCSTopThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Thrusters/RCSBottomThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thrusters/RCSBottomThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_14kus"]
+resource_name = "fly_forwards"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/MainThruster/ParticleFX/MainParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/MainThruster/ParticleFX/SmokeFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ui28b"]
+resource_name = "fly_backwards"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RetroThruster1/ParticleFX/RetroThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RetroThruster2/ParticleFX/RetroThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ovrsc"]
+resource_name = "fly_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSRightThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSRightThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSRightThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_4ro7n"]
+resource_name = "fly_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSLeftThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSLeftThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSLeftThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_f28xs"]
+resource_name = "not_firing_forwards"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/MainThruster/ParticleFX/SmokeFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/MainThruster/ParticleFX/MainParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RetroThruster1/ParticleFX/RetroThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters/RetroThruster2/ParticleFX/RetroThrusterParticleFX:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_4mgay"]
+resource_name = "not_firing_lateral"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSLeftThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSLeftThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSLeftThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters/RCSRightThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Thrusters/RCSRightThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thrusters/RCSRightThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wqo00"]
+resource_name = "not_firing_vertical"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSTopWingThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSTopWingThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSBottomWingThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters/RCSBottomWingThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Thrusters/RCSTopThruster1/ParticleFX/top_middle_left:amount_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thrusters/RCSTopThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Thrusters/RCSTopThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Thrusters/RCSTopThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Thrusters/RCSTopThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Thrusters/RCSBottomThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Thrusters/RCSBottomThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Thrusters/RCSBottomThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Thrusters/RCSBottomThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Thrusters/RCSBottomThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5s2mn"]
+resource_name = "not_firing_pitch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSBottomThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSBottomThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSBottomThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters/RCSTopThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Thrusters/RCSTopThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thrusters/RCSTopThruster1/ParticleFX/top_middle_left:amount_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_k7usq"]
+resource_name = "not_firing_yaw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSLeftThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSLeftThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSRightThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters/RCSRightThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xwn8j"]
+resource_name = "not_firing_roll"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thrusters/RCSTopThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Thrusters/RCSTopThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters/RCSTopThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters/RCSTopThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Thrusters/RCSBottomThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thrusters/RCSBottomThruster3/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Thrusters/RCSBottomThruster4/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Thrusters/RCSBottomThruster5/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Thrusters/RCSTopWingThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Thrusters/RCSTopWingThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Thrusters/RCSBottomWingThruster1/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Thrusters/RCSBottomWingThruster2/ParticleFX/RCSThrusterParticleFX:amount_ratio")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rrndt"]
 _data = {
+"fly_backwards": SubResource("Animation_ui28b"),
 "fly_down": SubResource("Animation_ahb1g"),
+"fly_forwards": SubResource("Animation_14kus"),
+"fly_left": SubResource("Animation_ovrsc"),
+"fly_right": SubResource("Animation_4ro7n"),
 "fly_up": SubResource("Animation_t3o5n"),
-"not_firing": SubResource("Animation_lj4gf"),
+"not_firing_forwards": SubResource("Animation_f28xs"),
+"not_firing_lateral": SubResource("Animation_4mgay"),
+"not_firing_pitch": SubResource("Animation_5s2mn"),
+"not_firing_roll": SubResource("Animation_xwn8j"),
+"not_firing_vertical": SubResource("Animation_wqo00"),
+"not_firing_yaw": SubResource("Animation_k7usq"),
 "pitch_down": SubResource("Animation_47vei"),
-"pitch_up": SubResource("Animation_4ubir")
+"pitch_up": SubResource("Animation_4ubir"),
+"roll_left": SubResource("Animation_jm88b"),
+"roll_right": SubResource("Animation_vvrkm"),
+"yaw_left": SubResource("Animation_45b32"),
+"yaw_right": SubResource("Animation_e05fv")
 }
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_veqx7"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_dy2gs"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_fml3e"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ot1kl"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ivmh0"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mkf6q"]
-animation = &"fly_up"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yt4ic"]
+animation = &"fly_backwards"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d4jtd"]
-animation = &"not_firing"
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_5a0ha"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1l8hn"]
-animation = &"pitch_down"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1dbnd"]
+animation = &"fly_forwards"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6p4n7"]
-animation = &"pitch_up"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ddwq"]
+animation = &"not_firing_forwards"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfjwr"]
-animation = &"not_firing"
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f13cb"]
+graph_offset = Vector2(-86.1329, -24.821)
+nodes/Backwards/node = SubResource("AnimationNodeAnimation_yt4ic")
+nodes/Backwards/position = Vector2(120, 440)
+nodes/Blend3/node = SubResource("AnimationNodeBlend3_5a0ha")
+nodes/Blend3/position = Vector2(360, 240)
+nodes/Forwards/node = SubResource("AnimationNodeAnimation_1dbnd")
+nodes/Forwards/position = Vector2(140, 140)
+"nodes/Not Firing/node" = SubResource("AnimationNodeAnimation_6ddwq")
+"nodes/Not Firing/position" = Vector2(120, 280)
+nodes/output/position = Vector2(580, 240)
+node_connections = [&"Blend3", 0, &"Forwards", &"Blend3", 1, &"Not Firing", &"Blend3", 2, &"Backwards", &"output", 0, &"Blend3"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gccdt"]
-animation = &"fly_down"
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_wg8dw"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8khx0"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ns8ao"]
+animation = &"fly_left"
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_t8qyr"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7lrmq"]
+animation = &"fly_right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_53p45"]
-blend_point_0/node = SubResource("AnimationNodeBlendTree_8khx0")
-blend_point_0/pos = Vector2(-0.2, 0)
-blend_point_1/node = SubResource("AnimationNodeBlendTree_t8qyr")
-blend_point_1/pos = Vector2(0.3, 0)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1ldtw"]
+animation = &"not_firing_lateral"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_t5yb1"]
+nodes/Blend3/node = SubResource("AnimationNodeBlend3_wg8dw")
+nodes/Blend3/position = Vector2(640, 320)
+"nodes/Fly Left/node" = SubResource("AnimationNodeAnimation_ns8ao")
+"nodes/Fly Left/position" = Vector2(380, 220)
+"nodes/Fly Right/node" = SubResource("AnimationNodeAnimation_7lrmq")
+"nodes/Fly Right/position" = Vector2(419.547, 614.337)
+"nodes/Not Firing/node" = SubResource("AnimationNodeAnimation_1ldtw")
+"nodes/Not Firing/position" = Vector2(400, 380)
+nodes/output/position = Vector2(840, 340)
+node_connections = [&"Blend3", 0, &"Fly Left", &"Blend3", 1, &"Not Firing", &"Blend3", 2, &"Fly Right", &"output", 0, &"Blend3"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ebs6c"]
-animation = &"not_firing"
+animation = &"not_firing_pitch"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6wedq"]
 animation = &"pitch_down"
@@ -588,8 +1460,32 @@ nodes/Blend3/position = Vector2(924.536, 379.297)
 nodes/output/position = Vector2(1100, 460)
 node_connections = [&"Blend3", 0, &"Animation", &"Blend3", 1, &"Animation 2", &"Blend3", 2, &"Animation 3", &"output", 0, &"Blend3"]
 
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_bvdr8"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2igib"]
+animation = &"not_firing_roll"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nj02e"]
+animation = &"roll_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0igro"]
+animation = &"roll_right"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wbeau"]
+graph_offset = Vector2(37, 12.5)
+nodes/Blend3/node = SubResource("AnimationNodeBlend3_bvdr8")
+nodes/Blend3/position = Vector2(526.099, 396.239)
+"nodes/Not Firing/node" = SubResource("AnimationNodeAnimation_2igib")
+"nodes/Not Firing/position" = Vector2(233.082, 441.19)
+"nodes/Roll Left/node" = SubResource("AnimationNodeAnimation_nj02e")
+"nodes/Roll Left/position" = Vector2(204.779, 254.725)
+"nodes/Roll Right/node" = SubResource("AnimationNodeAnimation_0igro")
+"nodes/Roll Right/position" = Vector2(248.066, 620.996)
+nodes/output/position = Vector2(960, 380)
+node_connections = [&"Blend3", 0, &"Roll Left", &"Blend3", 1, &"Not Firing", &"Blend3", 2, &"Roll Right", &"output", 0, &"Blend3"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nhaus"]
-animation = &"not_firing"
+animation = &"not_firing_vertical"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nf1ep"]
 animation = &"fly_down"
@@ -600,7 +1496,7 @@ animation = &"fly_up"
 [sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_ngcsb"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qlktf"]
-graph_offset = Vector2(-47.9644, -40.0515)
+graph_offset = Vector2(-11.4359, -82.0241)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_c0quw")
 nodes/Animation/position = Vector2(420, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_nhaus")
@@ -612,38 +1508,56 @@ nodes/Blend3/position = Vector2(680, 140)
 nodes/output/position = Vector2(920, 200)
 node_connections = [&"Blend3", 0, &"Animation", &"Blend3", 1, &"Animation 2", &"Blend3", 2, &"Animation 3", &"output", 0, &"Blend3"]
 
-[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_2b2ht"]
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_k7hgq"]
 
-[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_qi2y1"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b1066"]
+animation = &"not_firing_yaw"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_74q3v"]
+animation = &"yaw_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71u0x"]
+animation = &"yaw_right"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_if74t"]
+graph_offset = Vector2(-230.972, -44.8229)
+nodes/Blend3/node = SubResource("AnimationNodeBlend3_k7hgq")
+nodes/Blend3/position = Vector2(456.008, 289.354)
+"nodes/No Thrust/node" = SubResource("AnimationNodeAnimation_b1066")
+"nodes/No Thrust/position" = Vector2(182.137, 360.777)
+"nodes/Yaw Left/node" = SubResource("AnimationNodeAnimation_74q3v")
+"nodes/Yaw Left/position" = Vector2(273.705, 177.642)
+"nodes/Yaw Right/node" = SubResource("AnimationNodeAnimation_71u0x")
+"nodes/Yaw Right/position" = Vector2(147.174, 555.567)
+nodes/output/position = Vector2(700, 320)
+node_connections = [&"Blend3", 0, &"Yaw Left", &"Blend3", 1, &"No Thrust", &"Blend3", 2, &"Yaw Right", &"output", 0, &"Blend3"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_cg3fd"]
-graph_offset = Vector2(99.884, 65.9386)
+graph_offset = Vector2(-166.823, 317.343)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_ivmh0")
-nodes/Add2/position = Vector2(740, 160)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_gccdt")
-nodes/Animation/position = Vector2(-160, -20)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_mkf6q")
-"nodes/Animation 2/position" = Vector2(-260, 240)
-"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_d4jtd")
-"nodes/Animation 3/position" = Vector2(-340, 80)
-"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_1l8hn")
-"nodes/Animation 4/position" = Vector2(-220, 420)
-"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_6p4n7")
-"nodes/Animation 5/position" = Vector2(-220, 700)
-"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_dfjwr")
-"nodes/Animation 6/position" = Vector2(-400, 540)
-nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_53p45")
-nodes/BlendSpace2D/position = Vector2(100, 260)
+nodes/Add2/position = Vector2(960, -20)
+"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_veqx7")
+"nodes/Add2 2/position" = Vector2(800, 120)
+"nodes/Add2 3/node" = SubResource("AnimationNodeAdd2_dy2gs")
+"nodes/Add2 3/position" = Vector2(640, 280)
+"nodes/Add2 4/node" = SubResource("AnimationNodeAdd2_fml3e")
+"nodes/Add2 4/position" = Vector2(440, 460)
+"nodes/Add2 5/node" = SubResource("AnimationNodeAdd2_ot1kl")
+"nodes/Add2 5/position" = Vector2(220, 660)
+nodes/Forwards/node = SubResource("AnimationNodeBlendTree_f13cb")
+nodes/Forwards/position = Vector2(120, 360)
+nodes/Lateral/node = SubResource("AnimationNodeBlendTree_t5yb1")
+nodes/Lateral/position = Vector2(-100, 880)
 nodes/Pitch/node = SubResource("AnimationNodeBlendTree_td8f7")
-nodes/Pitch/position = Vector2(460, 300)
+nodes/Pitch/position = Vector2(120, 100)
+nodes/Roll/node = SubResource("AnimationNodeBlendTree_wbeau")
+nodes/Roll/position = Vector2(-80, 660)
 nodes/Vertical/node = SubResource("AnimationNodeBlendTree_qlktf")
-nodes/Vertical/position = Vector2(460, 420)
-nodes/a/node = SubResource("AnimationNodeBlend3_qi2y1")
-nodes/a/position = Vector2(40, 40)
-"nodes/a 2/node" = SubResource("AnimationNodeBlend3_2b2ht")
-"nodes/a 2/position" = Vector2(100, 460)
-nodes/output/position = Vector2(960, 180)
-node_connections = [&"Add2", 0, &"Pitch", &"Add2", 1, &"Vertical", &"a", 0, &"Animation", &"a", 1, &"Animation 3", &"a", 2, &"Animation 2", &"a 2", 0, &"Animation 4", &"a 2", 1, &"Animation 6", &"a 2", 2, &"Animation 5", &"output", 0, &"Add2"]
+nodes/Vertical/position = Vector2(140, 220)
+nodes/Yaw/node = SubResource("AnimationNodeBlendTree_if74t")
+nodes/Yaw/position = Vector2(120, 520)
+nodes/output/position = Vector2(1200, 60)
+node_connections = [&"Add2", 0, &"Pitch", &"Add2", 1, &"Add2 2", &"Add2 2", 0, &"Vertical", &"Add2 2", 1, &"Add2 3", &"Add2 3", 0, &"Forwards", &"Add2 3", 1, &"Add2 4", &"Add2 4", 0, &"Yaw", &"Add2 4", 1, &"Add2 5", &"Add2 5", 0, &"Roll", &"Add2 5", 1, &"Lateral", &"output", 0, &"Add2"]
 
 [node name="FighterGen7" type="RigidBody3D"]
 mass = 10.0
@@ -688,16 +1602,7 @@ process_callback = 0
 wait_time = 0.205
 one_shot = true
 
-[node name="retro_left" type="GPUParticles3D" parent="ThrustersOld/Retro"]
-transform = Transform3D(0.999657, 0, 0.0261769, 0, 1, 0, -0.0261769, 0, 0.999657, -1.35, -0.25, -1.8)
-emitting = false
-amount = 256
-lifetime = 3.0
-speed_scale = 24.0
-fixed_fps = 256
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_xdhxs")
-draw_pass_1 = SubResource("BoxMesh_iy85d")
+[node name="retro_left" parent="ThrustersOld/Retro" instance=ExtResource("6_dngjw")]
 
 [node name="retro_right" type="GPUParticles3D" parent="ThrustersOld/Retro"]
 transform = Transform3D(0.999657, 0, -0.0261769, 0, 1, 0, 0.0261769, 0, 0.999657, 1.35, -0.25, -1.8)
@@ -1114,9 +2019,17 @@ transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, 0, -0.191907)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.4, 0, -1.72)
 thruster_force = 2000.0
 
+[node name="RetroThrusterParticleFX" parent="Thrusters/RetroThruster1/ParticleFX" index="0" instance=ExtResource("6_dngjw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0631089, -0.255054, 0)
+amount_ratio = 0.25
+
 [node name="RetroThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.4, 0, -1.72)
 thruster_force = 2000.0
+
+[node name="RetroThrusterParticleFX" parent="Thrusters/RetroThruster2/ParticleFX" index="0" instance=ExtResource("6_dngjw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0618168, -0.255054, 0)
+amount_ratio = 0.25
 
 [node name="RCSTopThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.25995, -6.33182)
@@ -1204,42 +2117,79 @@ thruster_force = 250.0
 
 [node name="RCSThrusterParticleFX" parent="Thrusters/RCSLeftThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
 transform = Transform3D(0.970792, -0.239923, 1.04874e-08, 0, -4.37114e-08, -1, 0.239923, 0.970792, -4.24347e-08, 0, 0, 0)
+amount_ratio = 0.0
 
 [node name="RCSLeftThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.49, -0.170812, -0.027)
 thruster_force = 250.0
 
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSLeftThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+amount_ratio = 0.0
+
 [node name="RCSLeftThruster3" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.809, -0.185651, 4.559)
 thruster_force = 250.0
+
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSLeftThruster3/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+amount_ratio = 0.0
 
 [node name="RCSRightThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.781, -0.252564, -6.192)
 thruster_force = 250.0
 
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSRightThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(0.95475, 0.297408, -1.30001e-08, 0, -4.37114e-08, -1, -0.297408, 0.95475, -4.17335e-08, -0.0116343, -0.0250475, 0)
+amount_ratio = 0.0
+
 [node name="RCSRightThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49, -0.170812, -0.027)
 thruster_force = 250.0
+
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSRightThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(0.989114, 0.147153, -6.43228e-09, 0, -4.37114e-08, -1, -0.147153, 0.989114, -4.32355e-08, 0, 0, 0)
+amount_ratio = 0.0
 
 [node name="RCSRightThruster3" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.809, -0.185651, 4.559)
 thruster_force = 250.0
 
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSRightThruster3/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(0.995675, 0.0929093, -4.0612e-09, 0, -4.37114e-08, -1, -0.0929093, 0.995675, -4.35223e-08, 0.0119028, 0, 0)
+amount_ratio = 0.0
+
 [node name="RCSTopWingThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.29303, 2.8828, 3.9292)
 thruster_force = 250.0
+
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSTopWingThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(0.927569, -0.373652, -3.55271e-15, -1.63328e-08, -4.05453e-08, -1, 0.373652, 0.927569, -4.37114e-08, 0, 0, 0)
+amount_ratio = 0.0
 
 [node name="RCSTopWingThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.293, 2.883, 3.929)
 thruster_force = 250.0
 
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSTopWingThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(0.89838, 0.439218, 3.55271e-15, 1.91988e-08, -3.92695e-08, -1, -0.439218, 0.89838, -4.37114e-08, 0, 0, 0)
+amount_ratio = 0.0
+
 [node name="RCSBottomWingThruster1" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 6.66258, -3.01632, 3.97729)
 thruster_force = 250.0
 
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSBottomWingThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(0.879358, -0.476161, 4.16274e-08, 2.08137e-08, -4.89848e-08, -1, 0.476161, 0.879358, -3.31645e-08, 0, 0, 0)
+amount_ratio = 0.0
+
 [node name="RCSBottomWingThruster2" parent="Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6.663, -3.016, 3.977)
 thruster_force = 250.0
+
+[node name="RCSThrusterParticleFX" parent="Thrusters/RCSBottomWingThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+transform = Transform3D(0.901953, 0.431834, -3.77521e-08, -1.88761e-08, -4.79972e-08, -1, -0.431834, 0.901953, -3.51399e-08, 0, 0, 0)
+amount_ratio = 0.0
 
 [node name="Velocity_Arrows" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("23_5crqu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.15114, 3.86194, 0)
@@ -1266,17 +2216,23 @@ libraries = {
 tree_root = SubResource("AnimationNodeBlendTree_cg3fd")
 anim_player = NodePath("..")
 parameters/Add2/add_amount = 0.5
-parameters/BlendSpace2D/blend_position = Vector2(-0.5, 0.0208955)
+"parameters/Add2 2/add_amount" = 0.5
+"parameters/Add2 3/add_amount" = 0.5
+"parameters/Add2 4/add_amount" = 0.5
+"parameters/Add2 5/add_amount" = 0.5
+parameters/Forwards/Blend3/blend_amount = 0
+parameters/Lateral/Blend3/blend_amount = 0
 parameters/Pitch/Blend3/blend_amount = 0.0
+parameters/Roll/Blend3/blend_amount = 0
 parameters/Vertical/Blend3/blend_amount = 0
-parameters/a/blend_amount = 0.0
-"parameters/a 2/blend_amount" = 0
+parameters/Yaw/Blend3/blend_amount = 0
 
 [connection signal="output_acceleration" from="." to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_output_acceleration"]
 [connection signal="output_acceleration" from="." to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_acceleration"]
 [connection signal="output_local_angular_velocity" from="." to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_local_angular_velocity"]
 [connection signal="output_velocity" from="." to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="output_velocity" from="." to="UI/InteriorUI/SpeedUI" method="_on_fighter_gen_7_output_velocity"]
+[connection signal="output_velocity" from="." to="UI/ExteriorUI/ExteriorUI" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="output_velocity" from="." to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="timeout" from="ThrustersOld/Main/Timer" to="ThrustersOld/Main" method="_on_timer_timeout"]
 [connection signal="timeout" from="ThrustersOld/Retro/Timer" to="ThrustersOld/Retro" method="_on_timer_timeout"]
@@ -1291,7 +2247,9 @@ parameters/a/blend_amount = 0.0
 [connection signal="is_first_person_signal" from="Ship/Cameras" to="UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
 [connection signal="set_default_position" from="Ship/Cameras" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_set_default_position"]
 [connection signal="send_movement_vector" from="PlayerInput" to="UI/InteriorUI/ThrustBar" method="_on_player_input_send_movement_vector"]
+[connection signal="send_movement_vector" from="PlayerInput" to="UI/ExteriorUI/ExteriorUI" method="_on_player_input_send_movement_vector"]
 [connection signal="send_movement_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_movement_vector"]
+[connection signal="send_rotation_vector" from="PlayerInput" to="Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_player_input_send_rotation_vector"]
 [connection signal="send_rotation_vector" from="PlayerInput" to="UI/InteriorUI/Crosshair" method="_on_player_input_send_rotation_vector"]
 [connection signal="send_rotation_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_rotation_vector"]
 [connection signal="output" from="SimpleFlightControlSystem" to="." method="_on_simple_flight_control_system_output"]

@@ -10,16 +10,16 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func _on_fighter_gen_7_speed_signal(speed):
-	$Speed.text = str(round(speed)) + "m/s"
-
-func _on_user_control_throttle_signal(throttle):
-	$ThrustBar2D.value = abs(throttle)
-
-
 func _on_cameras_is_first_person_signal(is_first_person):
 	if (is_first_person):
 		hide()
 	else:
 		show()
+
+
+func _on_fighter_gen_7_output_velocity(velocity):
+	$Speed.text = str(round(velocity)) + "m/s"
+
+
+func _on_player_input_send_movement_vector(movement_vector):
+	$ThrustBar2D.value = abs(movement_vector.z * 100)
