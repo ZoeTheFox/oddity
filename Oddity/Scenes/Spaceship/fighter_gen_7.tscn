@@ -1452,7 +1452,6 @@ node_connections = [&"Add2", 0, &"Pitch", &"Add2", 1, &"Add2 2", &"Add2 2", 0, &
 
 [node name="FighterGen7" type="RigidBody3D"]
 mass = 10.0
-gravity_scale = 0.0
 inertia = Vector3(70, 70, 100)
 linear_damp_mode = 1
 angular_damp_mode = 1

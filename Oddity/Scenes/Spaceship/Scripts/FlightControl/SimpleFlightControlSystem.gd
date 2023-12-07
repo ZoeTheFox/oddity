@@ -141,7 +141,7 @@ func _process(delta):
 			velocity_delta = calculate_velocity_delta(velocity.z, desired_velocity)
 			desired_thrust = calculate_desired_thrust(velocity_delta)
 			
-			print(str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
+			#print(str(desired_velocity) + " " + str(desired_thrust) + " " + str(velocity_delta))
 			
 			if (velocity_delta > 0):
 				move_ship_forward(desired_thrust)
@@ -217,6 +217,9 @@ func _process(delta):
 		elif (velocity_delta < 0):
 			roll_ship_right(desired_thrust)	
 		
+	
+	print()
+	
 	#print(unit_thrust_vector)
 	
 	if (!flight_assist):

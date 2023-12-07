@@ -33,7 +33,7 @@ func _process(delta):
 	
 	#print("velo: " + str(linear_velocity))
 	#print("Velocity: " + str(velocity))
-	
+	print(acceleration)
 	
 	
 	for t in output_thrusters:
