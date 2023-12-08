@@ -44,6 +44,12 @@ var yaw_left_thrusters = %Thrusters.yaw_left_thrusters
 @export
 var flight_assist : bool
 
+@export
+var rotational_assist : bool
+
+@export
+var anti_gravity_system : bool
+
 @export_group("Accelleration or Speed")
 
 @export
@@ -218,9 +224,19 @@ func _process(delta):
 			roll_ship_right(desired_thrust)	
 		
 	
-	print()
+
 	
 	#print(unit_thrust_vector)
+	
+	if (anti_gravity_system):
+		var down = transform.basis.inverse() * global_transform.basis.y
+		down.y = - down.y
+		var force = (-down * 9.81) * transform.basis.inverse() 
+		
+		thrust_vector += force
+		
+		print("DOWN" + str(force))
+
 	
 	if (!flight_assist):
 		if (movement_vector.z < 0):
@@ -236,6 +252,8 @@ func _process(delta):
 	%AnimationTree.set("parameters/Roll/Blend3/blend_amount", -unit_torque_vector.z)
 	
 	#print("thurst: " + str(movement_vector) + " torqu: " + str(rotation_vector))
+	
+	print("Thrust: " + str(thrust_vector))
 	
 	output_thrust_vector.emit(thrust_vector)
 	output_torque_vector.emit(torque_vector)

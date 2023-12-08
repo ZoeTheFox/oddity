@@ -11,8 +11,8 @@ signal output_local_angular_velocity(local_angular_velocity : Vector3)
 
 var output_thrusters : Dictionary
 
-@export_range(0, 1)
-var temp : float
+@export
+var gravity : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,8 +33,9 @@ func _process(delta):
 	
 	#print("velo: " + str(linear_velocity))
 	#print("Velocity: " + str(velocity))
-	print(acceleration)
-	
+	#print(acceleration)
+	var down = Vector3.DOWN
+	apply_central_force(Vector3.DOWN * -gravity)
 	
 	for t in output_thrusters:
 		var thrust = get_node("Thrusters/" + str(t))
@@ -44,6 +45,8 @@ func _process(delta):
 	
 func calc_accelleration():
 	acceleration = (snapped(velocity, Vector3(0.1, 0.1, 0.1)) - snapped(velocity_last_frame, Vector3(0.1, 0.1, 0.1))) / get_process_delta_time();
+	
+	print("acceleration: " + str(acceleration))
 	
 	velocity_last_frame = velocity
 
@@ -80,7 +83,9 @@ func apply_local_torque(direction : Vector3, force : float, throttle : float):
 
 func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
 	thrust_vector = thrust_vector * global_basis.inverse()
-		
+	
+	print("Real Thrust" + str(thrust_vector))
+	
 	apply_central_force(thrust_vector) # Replace with function body.
 
 

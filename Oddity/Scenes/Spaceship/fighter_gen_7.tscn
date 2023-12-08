@@ -1452,10 +1452,12 @@ node_connections = [&"Add2", 0, &"Pitch", &"Add2", 1, &"Add2 2", &"Add2 2", 0, &
 
 [node name="FighterGen7" type="RigidBody3D"]
 mass = 10.0
+gravity_scale = 0.0
 inertia = Vector3(70, 70, 100)
 linear_damp_mode = 1
 angular_damp_mode = 1
 script = ExtResource("1_pxur1")
+gravity = 9.81
 
 [node name="Ship" type="Node3D" parent="."]
 
@@ -1554,6 +1556,7 @@ test = 10.0
 
 [node name="SimpleFlightControlSystem" parent="." instance=ExtResource("18_fkptq")]
 unique_name_in_owner = true
+anti_gravity_system = true
 is_forwards_axis_based_on_speed = true
 is_lateral_axis_based_on_speed = true
 is_vertical_axis_based_on_speed = true
