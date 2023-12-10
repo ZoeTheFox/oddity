@@ -35,7 +35,7 @@ func _process(delta):
 	#print("Velocity: " + str(velocity))
 	#print(acceleration)
 	var down = Vector3.DOWN
-	apply_central_force(Vector3.DOWN * -gravity)
+	#apply_central_force(Vector3.DOWN * -gravity)
 	
 	for t in output_thrusters:
 		var thrust = get_node("Thrusters/" + str(t))
