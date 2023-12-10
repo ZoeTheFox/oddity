@@ -83,7 +83,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0347003, 1), 0.0, 0.0, 0, 0, V
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_v42ei"]
-_data = [Vector2(0, 0), 0.0, 7.09578, 0, 0, Vector2(0.052459, 0.538765), 7.81538, 7.81538, 0, 0, Vector2(0.0983607, 0.863338), 0.306486, 0.306486, 0, 0, Vector2(0.983607, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 7.09578, 0, 0, Vector2(0.0509804, 0.617021), 7.81538, 7.81538, 0, 0, Vector2(0.109804, 0.914894), 0.306486, 0.306486, 0, 0, Vector2(0.983607, 1), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Curve" id="Curve_nhltq"]
@@ -1452,6 +1452,7 @@ node_connections = [&"Add2", 0, &"Pitch", &"Add2", 1, &"Add2 2", &"Add2 2", 0, &
 
 [node name="FighterGen7" type="RigidBody3D"]
 mass = 10.0
+gravity_scale = 5.0
 inertia = Vector3(70, 70, 100)
 linear_damp_mode = 1
 angular_damp_mode = 1
@@ -1555,7 +1556,6 @@ test = 10.0
 [node name="SimpleFlightControlSystem" parent="." instance=ExtResource("18_fkptq")]
 unique_name_in_owner = true
 flight_assist = true
-anti_gravity_system = true
 is_forwards_axis_based_on_speed = true
 is_lateral_axis_based_on_speed = true
 is_vertical_axis_based_on_speed = true
