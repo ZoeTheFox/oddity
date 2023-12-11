@@ -17,8 +17,8 @@ func _on_cameras_is_first_person_signal(is_first_person):
 		show()
 
 
-func _on_fighter_gen_7_output_velocity(velocity):
-	$Speed.text = str(round(velocity)) + "m/s"
+func _on_fighter_gen_7_output_velocity(velocity : Vector3):
+	$Speed.text = str(round(velocity.length())) + " m/s"
 
 
 func _on_player_input_send_movement_vector(movement_vector):
