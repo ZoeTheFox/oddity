@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxnepkoil8so3"]
+
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/SFCS/SimpleFlightControlSystem.gd" id="1_m3c4l"]
+
+[node name="SimpleFlightControlSystem" type="Node3D"]
+script = ExtResource("1_m3c4l")
