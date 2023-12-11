@@ -30,9 +30,12 @@ var wear : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	current_fuel = fuel_capacity
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func use_fuel(amount : float):
+	current_fuel -= amount

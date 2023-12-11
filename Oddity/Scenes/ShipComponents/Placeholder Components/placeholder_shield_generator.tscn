@@ -8,7 +8,7 @@
 manufacturer = "Placeholder"
 model = "ShieldGenerator"
 size_class = 1
-max_shield_output = 1000.0
+total_shield_output = 600.0
 heat_per_shield_charge = 10.0
 ambient_shield_heat = 1.0
 power_per_shield_charge = 50.0

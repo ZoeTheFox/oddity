@@ -8,7 +8,7 @@
 manufacturer = "Placeholder"
 model = "Cooler"
 size_class = 1
-max_cooling_output = 1000.0
+total_cooling_output = 500.0
 power_per_cool = 5.0
 health_points = 50.0
 integrity = 5.0

@@ -14,7 +14,7 @@ var model : String
 var size_class : int
 
 @export
-var max_cooling_output : float
+var total_cooling_output : float
 
 @export
 var power_per_cool : float

@@ -6,6 +6,6 @@
 manufacturer = "Placeholder"
 model = "Radiator"
 size_class = 1
-max_cooling_output = 3000.0
+total_cooling_output = 600.0
 health_points = 50.0
 integrity = 1.0

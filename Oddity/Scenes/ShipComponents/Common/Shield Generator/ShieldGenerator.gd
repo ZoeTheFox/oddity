@@ -14,7 +14,7 @@ var model : String
 var size_class : int
 
 @export
-var max_shield_output : float
+var total_shield_output : float
 
 @export
 var heat_per_shield_charge : float
@@ -36,6 +36,7 @@ var health_points : float
 @export
 var integrity : float
 
+var current_shield_output : float
 var current_power_output : float
 var current_heat : float
 var wear : float
