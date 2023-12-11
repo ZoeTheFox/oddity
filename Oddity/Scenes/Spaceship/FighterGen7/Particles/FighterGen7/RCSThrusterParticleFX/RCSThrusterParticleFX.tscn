@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://pfmpbnsgedr3"]
-
-[ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterScripts/fire_mav_thruster.gd" id="1_jwnn7"]
+[gd_scene load_steps=6 format=3 uid="uid://pfmpbnsgedr3"]
 
 [sub_resource type="Curve" id="Curve_pfjht"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.523809, 0.852632), -0.736842, -0.736842, 0, 0, Vector2(1, 0), -2.02632, 0.0, 0, 0]
@@ -47,4 +45,3 @@ fixed_fps = 256
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kbmvj")
 draw_pass_1 = SubResource("SphereMesh_dbk38")
-script = ExtResource("1_jwnn7")
