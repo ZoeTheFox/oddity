@@ -1462,6 +1462,13 @@ script = ExtResource("1_hkveg")
 
 [node name="fighterGen7" parent="ShipBody/Mesh" instance=ExtResource("1_fr140")]
 
+[node name="Cockpit Lighting" type="OmniLight3D" parent="ShipBody/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0492553, 0.849313, 0.79377)
+light_color = Color(0.909137, 0.496878, 0.253429, 1)
+light_bake_mode = 1
+omni_range = 1.293
+omni_attenuation = 0.707106
+
 [node name="UI" type="Node3D" parent="ShipBody"]
 
 [node name="InteriorUI" type="Node3D" parent="ShipBody/UI"]
