@@ -1702,6 +1702,7 @@ script = ExtResource("2_iyjy7")
 third_person_position = Vector3(0, 5.238, 14.946)
 
 [node name="CameraPivots" type="Node3D" parent="ShipBody/Cameras"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44426, 1.7775)
 script = ExtResource("3_wocjs")
 

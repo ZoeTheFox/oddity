@@ -88,7 +88,12 @@ func _process(delta):
 		rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
 	else:
 		rotation_vector.x = Input.get_axis("pitch-down", "pitch-up")
-		
+	
+	if %CameraPivots.is_look_around_on and use_mouse_for_movement:
+		rotation_vector = Vector3.ZERO
+		mouse_yaw = 0
+		mouse_pitch = 0
+	
 	send_movement_vector.emit(movement_vector)
 	send_rotation_vector.emit(rotation_vector)
 	

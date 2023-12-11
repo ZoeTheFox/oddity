@@ -13,9 +13,12 @@ var twist_pivot := $TwistPivot
 @onready
 var pitch_pivot := $TwistPivot/PitchPivot
 
+var is_look_around_on : bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	is_look_around_on = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -23,6 +26,12 @@ func _process(delta):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if Input.is_action_pressed("camera-look-around"):
+		if (is_look_around_on):
+			is_look_around_on = false
+		else:
+			is_look_around_on = true
+	
+	if (is_look_around_on):
 		twist_pivot.rotate_y(twist_input)
 		pitch_pivot.rotate_x(pitch_input)
 		
