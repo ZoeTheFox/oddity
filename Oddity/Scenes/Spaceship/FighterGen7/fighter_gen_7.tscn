@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=87 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/SFCS/ThrusterControl.gd" id="1_hkveg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://y7nouloq56us" path="res://Scenes/Spaceship/FighterGen7/UI/ExteriorUI/ExteriorUI.tscn" id="6_uelne"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/Camera/CameraScripts/CameraShake.gd" id="7_1k7xb"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/FighterGen7/UI/ExteriorUI/ExteriorUI.gd" id="7_wip5u"]
+[ext_resource type="PackedScene" uid="uid://cv7jdo4pxmx3g" path="res://Scenes/Spaceship/Common/Components/Components.tscn" id="8_y26dh"]
 [ext_resource type="PackedScene" uid="uid://csglb1gnox6c5" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/MainThrusterParticleFX/SmokeFX.tscn" id="10_eeo7v"]
 [ext_resource type="PackedScene" uid="uid://c4gsrugxmj0dh" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/MainThrusterParticleFX/MainParticleFX.tscn" id="11_k0hjx"]
 [ext_resource type="PackedScene" uid="uid://cekt6m8i15jo6" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/RetroThrusterParticleFX/RetroThrusterParticleFX.tscn" id="12_7r5i3"]
@@ -1495,7 +1496,7 @@ is_first_person_crosshair = true
 visible = false
 script = ExtResource("7_wip5u")
 
-[node name="Components" type="Node3D" parent="ShipBody"]
+[node name="Components" parent="ShipBody" instance=ExtResource("8_y26dh")]
 
 [node name="Thrusters" parent="ShipBody" instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
@@ -1823,6 +1824,7 @@ parameters/Yaw/Blend3/blend_amount = 0
 [connection signal="output_thrust_vector" from="SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_thrust_vector"]
 [connection signal="output_torque_vector" from="SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_torque_vector"]
 
+[editable path="ShipBody/Components"]
 [editable path="ShipBody/Thrusters/MainThruster"]
 [editable path="ShipBody/Thrusters/RetroThruster1"]
 [editable path="ShipBody/Thrusters/RetroThruster2"]
