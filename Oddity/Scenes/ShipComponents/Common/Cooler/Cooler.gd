@@ -17,9 +17,6 @@ var size_class : int
 var max_cooling_output : float
 
 @export
-var heat_per_cool : float
-
-@export
 var power_per_cool : float
 
 @export_category("Structural Information")

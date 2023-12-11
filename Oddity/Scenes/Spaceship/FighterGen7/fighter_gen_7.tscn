@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=99 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/SFCS/ThrusterControl.gd" id="1_hkveg"]
@@ -12,15 +12,27 @@
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/Camera/CameraScripts/CameraShake.gd" id="7_1k7xb"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/FighterGen7/UI/ExteriorUI/ExteriorUI.gd" id="7_wip5u"]
 [ext_resource type="PackedScene" uid="uid://cv7jdo4pxmx3g" path="res://Scenes/Spaceship/Common/Components/Components.tscn" id="8_y26dh"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/ShipFuelTanks.gd" id="9_hvdc5"]
+[ext_resource type="PackedScene" uid="uid://chtrvx6ohr6xy" path="res://Scenes/ShipComponents/Placeholder Components/placeholder_cooler.tscn" id="9_q8q8c"]
+[ext_resource type="PackedScene" uid="uid://bexkr2ymqd75k" path="res://Scenes/ShipComponents/Placeholder Components/fuel_tank.tscn" id="9_yecg1"]
 [ext_resource type="PackedScene" uid="uid://csglb1gnox6c5" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/MainThrusterParticleFX/SmokeFX.tscn" id="10_eeo7v"]
+[ext_resource type="PackedScene" uid="uid://dbfnlo84a3qu7" path="res://Scenes/ShipComponents/Placeholder Components/placeholder_powerplant.tscn" id="10_soc1f"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/ShipPowerPlants.gd" id="11_ccm6v"]
 [ext_resource type="PackedScene" uid="uid://c4gsrugxmj0dh" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/MainThrusterParticleFX/MainParticleFX.tscn" id="11_k0hjx"]
 [ext_resource type="PackedScene" uid="uid://cekt6m8i15jo6" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/RetroThrusterParticleFX/RetroThrusterParticleFX.tscn" id="12_7r5i3"]
+[ext_resource type="PackedScene" uid="uid://bpfmvy0xddnto" path="res://Scenes/ShipComponents/Placeholder Components/placeholder_radiator.tscn" id="12_ihhbb"]
 [ext_resource type="PackedScene" uid="uid://pfmpbnsgedr3" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/RCSThrusterParticleFX/RCSThrusterParticleFX.tscn" id="13_i7t06"]
+[ext_resource type="PackedScene" uid="uid://chm807g5g01xq" path="res://Scenes/ShipComponents/Placeholder Components/placeholder_shield_generator.tscn" id="13_l306k"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/ShipCoolers.gd" id="13_qav0r"]
+[ext_resource type="PackedScene" uid="uid://cuylgiivyvpks" path="res://Scenes/ShipComponents/Placeholder Components/placeholder_jump_drive.tscn" id="14_sk35s"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/ShipRadiators.gd" id="15_n3iia"]
 [ext_resource type="PackedScene" uid="uid://ca8w1ch33w85y" path="res://Scenes/Spaceship/Common/Input/PlayerInput.tscn" id="16_dljen"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/ShipShieldGenerators.gd" id="17_m3u48"]
 [ext_resource type="PackedScene" uid="uid://cu2pi0cv7n5v0" path="res://Scenes/Spaceship/Common/ShipStats/ShipStats.tscn" id="17_obsua"]
 [ext_resource type="PackedScene" uid="uid://b4lc3783rrexa" path="res://Scenes/Spaceship/Common/Thruster/Thrusters.tscn" id="18_dj4rr"]
 [ext_resource type="PackedScene" uid="uid://bxnepkoil8so3" path="res://Scenes/Spaceship/Common/SFCS/SimpleFlightControlSystem.tscn" id="18_fkptq"]
 [ext_resource type="PackedScene" uid="uid://bl7fyywe4oqux" path="res://Scenes/Spaceship/Common/Thruster/Thruster_Component/Thruster.tscn" id="19_mnngf"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/ShipJumpDrive.gd" id="19_onpwv"]
 
 [sub_resource type="Animation" id="Animation_b1nji"]
 resource_name = "SwitchCameraToThirdPersonView"
@@ -1497,6 +1509,51 @@ visible = false
 script = ExtResource("7_wip5u")
 
 [node name="Components" parent="ShipBody" instance=ExtResource("8_y26dh")]
+
+[node name="Fuel Tanks" parent="ShipBody/Components" index="0"]
+script = ExtResource("9_hvdc5")
+
+[node name="FuelTank2" parent="ShipBody/Components/Fuel Tanks" index="0" instance=ExtResource("9_yecg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383516, -0.731441, 0)
+
+[node name="FuelTank" parent="ShipBody/Components/Fuel Tanks" index="1" instance=ExtResource("9_yecg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.661099, -0.729032, 0)
+
+[node name="Power Plants" parent="ShipBody/Components" index="1"]
+script = ExtResource("11_ccm6v")
+
+[node name="Powerplant" parent="ShipBody/Components/Power Plants" index="0" instance=ExtResource("10_soc1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154652, -2.31333)
+
+[node name="Coolers" parent="ShipBody/Components" index="2"]
+script = ExtResource("13_qav0r")
+
+[node name="Placeholder Cooler" parent="ShipBody/Components/Coolers" index="0" instance=ExtResource("9_q8q8c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.717464, 0, -2.60727)
+
+[node name="Radiators" parent="ShipBody/Components" index="3"]
+script = ExtResource("15_n3iia")
+
+[node name="PlaceholderRadiator" parent="ShipBody/Components/Radiators" index="0" instance=ExtResource("12_ihhbb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0667158, 1.49163, 4.15456)
+
+[node name="PlaceholderRadiator2" parent="ShipBody/Components/Radiators" index="1" instance=ExtResource("12_ihhbb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.940423, 4.63505)
+
+[node name="Shield Generators" parent="ShipBody/Components" index="4"]
+script = ExtResource("17_m3u48")
+
+[node name="ShieldGenerator" parent="ShipBody/Components/Shield Generators" index="0" instance=ExtResource("13_l306k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34814, -0.52167, -1.73936)
+
+[node name="ShieldGenerator2" parent="ShipBody/Components/Shield Generators" index="1" instance=ExtResource("13_l306k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.716141, -0.315054, -2.15489)
+
+[node name="Jump Drive" parent="ShipBody/Components" index="5"]
+script = ExtResource("19_onpwv")
+
+[node name="PlaceholderJumpDrive" parent="ShipBody/Components/Jump Drive" index="0" instance=ExtResource("14_sk35s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.99823)
 
 [node name="Thrusters" parent="ShipBody" instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
