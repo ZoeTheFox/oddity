@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddpa36y8mkpiy"
-path.s3tc="res://.godot/imported/crosshair.png-acf149fb8225bb50e3d0de8d913750bd.s3tc.ctex"
+path.s3tc="res://.godot/imported/crosshair.png-f7b2cadac33a326cdf5b8d4a54c26b64.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Spaceship/UI/Crosshair/crosshair.png"
-dest_files=["res://.godot/imported/crosshair.png-acf149fb8225bb50e3d0de8d913750bd.s3tc.ctex"]
+source_file="res://Scenes/Spaceship/FighterGen7/UI/Crosshair/crosshair.png"
+dest_files=["res://.godot/imported/crosshair.png-f7b2cadac33a326cdf5b8d4a54c26b64.s3tc.ctex"]
 
 [params]
 

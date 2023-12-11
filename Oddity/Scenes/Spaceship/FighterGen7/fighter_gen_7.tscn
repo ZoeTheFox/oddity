@@ -1,25 +1,25 @@
 [gd_scene load_steps=86 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterControl.gd" id="1_hkveg"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
-[ext_resource type="PackedScene" uid="uid://c4gsrugxmj0dh" path="res://Scenes/Spaceship/Particles/FighterGen7/MainThrusterParticleFX/MainParticleFX.tscn" id="4_suew5"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/SFCS/ThrusterControl.gd" id="1_hkveg"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Camera/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/FighterGen7/UI/InteriorUI/SpeedUI.gd" id="3_g5ucr"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Camera/CameraScripts/CameraController.gd" id="3_wocjs"]
+[ext_resource type="PackedScene" uid="uid://bgf8dwq20dfn3" path="res://Scenes/Spaceship/FighterGen7/UI/InteriorUI/ThrustBar.tscn" id="4_hcjig"]
 [ext_resource type="ArrayMesh" uid="uid://dh5qg0701ykbr" path="res://Assets/Spaceships/FighterGen7/fighterGen7-CollisionMesh.obj" id="4_u2t7m"]
-[ext_resource type="PackedScene" uid="uid://cekt6m8i15jo6" path="res://Scenes/Spaceship/Particles/FighterGen7/RetroThrusterParticleFX/RetroThrusterParticleFX.tscn" id="6_dngjw"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraShake.gd" id="7_1k7xb"]
-[ext_resource type="PackedScene" uid="uid://pfmpbnsgedr3" path="res://Scenes/Spaceship/Particles/FighterGen7/RCSThrusterParticleFX/RCSThrusterParticleFX.tscn" id="7_7426p"]
-[ext_resource type="PackedScene" uid="uid://cr7t8smpohmy4" path="res://Scenes/Spaceship/UI/Crosshair/crosshair.tscn" id="7_c6fve"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/UI/InteriorUI/SpeedUI.gd" id="8_0jh2p"]
-[ext_resource type="PackedScene" uid="uid://bgf8dwq20dfn3" path="res://Scenes/Spaceship/UI/InteriorUI/ThrustBar.tscn" id="9_p60qj"]
-[ext_resource type="PackedScene" uid="uid://y7nouloq56us" path="res://Scenes/Spaceship/UI/ExteriorUI/ExteriorUI.tscn" id="10_hq4ty"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/UI/ExteriorUI/ExteriorUI.gd" id="11_1okw4"]
-[ext_resource type="PackedScene" uid="uid://ca8w1ch33w85y" path="res://Scenes/Spaceship/Scripts/Input/PlayerInput.tscn" id="16_dljen"]
-[ext_resource type="PackedScene" uid="uid://cu2pi0cv7n5v0" path="res://Scenes/Spaceship/Scripts/ShipStats/ShipStats.tscn" id="17_obsua"]
-[ext_resource type="PackedScene" uid="uid://b4lc3783rrexa" path="res://Scenes/Spaceship/Scripts/Thruster/Thrusters.tscn" id="18_dj4rr"]
-[ext_resource type="PackedScene" uid="uid://bxnepkoil8so3" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.tscn" id="18_fkptq"]
-[ext_resource type="PackedScene" uid="uid://bl7fyywe4oqux" path="res://Scenes/Spaceship/Scripts/Thruster/Thruster.tscn" id="19_mnngf"]
-[ext_resource type="PackedScene" uid="uid://csglb1gnox6c5" path="res://Scenes/Spaceship/Particles/FighterGen7/MainThrusterParticleFX/SmokeFX.tscn" id="22_i36p4"]
+[ext_resource type="PackedScene" uid="uid://cr7t8smpohmy4" path="res://Scenes/Spaceship/FighterGen7/UI/Crosshair/crosshair.tscn" id="5_xwav3"]
+[ext_resource type="PackedScene" uid="uid://y7nouloq56us" path="res://Scenes/Spaceship/FighterGen7/UI/ExteriorUI/ExteriorUI.tscn" id="6_uelne"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Camera/CameraScripts/CameraShake.gd" id="7_1k7xb"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/FighterGen7/UI/ExteriorUI/ExteriorUI.gd" id="7_wip5u"]
+[ext_resource type="PackedScene" uid="uid://csglb1gnox6c5" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/MainThrusterParticleFX/SmokeFX.tscn" id="10_eeo7v"]
+[ext_resource type="PackedScene" uid="uid://c4gsrugxmj0dh" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/MainThrusterParticleFX/MainParticleFX.tscn" id="11_k0hjx"]
+[ext_resource type="PackedScene" uid="uid://cekt6m8i15jo6" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/RetroThrusterParticleFX/RetroThrusterParticleFX.tscn" id="12_7r5i3"]
+[ext_resource type="PackedScene" uid="uid://pfmpbnsgedr3" path="res://Scenes/Spaceship/FighterGen7/Particles/FighterGen7/RCSThrusterParticleFX/RCSThrusterParticleFX.tscn" id="13_i7t06"]
+[ext_resource type="PackedScene" uid="uid://ca8w1ch33w85y" path="res://Scenes/Spaceship/Common/Input/PlayerInput.tscn" id="16_dljen"]
+[ext_resource type="PackedScene" uid="uid://cu2pi0cv7n5v0" path="res://Scenes/Spaceship/Common/ShipStats/ShipStats.tscn" id="17_obsua"]
+[ext_resource type="PackedScene" uid="uid://b4lc3783rrexa" path="res://Scenes/Spaceship/Common/Thruster/Thrusters.tscn" id="18_dj4rr"]
+[ext_resource type="PackedScene" uid="uid://bxnepkoil8so3" path="res://Scenes/Spaceship/Common/SFCS/SimpleFlightControlSystem.tscn" id="18_fkptq"]
+[ext_resource type="PackedScene" uid="uid://bl7fyywe4oqux" path="res://Scenes/Spaceship/Common/Thruster/Thruster_Component/Thruster.tscn" id="19_mnngf"]
 
 [sub_resource type="Animation" id="Animation_b1nji"]
 resource_name = "SwitchCameraToThirdPersonView"
@@ -1480,20 +1480,20 @@ modulate = Color(0.772549, 0.47451, 0.145098, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "Test"
 font_size = 74
-script = ExtResource("8_0jh2p")
+script = ExtResource("3_g5ucr")
 
-[node name="ThrustBar" parent="ShipBody/UI/InteriorUI" instance=ExtResource("9_p60qj")]
+[node name="ThrustBar" parent="ShipBody/UI/InteriorUI" instance=ExtResource("4_hcjig")]
 transform = Transform3D(0.143435, 0, -0.0815555, 0, 0.165, 0, 0.0815555, 0, 0.143435, 0.396223, 0.726971, 0.475676)
 
-[node name="Crosshair" parent="ShipBody/UI/InteriorUI" instance=ExtResource("7_c6fve")]
+[node name="Crosshair" parent="ShipBody/UI/InteriorUI" instance=ExtResource("5_xwav3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4316, 0.50529)
 is_first_person_crosshair = true
 
 [node name="ExteriorUI" type="Node3D" parent="ShipBody/UI"]
 
-[node name="ExteriorUI" parent="ShipBody/UI/ExteriorUI" instance=ExtResource("10_hq4ty")]
+[node name="ExteriorUI" parent="ShipBody/UI/ExteriorUI" instance=ExtResource("6_uelne")]
 visible = false
-script = ExtResource("11_1okw4")
+script = ExtResource("7_wip5u")
 
 [node name="Thrusters" parent="ShipBody" instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
@@ -1517,31 +1517,31 @@ thruster_force = 5000.0
 [node name="ParticleFX" parent="ShipBody/Thrusters/MainThruster" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.32684)
 
-[node name="SmokeFX" parent="ShipBody/Thrusters/MainThruster/ParticleFX" index="0" instance=ExtResource("22_i36p4")]
+[node name="SmokeFX" parent="ShipBody/Thrusters/MainThruster/ParticleFX" index="0" instance=ExtResource("10_eeo7v")]
 transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, 0, -0.191907)
 
-[node name="MainParticleFX" parent="ShipBody/Thrusters/MainThruster/ParticleFX" index="1" instance=ExtResource("4_suew5")]
+[node name="MainParticleFX" parent="ShipBody/Thrusters/MainThruster/ParticleFX" index="1" instance=ExtResource("11_k0hjx")]
 transform = Transform3D(15.92, 0, 0, 0, 15.92, 0, 0, 0, 15.92, 0, 0, -0.191907)
 
 [node name="RetroThruster1" parent="ShipBody/Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.4, 0, -1.72)
 thruster_force = 2000.0
 
-[node name="RetroThrusterParticleFX" parent="ShipBody/Thrusters/RetroThruster1/ParticleFX" index="0" instance=ExtResource("6_dngjw")]
+[node name="RetroThrusterParticleFX" parent="ShipBody/Thrusters/RetroThruster1/ParticleFX" index="0" instance=ExtResource("12_7r5i3")]
 transform = Transform3D(0.999657, -2.28846e-09, -0.0261769, 0, -1, 8.74227e-08, -0.0261769, -8.73928e-08, -0.999657, 0.0652461, -0.281057, 0)
 
 [node name="RetroThruster2" parent="ShipBody/Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.4, 0, -1.72)
 thruster_force = 2000.0
 
-[node name="RetroThrusterParticleFX" parent="ShipBody/Thrusters/RetroThruster2/ParticleFX" index="0" instance=ExtResource("6_dngjw")]
+[node name="RetroThrusterParticleFX" parent="ShipBody/Thrusters/RetroThruster2/ParticleFX" index="0" instance=ExtResource("12_7r5i3")]
 transform = Transform3D(0.999657, -2.28846e-09, -0.0261769, 0, -1, 8.74227e-08, -0.0261769, -8.73928e-08, -0.999657, -0.0872685, -0.245871, 0)
 
 [node name="RCSTopThruster1" parent="ShipBody/Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.25995, -6.33182)
 thruster_force = 300.0
 
-[node name="top_middle_left" parent="ShipBody/Thrusters/RCSTopThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="top_middle_left" parent="ShipBody/Thrusters/RCSTopThruster1/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, 0.116705, -0.993167, 0, 0.993167, 0.116705, 0.00254533, 0.012507, -0.0249647)
 amount_ratio = 0.0
 
@@ -1549,7 +1549,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.993086, 0.80773, -1.38341)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopThruster2/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, 0.0770149, -0.99703, 0, 0.99703, 0.0770149, -0.00778675, 0.00329471, -0.0770251)
 amount_ratio = 0.0
 
@@ -1557,7 +1557,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.993, 0.808, -1.383)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopThruster3/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopThruster3/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, 0.00631801, -0.99998, 0, 0.99998, 0.00631801, -0.0158311, -0.00986516, -0.0528816)
 amount_ratio = 0.0
 
@@ -1565,7 +1565,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.46162, 1.29696, 5.9374)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopThruster4/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopThruster4/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, 0.0124962, -0.999922, 0, 0.999922, 0.0124962, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1573,7 +1573,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.462, 1.297, 5.937)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopThruster5/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopThruster5/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, 0.0122171, -0.999925, 0, 0.999925, 0.0122171, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1581,7 +1581,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.815, -6.00045)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster1/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1589,7 +1589,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.856302, -1.20667, -0.686276)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster2/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1597,7 +1597,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.856, -1.207, -0.686)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster3/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster3/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1605,7 +1605,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.29265, -1.33242, 4.47518)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster4/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster4/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1613,7 +1613,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.293, -1.332, 4.475)
 thruster_force = 300.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster5/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomThruster5/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1621,7 +1621,7 @@ amount_ratio = 0.0
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.781, -0.252564, -6.192)
 thruster_force = 500.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSLeftThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSLeftThruster1/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(0.970792, -0.239923, 1.04874e-08, 0, -4.37114e-08, -1, 0.239923, 0.970792, -4.24347e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1629,7 +1629,7 @@ amount_ratio = 0.0
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.49, -0.170812, -0.027)
 thruster_force = 500.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSLeftThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSLeftThruster2/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1637,7 +1637,7 @@ amount_ratio = 0.0
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.809, -0.185651, 4.559)
 thruster_force = 500.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSLeftThruster3/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSLeftThruster3/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1645,7 +1645,7 @@ amount_ratio = 0.0
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.781, -0.252564, -6.192)
 thruster_force = 500.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSRightThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSRightThruster1/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(0.95475, 0.297408, -1.30001e-08, 0, -4.37114e-08, -1, -0.297408, 0.95475, -4.17335e-08, -0.0116343, -0.0250475, 0)
 amount_ratio = 0.0
 
@@ -1653,7 +1653,7 @@ amount_ratio = 0.0
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49, -0.170812, -0.027)
 thruster_force = 500.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSRightThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSRightThruster2/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(0.989114, 0.147153, -6.43228e-09, 0, -4.37114e-08, -1, -0.147153, 0.989114, -4.32355e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1661,7 +1661,7 @@ amount_ratio = 0.0
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.809, -0.185651, 4.559)
 thruster_force = 500.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSRightThruster3/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSRightThruster3/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(0.995675, 0.0929093, -4.0612e-09, 0, -4.37114e-08, -1, -0.0929093, 0.995675, -4.35223e-08, 0.0119028, 0, 0)
 amount_ratio = 0.0
 
@@ -1669,7 +1669,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.29303, 2.8828, 3.9292)
 thruster_force = 250.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopWingThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopWingThruster1/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(0.927569, -0.373652, -3.55271e-15, -1.63328e-08, -4.05453e-08, -1, 0.373652, 0.927569, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1677,7 +1677,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.293, 2.883, 3.929)
 thruster_force = 250.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopWingThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSTopWingThruster2/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(0.89838, 0.439218, 3.55271e-15, 1.91988e-08, -3.92695e-08, -1, -0.439218, 0.89838, -4.37114e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1685,7 +1685,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 6.66258, -3.01632, 3.97729)
 thruster_force = 250.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomWingThruster1/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomWingThruster1/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(0.879358, -0.476161, 4.16274e-08, 2.08137e-08, -4.89848e-08, -1, 0.476161, 0.879358, -3.31645e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1693,7 +1693,7 @@ amount_ratio = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6.663, -3.016, 3.977)
 thruster_force = 250.0
 
-[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomWingThruster2/ParticleFX" index="0" instance=ExtResource("7_7426p")]
+[node name="RCSThrusterParticleFX" parent="ShipBody/Thrusters/RCSBottomWingThruster2/ParticleFX" index="0" instance=ExtResource("13_i7t06")]
 transform = Transform3D(0.901953, 0.431834, -3.77521e-08, -1.88761e-08, -4.79972e-08, -1, -0.431834, 0.901953, -3.51399e-08, 0, 0, 0)
 amount_ratio = 0.0
 
@@ -1724,7 +1724,7 @@ maximum_movement_third_person = 0.2
 acceleration_movement_factor_third_person = 0.2
 camera_shake_strength_third_person = 100.0
 
-[node name="Crosshair" parent="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" instance=ExtResource("7_c6fve")]
+[node name="Crosshair" parent="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" instance=ExtResource("5_xwav3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.06799)
 visible = false
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl7fyywe4oqux"]
 
-[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/Thruster/ThrustPosition.gd" id="1_buobr"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Thruster/Thruster_Component/ThrustPosition.gd" id="1_buobr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8gcid"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ca8w1ch33w85y"]
 
-[ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/Input/PlayerInput.gd" id="1_j28q0"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Input/PlayerInput.gd" id="1_j28q0"]
 
 [node name="PlayerInput" type="Node3D"]
 script = ExtResource("1_j28q0")
