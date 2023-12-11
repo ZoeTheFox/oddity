@@ -28,9 +28,6 @@ func calc_local_velocity():
 func calc_local_angular_velocity():
 	local_angular_velocity = transform.basis.inverse() * angular_velocity
 
-func _on_simple_flight_control_system_output(output_thrusters):
-	self.output_thrusters = output_thrusters
-
 func apply_local_thrust(direction : Vector3, force : float, throttle : float):
 	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time())
 

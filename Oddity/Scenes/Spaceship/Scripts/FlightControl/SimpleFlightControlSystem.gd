@@ -100,9 +100,6 @@ var controller_curve : Curve
 @export
 var rotation_control_curve : Curve
 
-@export_range(-1, 1)
-var spe : float
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

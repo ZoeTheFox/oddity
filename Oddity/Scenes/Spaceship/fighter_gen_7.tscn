@@ -1,7 +1,7 @@
-[gd_scene load_steps=87 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=86 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/thruster_control.gd" id="1_pxur1"]
+[ext_resource type="Script" path="res://Scenes/Spaceship/ThrusterControl.gd" id="1_hkveg"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Scripts/CameraScripts/CameraController.gd" id="3_wocjs"]
 [ext_resource type="PackedScene" uid="uid://c4gsrugxmj0dh" path="res://Scenes/Spaceship/Particles/FighterGen7/MainThrusterParticleFX/MainParticleFX.tscn" id="4_suew5"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://bxnepkoil8so3" path="res://Scenes/Spaceship/Scripts/FlightControl/SimpleFlightControlSystem.tscn" id="18_fkptq"]
 [ext_resource type="PackedScene" uid="uid://bl7fyywe4oqux" path="res://Scenes/Spaceship/Scripts/Thruster/Thruster.tscn" id="19_mnngf"]
 [ext_resource type="PackedScene" uid="uid://csglb1gnox6c5" path="res://Scenes/Spaceship/Particles/FighterGen7/MainThrusterParticleFX/SmokeFX.tscn" id="22_i36p4"]
-[ext_resource type="PackedScene" uid="uid://d0j0koj552phk" path="res://Scenes/Spaceship/VelocityArrow/Velocity_Arrows.tscn" id="23_5crqu"]
 
 [sub_resource type="Animation" id="Animation_b1nji"]
 resource_name = "SwitchCameraToThirdPersonView"
@@ -77,6 +76,18 @@ points = PackedVector3Array(-6.14677, 1.93546, 2.56028, -8.79806, 4.58589, 5.210
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jbudj"]
 points = PackedVector3Array(-5.85364, -1.89361, 5.21022, -2.61405, -1.30465, 0.793534, -5.26482, -2.48171, 1.97158, -3.20287, -1.89361, 4.6212, -9.09179, -4.54396, 5.79973, -9.68206, -3.36559, 4.03218, -2.61405, -0.126289, 0.793534, -2.61405, -0.126289, 4.32669, -9.09179, -4.54396, 4.03218, -9.68206, -3.36559, 5.79973, -2.61405, -1.59913, 1.08805, -2.31928, -1.30465, 4.32669, -9.68206, -4.54396, 4.03218, -2.31928, -0.126289, 0.793534, -2.31928, -0.126289, 4.32669, -7.03056, -3.66008, 3.14962, -8.50369, -3.36559, 5.79973, -2.31928, -1.30465, 0.793534, -9.68206, -4.54396, 5.79973, -3.79313, -2.18853, 4.6212, -8.50369, -4.24904, 5.79973, -8.50369, -3.07111, 3.44315, -3.79313, -2.18853, 1.67707, -7.03056, -3.66008, 5.21022, -3.20287, -0.715686, 4.6212, -7.61938, -2.48171, 5.50473, -2.61405, -1.59913, 4.32669, -8.50369, -3.95456, 3.44315)
+
+[sub_resource type="Curve" id="Curve_r0men"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0347003, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_v42ei"]
+_data = [Vector2(0, 0), 0.0, 7.09578, 0, 0, Vector2(0.0509804, 0.617021), 7.81538, 7.81538, 0, 0, Vector2(0.109804, 0.914894), 0.306486, 0.306486, 0, 0, Vector2(0.983607, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_nhltq"]
+_data = [Vector2(0, 0), 0.0, 2.57675, 0, 0, Vector2(0.819608, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Animation" id="Animation_ui28b"]
 resource_name = "fly_backwards"
@@ -1438,18 +1449,6 @@ nodes/Yaw/position = Vector2(120, 520)
 nodes/output/position = Vector2(1200, 60)
 node_connections = [&"Add2", 0, &"Pitch", &"Add2", 1, &"Add2 2", &"Add2 2", 0, &"Vertical", &"Add2 2", 1, &"Add2 3", &"Add2 3", 0, &"Forwards", &"Add2 3", 1, &"Add2 4", &"Add2 4", 0, &"Yaw", &"Add2 4", 1, &"Add2 5", &"Add2 5", 0, &"Roll", &"Add2 5", 1, &"Lateral", &"output", 0, &"Add2"]
 
-[sub_resource type="Curve" id="Curve_r0men"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0347003, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_v42ei"]
-_data = [Vector2(0, 0), 0.0, 7.09578, 0, 0, Vector2(0.0509804, 0.617021), 7.81538, 7.81538, 0, 0, Vector2(0.109804, 0.914894), 0.306486, 0.306486, 0, 0, Vector2(0.983607, 1), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_nhltq"]
-_data = [Vector2(0, 0), 0.0, 2.57675, 0, 0, Vector2(0.819608, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [node name="FighterGen7" type="Node3D"]
 
 [node name="ShipBody" type="RigidBody3D" parent="."]
@@ -1458,47 +1457,11 @@ gravity_scale = 0.0
 inertia = Vector3(70, 70, 100)
 linear_damp_mode = 1
 angular_damp_mode = 1
-script = ExtResource("1_pxur1")
+script = ExtResource("1_hkveg")
 
-[node name="Ship" type="Node3D" parent="ShipBody"]
+[node name="Mesh" type="Node3D" parent="ShipBody"]
 
-[node name="fighterGen7" parent="ShipBody/Ship" instance=ExtResource("1_fr140")]
-
-[node name="Cameras" type="Node3D" parent="ShipBody/Ship"]
-script = ExtResource("2_iyjy7")
-third_person_position = Vector3(0, 5.238, 14.946)
-
-[node name="CameraPivots" type="Node3D" parent="ShipBody/Ship/Cameras"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44426, 1.7775)
-script = ExtResource("3_wocjs")
-
-[node name="TwistPivot" type="Node3D" parent="ShipBody/Ship/Cameras/CameraPivots"]
-
-[node name="PitchPivot" type="Node3D" parent="ShipBody/Ship/Cameras/CameraPivots/TwistPivot"]
-
-[node name="Camera3D" type="Camera3D" parent="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot"]
-current = true
-far = 50000.0
-script = ExtResource("7_1k7xb")
-min_fov_first_person = 60.0
-max_fov_first_person = 90.0
-maximum_movement_first_person = 3.0
-acceleration_movement_factor_first_person = 0.025
-camera_shake_strength_first_person = 15.0
-min_fov_third_person = 80.0
-max_fov_third_person = 110.0
-maximum_movement_third_person = 0.2
-acceleration_movement_factor_third_person = 0.2
-camera_shake_strength_third_person = 100.0
-
-[node name="Crosshair" parent="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" instance=ExtResource("7_c6fve")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.06799)
-visible = false
-
-[node name="CameraViewSwitchAnimator" type="AnimationPlayer" parent="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D"]
-libraries = {
-"": SubResource("AnimationLibrary_5p352")
-}
+[node name="fighterGen7" parent="ShipBody/Mesh" instance=ExtResource("1_fr140")]
 
 [node name="UI" type="Node3D" parent="ShipBody"]
 
@@ -1525,25 +1488,6 @@ is_first_person_crosshair = true
 [node name="ExteriorUI" parent="ShipBody/UI/ExteriorUI" instance=ExtResource("10_hq4ty")]
 visible = false
 script = ExtResource("11_1okw4")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ShipBody"]
-visible = false
-mesh = ExtResource("4_u2t7m")
-
-[node name="WingCollision4" type="CollisionShape3D" parent="ShipBody"]
-shape = SubResource("ConvexPolygonShape3D_rm3t2")
-
-[node name="WingCollision3" type="CollisionShape3D" parent="ShipBody"]
-shape = SubResource("ConvexPolygonShape3D_fu4qp")
-
-[node name="BodyCollision" type="CollisionShape3D" parent="ShipBody"]
-shape = SubResource("ConvexPolygonShape3D_qgljf")
-
-[node name="WingCollision2" type="CollisionShape3D" parent="ShipBody"]
-shape = SubResource("ConvexPolygonShape3D_o4vqt")
-
-[node name="WingCollision" type="CollisionShape3D" parent="ShipBody"]
-shape = SubResource("ConvexPolygonShape3D_jbudj")
 
 [node name="Thrusters" parent="ShipBody" instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
@@ -1747,41 +1691,60 @@ thruster_force = 250.0
 transform = Transform3D(0.901953, 0.431834, -3.77521e-08, -1.88761e-08, -4.79972e-08, -1, -0.431834, 0.901953, -3.51399e-08, 0, 0, 0)
 amount_ratio = 0.0
 
-[node name="Velocity_Arrows" parent="ShipBody" node_paths=PackedStringArray("rigid_body") instance=ExtResource("23_5crqu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.15114, 3.86194, 0)
-visible = false
-rigid_body = NodePath("..")
+[node name="Cameras" type="Node3D" parent="ShipBody"]
+script = ExtResource("2_iyjy7")
+third_person_position = Vector3(0, 5.238, 14.946)
 
-[node name="Velocity_Arrows2" parent="ShipBody" node_paths=PackedStringArray("rigid_body") instance=ExtResource("23_5crqu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52364, 3.69258, 0)
-visible = false
-rigid_body = NodePath("..")
-global = true
+[node name="CameraPivots" type="Node3D" parent="ShipBody/Cameras"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44426, 1.7775)
+script = ExtResource("3_wocjs")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShipBody"]
+[node name="TwistPivot" type="Node3D" parent="ShipBody/Cameras/CameraPivots"]
+
+[node name="PitchPivot" type="Node3D" parent="ShipBody/Cameras/CameraPivots/TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot"]
+current = true
+far = 50000.0
+script = ExtResource("7_1k7xb")
+min_fov_first_person = 60.0
+max_fov_first_person = 90.0
+maximum_movement_first_person = 3.0
+acceleration_movement_factor_first_person = 0.025
+camera_shake_strength_first_person = 15.0
+min_fov_third_person = 80.0
+max_fov_third_person = 110.0
+maximum_movement_third_person = 0.2
+acceleration_movement_factor_third_person = 0.2
+camera_shake_strength_third_person = 100.0
+
+[node name="Crosshair" parent="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" instance=ExtResource("7_c6fve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.06799)
+visible = false
+
+[node name="CameraViewSwitchAnimator" type="AnimationPlayer" parent="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D"]
 libraries = {
-"": SubResource("AnimationLibrary_rrndt")
+"": SubResource("AnimationLibrary_5p352")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="ShipBody/AnimationPlayer"]
-unique_name_in_owner = true
-root_node = NodePath("%AnimationTree/../..")
-libraries = {
-"": SubResource("AnimationLibrary_rrndt")
-}
-tree_root = SubResource("AnimationNodeBlendTree_cg3fd")
-anim_player = NodePath("..")
-parameters/Add2/add_amount = 0.5
-"parameters/Add2 2/add_amount" = 0.5
-"parameters/Add2 3/add_amount" = 0.5
-"parameters/Add2 4/add_amount" = 0.5
-"parameters/Add2 5/add_amount" = 0.5
-parameters/Forwards/Blend3/blend_amount = 0
-parameters/Lateral/Blend3/blend_amount = 0
-parameters/Pitch/Blend3/blend_amount = 0.0
-parameters/Roll/Blend3/blend_amount = 0
-parameters/Vertical/Blend3/blend_amount = 0
-parameters/Yaw/Blend3/blend_amount = 0
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShipBody"]
+visible = false
+mesh = ExtResource("4_u2t7m")
+
+[node name="WingCollision4" type="CollisionShape3D" parent="ShipBody"]
+shape = SubResource("ConvexPolygonShape3D_rm3t2")
+
+[node name="WingCollision3" type="CollisionShape3D" parent="ShipBody"]
+shape = SubResource("ConvexPolygonShape3D_fu4qp")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="ShipBody"]
+shape = SubResource("ConvexPolygonShape3D_qgljf")
+
+[node name="WingCollision2" type="CollisionShape3D" parent="ShipBody"]
+shape = SubResource("ConvexPolygonShape3D_o4vqt")
+
+[node name="WingCollision" type="CollisionShape3D" parent="ShipBody"]
+shape = SubResource("ConvexPolygonShape3D_jbudj")
 
 [node name="PlayerInput" parent="." instance=ExtResource("16_dljen")]
 is_throttle_axis = false
@@ -1805,24 +1768,49 @@ max_yaw_velocity = 5.0
 max_roll_velocity = 5.0
 controller_curve = SubResource("Curve_v42ei")
 rotation_control_curve = SubResource("Curve_nhltq")
-spe = 0.119
 
-[connection signal="output_acceleration" from="ShipBody" to="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_output_acceleration"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ShipBody")
+libraries = {
+"": SubResource("AnimationLibrary_rrndt")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/../../ShipBody")
+libraries = {
+"": SubResource("AnimationLibrary_rrndt")
+}
+tree_root = SubResource("AnimationNodeBlendTree_cg3fd")
+anim_player = NodePath("..")
+parameters/Add2/add_amount = 0.5
+"parameters/Add2 2/add_amount" = 0.5
+"parameters/Add2 3/add_amount" = 0.5
+"parameters/Add2 4/add_amount" = 0.5
+"parameters/Add2 5/add_amount" = 0.5
+parameters/Forwards/Blend3/blend_amount = 0
+parameters/Lateral/Blend3/blend_amount = 0
+parameters/Pitch/Blend3/blend_amount = 0.0
+parameters/Roll/Blend3/blend_amount = 0
+parameters/Vertical/Blend3/blend_amount = 0
+parameters/Yaw/Blend3/blend_amount = 0
+
+[connection signal="output_acceleration" from="ShipBody" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_output_acceleration"]
 [connection signal="output_acceleration" from="ShipBody" to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_acceleration"]
 [connection signal="output_local_angular_velocity" from="ShipBody" to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_local_angular_velocity"]
-[connection signal="output_velocity" from="ShipBody" to="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="output_velocity" from="ShipBody" to="ShipBody/UI/InteriorUI/SpeedUI" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="output_velocity" from="ShipBody" to="ShipBody/UI/ExteriorUI/ExteriorUI" method="_on_fighter_gen_7_output_velocity"]
+[connection signal="output_velocity" from="ShipBody" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="output_velocity" from="ShipBody" to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_velocity"]
-[connection signal="is_first_person_signal" from="ShipBody/Ship/Cameras" to="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_is_first_person_signal"]
-[connection signal="is_first_person_signal" from="ShipBody/Ship/Cameras" to="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_cameras_is_first_person_signal"]
-[connection signal="is_first_person_signal" from="ShipBody/Ship/Cameras" to="ShipBody/UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
-[connection signal="set_default_position" from="ShipBody/Ship/Cameras" to="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_set_default_position"]
+[connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
+[connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_is_first_person_signal"]
+[connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_cameras_is_first_person_signal"]
+[connection signal="set_default_position" from="ShipBody/Cameras" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_set_default_position"]
 [connection signal="send_movement_vector" from="PlayerInput" to="ShipBody/UI/InteriorUI/ThrustBar" method="_on_player_input_send_movement_vector"]
 [connection signal="send_movement_vector" from="PlayerInput" to="ShipBody/UI/ExteriorUI/ExteriorUI" method="_on_player_input_send_movement_vector"]
 [connection signal="send_movement_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_movement_vector"]
-[connection signal="send_rotation_vector" from="PlayerInput" to="ShipBody/Ship/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_player_input_send_rotation_vector"]
 [connection signal="send_rotation_vector" from="PlayerInput" to="ShipBody/UI/InteriorUI/Crosshair" method="_on_player_input_send_rotation_vector"]
+[connection signal="send_rotation_vector" from="PlayerInput" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_player_input_send_rotation_vector"]
 [connection signal="send_rotation_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_rotation_vector"]
 [connection signal="output" from="SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output"]
 [connection signal="output_thrust_vector" from="SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_thrust_vector"]
