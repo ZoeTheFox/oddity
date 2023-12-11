@@ -4,6 +4,11 @@ var acceleration : Vector3
 var speed : float
 var defaultPosition : Vector3
 
+@export_category("Settings")
+
+@export
+var enable_screen_shake : bool
+
 @export_category("First Person Settings")
 
 @export_range(50, 170, 0.5)
@@ -58,7 +63,8 @@ func _ready():
 func _process(delta):
 	adjust_fov()
 	adjust_camera_position()
-	camera_shake()
+	if (enable_screen_shake):
+		camera_shake()
 	
 func adjust_camera_position():
 	position = position.lerp(acceleration + defaultPosition, get_process_delta_time() * 2.0)
