@@ -1495,6 +1495,8 @@ is_first_person_crosshair = true
 visible = false
 script = ExtResource("7_wip5u")
 
+[node name="Components" type="Node3D" parent="ShipBody"]
+
 [node name="Thrusters" parent="ShipBody" instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
 main_thrusters = [NodePath("MainThruster")]
