@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv7jdo4pxmx3g"]
+
+[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/Components.gd" id="1_8mbip"]
+
+[node name="Components" type="Node3D"]
+script = ExtResource("1_8mbip")
+
+[node name="Fuel Tanks" type="Node3D" parent="."]
+
+[node name="Power Plants" type="Node3D" parent="."]
+
+[node name="Coolers" type="Node3D" parent="."]
+
+[node name="Radiators" type="Node3D" parent="."]
+
+[node name="Shield Generators" type="Node3D" parent="."]
+
+[node name="Jump Drive" type="Node3D" parent="."]

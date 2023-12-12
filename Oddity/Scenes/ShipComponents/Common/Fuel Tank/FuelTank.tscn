@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dysjmkyuk6ft6"]
+
+[ext_resource type="Script" path="res://Scenes/ShipComponents/Common/Fuel Tank/FuelTank.gd" id="1_sb26i"]
+
+[node name="FuelTank" type="Node3D"]
+script = ExtResource("1_sb26i")
