@@ -16,9 +16,14 @@ var current_radiator_cooling_output : float
 var total_shield_output : float
 var current_shield_output : float
 
+@export
+var rigid_body : RigidBody3D
+
+var dry_weight : float
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	dry_weight = rigid_body.mass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +33,7 @@ func _process(delta):
 	
 	$"Fuel Tanks".use_fuel(current_power_plant_fuel_usage)
 
+	rigid_body.mass = dry_weight + current_fuel_capacity * 0.0003
 	
 	#print_status()
 

@@ -18,6 +18,8 @@ func _process(delta):
 	output_velocity.emit(velocity)
 	output_local_angular_velocity.emit(local_angular_velocity)
 	
+	print(mass)
+	
 func calc_accelleration():
 	acceleration = (snapped(velocity, Vector3(0.1, 0.1, 0.1)) - snapped(velocity_last_frame, Vector3(0.1, 0.1, 0.1))) / get_process_delta_time();
 	velocity_last_frame = velocity
