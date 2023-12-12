@@ -26,7 +26,7 @@ func _process(delta):
 	set_current_values()
 	set_total_values()
 	
-	$"Fuel Tanks".use_fuel(current_power_plant_fuel_usage * delta)
+	$"Fuel Tanks".use_fuel(current_power_plant_fuel_usage)
 
 	
 	#print_status()

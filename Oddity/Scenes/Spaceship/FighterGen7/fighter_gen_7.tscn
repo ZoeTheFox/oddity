@@ -1509,6 +1509,7 @@ visible = false
 script = ExtResource("7_wip5u")
 
 [node name="Components" parent="ShipBody" instance=ExtResource("8_y26dh")]
+unique_name_in_owner = true
 
 [node name="Fuel Tanks" parent="ShipBody/Components" index="0"]
 script = ExtResource("9_hvdc5")

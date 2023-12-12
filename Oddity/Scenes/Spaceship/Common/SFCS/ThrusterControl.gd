@@ -36,10 +36,12 @@ func apply_local_torque(direction : Vector3, force : float, throttle : float):
 
 
 func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
-	apply_central_force(thrust_vector * global_basis.inverse())
+	if ($"Components/Fuel Tanks".current_fuel_capacity > 0):
+		apply_central_force(thrust_vector * global_basis.inverse())
 
 func _on_simple_flight_control_system_output_torque_vector(torque_vector):
-	apply_torque(torque_vector * global_basis.inverse())
+	if ($"Components/Fuel Tanks".current_fuel_capacity > 0):
+		apply_torque(torque_vector * global_basis.inverse())
 
 
 func _on_simple_flight_control_system_output_unit_thrust_vector(thrust_vector):
@@ -62,7 +64,7 @@ func _on_simple_flight_control_system_output_unit_thrust_vector(thrust_vector):
 	
 	fuel_consumption = snappedf(fuel_consumption, 0.1)
 	
-	$"Components/Fuel Tanks".use_fuel(fuel_consumption * get_process_delta_time())
+	$"Components/Fuel Tanks".use_fuel(fuel_consumption)
 
 func _on_simple_flight_control_system_output_unit_torque_vector(torque_vector):
 	var fuel_consumption = 0.0
@@ -84,4 +86,4 @@ func _on_simple_flight_control_system_output_unit_torque_vector(torque_vector):
 
 	fuel_consumption = snappedf(fuel_consumption, 0.1)
 
-	$"Components/Fuel Tanks".use_fuel(fuel_consumption * get_process_delta_time())
+	$"Components/Fuel Tanks".use_fuel(fuel_consumption)
