@@ -32,13 +32,14 @@ var integrity : float
 
 var current_power_output : float
 var current_heat : float
+var current_fuel_usage : float
 var wear : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	current_power_output = 60
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	current_fuel_usage = fuel_per_power * current_power_output

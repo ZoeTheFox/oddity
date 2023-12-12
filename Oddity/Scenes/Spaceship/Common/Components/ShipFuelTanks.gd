@@ -14,6 +14,8 @@ func _ready():
 func _process(delta):
 	total_fuel_capacity = count_fuel()
 	current_fuel_capacity = get_current_fuel_capacity()
+	
+	#print(current_fuel_capacity)
 
 func count_fuel() -> float:
 	var fuel : float

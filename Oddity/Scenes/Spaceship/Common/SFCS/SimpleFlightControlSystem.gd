@@ -57,11 +57,11 @@ var velocity : Vector3
 var acceleration : Vector3
 var local_angular_velocity : Vector3
 
-
-signal output(output_thrusters : Dictionary)
-
 signal output_thrust_vector(thrust_vector : Vector3)
 signal output_torque_vector(torque_vector : Vector3)
+
+signal output_unit_thrust_vector(thrust_vector : Vector3)
+signal output_unit_torque_vector(torque_vector : Vector3)
 
 var thrust_vector : Vector3
 var torque_vector : Vector3
@@ -216,7 +216,8 @@ func _process(delta):
 	
 	output_thrust_vector.emit(thrust_vector)
 	output_torque_vector.emit(torque_vector)
-	output.emit(output_thrusters)
+	output_unit_thrust_vector.emit(unit_thrust_vector)
+	output_unit_torque_vector.emit(unit_torque_vector)
 
 func move_ship_left(thrust_percentage : float):
 	thrust_vector.x = %Thrusters.right_thrust_force * -thrust_percentage

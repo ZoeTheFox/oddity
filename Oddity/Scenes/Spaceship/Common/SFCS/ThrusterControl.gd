@@ -40,3 +40,48 @@ func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
 
 func _on_simple_flight_control_system_output_torque_vector(torque_vector):
 	apply_torque(torque_vector * global_basis.inverse())
+
+
+func _on_simple_flight_control_system_output_unit_thrust_vector(thrust_vector):
+	var fuel_consumption = 0.0
+	
+	if (thrust_vector.z > 0):
+		fuel_consumption += %Thrusters.retro_thrust_fuel_consumption * thrust_vector.z
+	else:
+		fuel_consumption += %Thrusters.main_thrust_fuel_consumption * -thrust_vector.z
+
+	if (thrust_vector.x > 0):
+		fuel_consumption += %Thrusters.left_thrust_fuel_consumption * thrust_vector.x
+	else:
+		fuel_consumption += %Thrusters.right_thrust_fuel_consumption * -thrust_vector.x
+
+	if (thrust_vector.y > 0):
+		fuel_consumption += %Thrusters.bottom_thrust_fuel_consumption * thrust_vector.y
+	else:
+		fuel_consumption += %Thrusters.top_thrust_fuel_consumption * -thrust_vector.y
+	
+	fuel_consumption = snappedf(fuel_consumption, 0.1)
+	
+	$"Components/Fuel Tanks".use_fuel(fuel_consumption * get_process_delta_time())
+
+func _on_simple_flight_control_system_output_unit_torque_vector(torque_vector):
+	var fuel_consumption = 0.0
+
+	if (torque_vector.z > 0):
+		fuel_consumption += %Thrusters.roll_right_thrust_fuel_consumption * torque_vector.z
+	else:
+		fuel_consumption += %Thrusters.roll_left_thrust_fuel_consumption * -torque_vector.z
+
+	if (torque_vector.x > 0):
+		fuel_consumption += %Thrusters.pitch_up_thrust_fuel_consumption * -torque_vector.z
+	else:
+		fuel_consumption += %Thrusters.pitch_down_thrust_fuel_consumption * torque_vector.z
+
+	if (torque_vector.y > 0):
+		fuel_consumption += %Thrusters.yaw_right_thrust_fuel_consumption * torque_vector.y
+	else:
+		fuel_consumption += %Thrusters.yaw_left_thrust_fuel_consumption * -torque_vector.y
+
+	fuel_consumption = snappedf(fuel_consumption, 0.1)
+
+	$"Components/Fuel Tanks".use_fuel(fuel_consumption * get_process_delta_time())

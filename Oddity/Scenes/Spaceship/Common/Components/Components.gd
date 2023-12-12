@@ -2,6 +2,7 @@ extends Node3D
 
 var total_power_output : float
 var current_power_output : float
+var current_power_plant_fuel_usage : float
 
 var total_fuel_capacity : float
 var current_fuel_capacity : float
@@ -25,6 +26,9 @@ func _process(delta):
 	set_current_values()
 	set_total_values()
 	
+	$"Fuel Tanks".use_fuel(current_power_plant_fuel_usage * delta)
+
+	
 	#print_status()
 
 func set_current_values():
@@ -33,6 +37,8 @@ func set_current_values():
 	current_component_cooling_output = $Coolers.current_cooling_output
 	current_radiator_cooling_output = $Radiators.current_cooling_output
 	current_shield_output = $"Shield Generators".current_shield_output
+	
+	current_power_plant_fuel_usage = $"Power Plants".current_fuel_usage
 
 func set_total_values():
 	total_power_output = $"Power Plants".total_power_output
