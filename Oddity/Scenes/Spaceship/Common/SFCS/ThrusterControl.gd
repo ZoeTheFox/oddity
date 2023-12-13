@@ -18,7 +18,7 @@ func _process(delta):
 	output_velocity.emit(velocity)
 	output_local_angular_velocity.emit(local_angular_velocity)
 	
-	print(mass)
+	#print(mass)
 	
 func calc_accelleration():
 	acceleration = (snapped(velocity, Vector3(0.1, 0.1, 0.1)) - snapped(velocity_last_frame, Vector3(0.1, 0.1, 0.1))) / get_process_delta_time();
@@ -30,20 +30,13 @@ func calc_local_velocity():
 func calc_local_angular_velocity():
 	local_angular_velocity = transform.basis.inverse() * angular_velocity
 
-func apply_local_thrust(direction : Vector3, force : float, throttle : float):
-	apply_central_force(direction * force * (throttle / 100.0) * get_process_delta_time())
-
-func apply_local_torque(direction : Vector3, force : float, throttle : float):
-	apply_torque(direction * (throttle / 100.0) * force * get_process_delta_time())
-
-
 func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
 	if ($"Components/Fuel Tanks".current_fuel_capacity > 0):
-		apply_central_force(thrust_vector * global_basis.inverse())
+		apply_central_force(thrust_vector * global_basis.inverse() * %"Components/Fuel Tanks".current_active_fuel_tank.fuel_quality) 
 
 func _on_simple_flight_control_system_output_torque_vector(torque_vector):
 	if ($"Components/Fuel Tanks".current_fuel_capacity > 0):
-		apply_torque(torque_vector * global_basis.inverse())
+		apply_torque(torque_vector * global_basis.inverse() * %"Components/Fuel Tanks".current_active_fuel_tank.fuel_quality)
 
 
 func _on_simple_flight_control_system_output_unit_thrust_vector(thrust_vector):

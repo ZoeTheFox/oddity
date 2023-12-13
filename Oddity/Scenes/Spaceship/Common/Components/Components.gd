@@ -33,7 +33,7 @@ func _process(delta):
 	
 	$"Fuel Tanks".use_fuel(current_power_plant_fuel_usage)
 
-	rigid_body.mass = dry_weight + current_fuel_capacity * 0.0003
+	rigid_body.mass = dry_weight + current_fuel_capacity * 0.00013
 	
 	#print_status()
 

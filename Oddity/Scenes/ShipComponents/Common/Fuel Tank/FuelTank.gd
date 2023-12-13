@@ -24,18 +24,38 @@ var health_points : float
 @export
 var integrity : float
 
+@export
 var current_fuel : float
 var wear : float
+
+@export
+var fuel_quality : float
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_fuel = fuel_capacity
-
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func use_fuel(amount : float):
-	current_fuel -= amount
+	current_fuel -= amount * get_process_delta_time()
+
+func add_fuel(amount : float, quality : float):
+	amount = amount * get_process_delta_time()
+	
+	if ((amount + current_fuel) > fuel_capacity):
+		return
+	
+	# Calculate the total amount of fuel after adding
+	var total_fuel = current_fuel + amount 
+
+	# Calculate the weighted average of the fuel qualities
+	var total_quality = (current_fuel * fuel_quality) + (amount * quality)
+	fuel_quality = total_quality / total_fuel
+
+	# Update the current fuel amount
+	current_fuel = total_fuel
