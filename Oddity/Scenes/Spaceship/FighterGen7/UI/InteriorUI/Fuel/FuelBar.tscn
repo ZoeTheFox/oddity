@@ -36,6 +36,14 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "Test"
 font_size = 74
 
+[node name="Current Fuel Tank" type="Label3D" parent="."]
+transform = Transform3D(1.722, 0, 0, 0, 1.722, 0, 0, 0, 1.722, 1.5712, -0.414216, 0)
+pixel_size = 0.002
+modulate = Color(0.772549, 0.47451, 0.145098, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Test"
+font_size = 74
+
 [node name="Fuel Usage" type="Label3D" parent="."]
 transform = Transform3D(1.68, 0, 0, 0, 1.68, 0, 0, 0, 1.68, 1.51075, 0.68057, 0)
 pixel_size = 0.002

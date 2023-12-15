@@ -1522,13 +1522,11 @@ script = ExtResource("9_hvdc5")
 
 [node name="FuelTank2" parent="ShipBody/Components/Fuel Tanks" index="0" instance=ExtResource("9_yecg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383516, -0.731441, 0)
-fuel_capacity = 6000.0
-fuel_quality = 1.1
+fuel_capacity = 12000.0
 
 [node name="FuelTank" parent="ShipBody/Components/Fuel Tanks" index="1" instance=ExtResource("9_yecg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.661099, -0.729032, 0)
-fuel_capacity = 8000.0
-current_fuel = 10.0
+fuel_capacity = 12000.0
 
 [node name="Power Plants" parent="ShipBody/Components" index="1"]
 script = ExtResource("11_ccm6v")
@@ -1902,6 +1900,7 @@ parameters/Yaw/Blend3/blend_amount = 0
 [connection signal="output_velocity" from="ShipBody" to="ShipBody/UI/ExteriorUI/ExteriorUI" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="output_velocity" from="ShipBody" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="output_velocity" from="ShipBody" to="SimpleFlightControlSystem" method="_on_fighter_gen_7_output_velocity"]
+[connection signal="set_fuel_tank" from="ShipBody/Components/Fuel Tanks" to="ShipBody/UI/InteriorUI/FuelBar" method="_on_fuel_tanks_set_fuel_tank"]
 [connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
 [connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_is_first_person_signal"]
 [connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_cameras_is_first_person_signal"]

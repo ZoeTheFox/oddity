@@ -48,5 +48,12 @@ func calculate_range(fuel_usage : float):
 
 	$"Range Estimate".text = str(hours) + " h " + str(minutes) + " min"
 
+func set_current_fuel_tank(fuel_tank : int):
+	$"Current Fuel Tank".text = str(fuel_tank)
+
 func _on_timer_timeout():
 	set_fuel_usage()
+
+
+func _on_fuel_tanks_set_fuel_tank(fuel_tank):
+	set_current_fuel_tank(fuel_tank)

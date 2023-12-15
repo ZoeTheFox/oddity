@@ -57,7 +57,7 @@ func _on_simple_flight_control_system_output_unit_thrust_vector(thrust_vector):
 	else:
 		fuel_consumption += %Thrusters.top_thrust_fuel_consumption * -thrust_vector.y
 	
-	fuel_consumption = snappedf(fuel_consumption, 0.1)
+	fuel_consumption = snappedf(fuel_consumption, 0.1) * (1.0 / $"Components/Fuel Tanks".current_active_fuel_tank.fuel_quality)
 	
 	$"Components/Fuel Tanks".use_fuel(fuel_consumption)
 
@@ -79,6 +79,6 @@ func _on_simple_flight_control_system_output_unit_torque_vector(torque_vector):
 	else:
 		fuel_consumption += %Thrusters.yaw_left_thrust_fuel_consumption * -torque_vector.y
 
-	fuel_consumption = snappedf(fuel_consumption, 0.1)
+	fuel_consumption = snappedf(fuel_consumption, 0.1) * (1.0 / $"Components/Fuel Tanks".current_active_fuel_tank.fuel_quality)
 
-	$"Components/Fuel Tanks".use_fuel(fuel_consumption)
+	$"Components/Fuel Tanks".use_fuel(fuel_consumption) 

@@ -7,9 +7,10 @@ var current_fuel_capacity : float
 
 var current_active_fuel_tank : Node3D
 
+signal set_fuel_tank(fuel_tank : int)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	count_fuel_tanks = count_filled_fuel_tanks()
 	select_fuel_tank_automatically()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,8 +18,11 @@ func _process(delta):
 	total_fuel_capacity = count_fuel()
 	current_fuel_capacity = get_current_fuel_capacity()
 	
-	if (Input.is_key_pressed(KEY_Z)):
-		$FuelTank.add_fuel(500, 1)
+	if (Input.is_key_pressed(KEY_1)):
+		select_fuel_tank(1)
+		
+	if (Input.is_key_pressed(KEY_2)):
+		select_fuel_tank(2)
 	
 	print(str($FuelTank) + " " + str($FuelTank.fuel_quality) +" "  + str("Fuel tank 1: ") + str($FuelTank.current_fuel) + str(" Fuel Tank 2: ") + str($FuelTank2.current_fuel))
 
@@ -38,6 +42,11 @@ func count_fuel() -> float:
 		fuel += fuel_tank.fuel_capacity
 	
 	return fuel
+
+func select_fuel_tank(fuel_tank : int):
+	current_active_fuel_tank = get_children()[fuel_tank - 1]
+	
+	set_fuel_tank.emit(fuel_tank)
 
 func select_fuel_tank_automatically():
 	for fuel_tank in get_children():
