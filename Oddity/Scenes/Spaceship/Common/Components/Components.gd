@@ -23,7 +23,7 @@ var dry_weight : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	dry_weight = rigid_body.mass
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +33,7 @@ func _process(delta):
 	
 	$"Fuel Tanks".use_fuel(current_power_plant_fuel_usage)
 
-	rigid_body.mass = dry_weight + current_fuel_capacity * 0.00013
+
 	
 	#print_status()
 

@@ -28,13 +28,13 @@ var integrity : float
 var current_fuel : float
 var wear : float
 
-var fuel_quality : float
-
-
+var fuel_efficiency : float
+var fuel_power : float
+var fuel_heat_generation : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	refuel(10, 1.3)
+	refuel(fuel_capacity, "Hydrogen")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,32 +44,43 @@ func use_fuel(amount : float):
 	current_fuel -= amount * get_process_delta_time()
 
 # same as add_fuel but not adding fuel over time
-func refuel(amount : float, quality : float):	
+func refuel(amount : float, fuel_type : String):	
 	if ((amount + current_fuel) > fuel_capacity):
 		return
 	
 	# Calculate the total amount of fuel after adding
 	var total_fuel = current_fuel + amount 
 
-	# Calculate the weighted average of the fuel qualities
-	var total_quality = (current_fuel * fuel_quality) + (amount * quality)
-	fuel_quality = total_quality / total_fuel
+	var type = get_node("FuelTypes/" + fuel_type)
 
+	var efficiency = type.efficiency
+	var power = type.power
+	var heat_generation = type.heat_generation
+
+	fuel_efficiency = ((current_fuel * fuel_efficiency) + (amount * efficiency)) / total_fuel
+	fuel_power = ((current_fuel * fuel_power) + (amount * power)) / total_fuel
+	fuel_heat_generation = ((current_fuel * fuel_heat_generation) + (amount * heat_generation)) / total_fuel
+	
 	# Update the current fuel amount
 	current_fuel = total_fuel
 
-func add_fuel(amount : float, quality : float):
+func add_fuel(amount : float, fuel_type : String):
 	amount = amount * get_process_delta_time()
 	
 	if ((amount + current_fuel) > fuel_capacity):
 		return
-	
-	# Calculate the total amount of fuel after adding
+		
 	var total_fuel = current_fuel + amount 
 
-	# Calculate the weighted average of the fuel qualities
-	var total_quality = (current_fuel * fuel_quality) + (amount * quality)
-	fuel_quality = total_quality / total_fuel
+	var type = get_node("FuelTypes/" + fuel_type)
 
+	var efficiency = type.efficiency
+	var power = type.power
+	var heat_generation = type.heat_generation
+
+	fuel_efficiency = ((current_fuel * fuel_efficiency) + (amount * efficiency)) / total_fuel
+	fuel_power = ((current_fuel * fuel_power) + (amount * power)) / total_fuel
+	fuel_heat_generation = ((current_fuel * fuel_heat_generation) + (amount * heat_generation)) / total_fuel
+	
 	# Update the current fuel amount
 	current_fuel = total_fuel
