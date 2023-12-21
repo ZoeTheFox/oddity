@@ -1507,8 +1507,9 @@ fuel_tank = NodePath("../../../Components/Fuel Tanks")
 visible = false
 script = ExtResource("7_wip5u")
 
-[node name="Components" parent="ShipBody" instance=ExtResource("8_y26dh")]
+[node name="Components" parent="ShipBody" node_paths=PackedStringArray("rigid_body") instance=ExtResource("8_y26dh")]
 unique_name_in_owner = true
+rigid_body = NodePath("..")
 
 [node name="FuelTank2" parent="ShipBody/Components/Fuel Tanks" index="0" instance=ExtResource("9_yecg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383516, -0.731441, 0)

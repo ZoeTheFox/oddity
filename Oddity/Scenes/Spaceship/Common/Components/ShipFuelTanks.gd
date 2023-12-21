@@ -26,15 +26,6 @@ func _process(delta):
 	
 	print(str($FuelTank) + " " + str($FuelTank.fuel_efficiency) + " " + str($FuelTank.fuel_power) + " " + str($FuelTank.fuel_heat_generation) + " " + str("Fuel tank 1: ") + str($FuelTank.current_fuel) + str(" Fuel Tank 2: ") + str($FuelTank2.current_fuel))
 
-func count_filled_fuel_tanks() -> int:
-	var count = 0
-	
-	for fuel_tank in get_children():
-		if (fuel_tank.current_fuel > 0):
-			count += 1
-
-	return count
-
 func count_fuel() -> float:
 	var fuel : float
 	
