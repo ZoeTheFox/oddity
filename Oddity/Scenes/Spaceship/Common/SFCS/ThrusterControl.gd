@@ -37,11 +37,11 @@ func calc_local_angular_velocity():
 	local_angular_velocity = transform.basis.inverse() * angular_velocity
 
 func _on_simple_flight_control_system_output_thrust_vector(thrust_vector):
-	if ($"Components/Fuel Tanks".current_fuel_capacity > 0):
+	if (%"Components/Fuel Tanks".current_fuel_capacity > 0):
 		apply_central_force(thrust_vector * global_basis.inverse() * %"Components/Fuel Tanks".current_active_fuel_tank.fuel_power) 
 
 func _on_simple_flight_control_system_output_torque_vector(torque_vector):
-	if ($"Components/Fuel Tanks".current_fuel_capacity > 0):
+	if (%"Components/Fuel Tanks".current_fuel_capacity > 0):
 		apply_torque(torque_vector * global_basis.inverse() * %"Components/Fuel Tanks".current_active_fuel_tank.fuel_power)
 
 func calculate_fuel_consumption_thrust(thrust_vector : Vector3) -> float:
