@@ -23,7 +23,7 @@ func _process(delta):
 	output_velocity.emit(velocity)
 	output_local_angular_velocity.emit(local_angular_velocity)
 	
-	mass = dry_weight + $"Components/Fuel Tanks".current_fuel_capacity * 0.00013
+	mass = dry_weight + %"Components/Fuel Tanks".current_fuel_capacity * 0.00013
 	#print(massw)
 	
 func calc_accelleration():
@@ -62,7 +62,7 @@ func calculate_fuel_consumption_thrust(thrust_vector : Vector3) -> float:
 	else:
 		fuel_consumption += %Thrusters.top_thrust_fuel_consumption * -thrust_vector.y
 	
-	return snappedf(fuel_consumption, 0.1) * (1.0 / $"Components/Fuel Tanks".current_active_fuel_tank.fuel_efficiency)
+	return snappedf(fuel_consumption, 0.1) * (1.0 / %"Components/Fuel Tanks".current_active_fuel_tank.fuel_efficiency)
 
 func calculate_fuel_consumption_torque(torque_vector : Vector3) -> float:
 	var fuel_consumption = 0.0
@@ -82,11 +82,11 @@ func calculate_fuel_consumption_torque(torque_vector : Vector3) -> float:
 	else:
 		fuel_consumption += %Thrusters.yaw_left_thrust_fuel_consumption * -torque_vector.y
 
-	return snappedf(fuel_consumption, 0.1) * (1.0 / $"Components/Fuel Tanks".current_active_fuel_tank.fuel_efficiency)
+	return snappedf(fuel_consumption, 0.1) * (1.0 / %"Components/Fuel Tanks".current_active_fuel_tank.fuel_efficiency)
 
 
 func _on_simple_flight_control_system_output_unit_thrust_vector(thrust_vector):
-	$"Components/Fuel Tanks".use_fuel(calculate_fuel_consumption_thrust(thrust_vector))
+	%"Components/Fuel Tanks".use_fuel(calculate_fuel_consumption_thrust(thrust_vector))
 
 func _on_simple_flight_control_system_output_unit_torque_vector(torque_vector):
-	$"Components/Fuel Tanks".use_fuel(calculate_fuel_consumption_torque(torque_vector)) 
+	%"Components/Fuel Tanks".use_fuel(calculate_fuel_consumption_torque(torque_vector)) 
