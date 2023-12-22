@@ -97,6 +97,8 @@ func _process(delta):
 	send_movement_vector.emit(movement_vector)
 	send_rotation_vector.emit(rotation_vector)
 	
+	
+	
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_yaw += lerp(0,1,clamp(event.relative.x * get_process_delta_time(),-1,1)) * mouse_sensitivity
