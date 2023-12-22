@@ -1,4 +1,5 @@
-[gd_scene load_steps=122 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=117 format=3 uid="uid://cpb2nlkghtm13"]
+
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/SFCS/ThrusterControl.gd" id="1_hkveg"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/Camera/CameraScripts/CameraSwitchingController.gd" id="2_iyjy7"]
@@ -27,8 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://b4lc3783rrexa" path="res://Scenes/Spaceship/Common/Thruster/Thrusters.tscn" id="18_dj4rr"]
 [ext_resource type="PackedScene" uid="uid://bxnepkoil8so3" path="res://Scenes/Spaceship/Common/SFCS/SimpleFlightControlSystem.tscn" id="18_fkptq"]
 [ext_resource type="PackedScene" uid="uid://bl7fyywe4oqux" path="res://Scenes/Spaceship/Common/Thruster/Thruster_Component/Thruster.tscn" id="19_mnngf"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/ShipJumpDrive.gd" id="19_onpwv"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/FighterGen7/Animation/InteriorAnimationTree.gd" id="34_qmx8t"]
+
 [sub_resource type="Animation" id="Animation_b1nji"]
 resource_name = "SwitchCameraToThirdPersonView"
 tracks/0/type = "bezier"
@@ -96,33 +97,6 @@ point_count = 4
 [sub_resource type="Curve" id="Curve_nhltq"]
 _data = [Vector2(0, 0), 0.0, 2.57675, 0, 0, Vector2(0.819608, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="Animation" id="Animation_gao68"]
-resource_name = "throttle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Mesh/fighterGen7/Hull/Cockpit/Seat/Throttle_001/ThrottleHandle:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.0797024, 0.031921, 0.000421941), Vector3(0, 0.031921, 0.000421941), Vector3(0.055081, 0.031921, 0.00042206)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../Mesh/fighterGen7/Hull/Cockpit/Seat/Throttle_001/Cylinder:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.0797024, -0.039369, -0.00190312), Vector3(0, -0.039369, -0.00190312), Vector3(0.055081, -0.039369, -0.001903)]
-}
 
 [sub_resource type="Animation" id="Animation_w27o2"]
 length = 0.001
@@ -197,21 +171,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(8.20771e-10, 0.031921, 0.000421941)]
-}
-
-[sub_resource type="Animation" id="Animation_r13bj"]
-resource_name = "yaw"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Mesh/fighterGen7/Hull/Cockpit/Seat/Stick_001/StickHandle:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.523599, 0), Vector3(0, 0, 0), Vector3(0, -0.523599, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_lple1"]
@@ -314,6 +273,48 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.523599, -5.29127e-14, 0), Vector3(0, -3.02359e-14, 0), Vector3(0.523599, -6.04717e-14, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gao68"]
+resource_name = "throttle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Mesh/fighterGen7/Hull/Cockpit/Seat/Throttle_001/ThrottleHandle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0797024, 0.031921, 0.000421941), Vector3(0, 0.031921, 0.000421941), Vector3(0.055081, 0.031921, 0.00042206)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Mesh/fighterGen7/Hull/Cockpit/Seat/Throttle_001/Cylinder:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0797024, -0.039369, -0.00190312), Vector3(0, -0.039369, -0.00190312), Vector3(0.055081, -0.039369, -0.001903)]
+}
+
+[sub_resource type="Animation" id="Animation_r13bj"]
+resource_name = "yaw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Mesh/fighterGen7/Hull/Cockpit/Seat/Stick_001/StickHandle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.523599, 0), Vector3(0, 0, 0), Vector3(0, -0.523599, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7f2in"]
@@ -2166,7 +2167,7 @@ libraries = {
 }
 
 [node name="InteriorAnimationTree" type="AnimationTree" parent="InteriorAnimations"]
-root_node = NodePath("../../ShipBody/Components/Fuel Tanks")
+root_node = NodePath("%Components/Fuel Tanks")
 libraries = {
 "": SubResource("AnimationLibrary_7f2in")
 }
@@ -2227,7 +2228,6 @@ parameters/Yaw/Blend3/blend_amount = 0
 [connection signal="send_rotation_vector" from="PlayerInput" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_player_input_send_rotation_vector"]
 [connection signal="send_rotation_vector" from="PlayerInput" to="SimpleFlightControlSystem" method="_on_player_input_send_rotation_vector"]
 [connection signal="send_rotation_vector" from="PlayerInput" to="InteriorAnimations/InteriorAnimationTree" method="_on_player_input_send_rotation_vector"]
-[connection signal="output" from="SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output"]
 [connection signal="output_thrust_vector" from="SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_thrust_vector"]
 [connection signal="output_torque_vector" from="SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_torque_vector"]
 [connection signal="output_unit_thrust_vector" from="SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_unit_thrust_vector"]
