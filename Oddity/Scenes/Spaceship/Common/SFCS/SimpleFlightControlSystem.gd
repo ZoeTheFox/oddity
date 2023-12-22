@@ -89,10 +89,20 @@ var controller_curve : Curve
 @export
 var rotation_control_curve : Curve
 
+@export_category("Component Information")
+
+@export
+var required_power : float
+
+var current_power_input : float
+
+var power_priority : int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
+	current_power_input = 10
+	power_priority = 10
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	thrust_vector = Vector3.ZERO
@@ -106,7 +116,7 @@ func _process(delta):
 	var velocity_delta = 0
 	var desired_thrust = 0
 	
-	if (flight_assist):
+	if (flight_assist and current_power_input == required_power):
 		
 		## LATERAL
 		
@@ -297,6 +307,9 @@ func calculate_desired_torque(velocity_delta : float, max_angular_velocity : flo
 	var thrust = rotation_control_curve.sample(normalized_velocity_delta)
 	
 	return clamp(thrust, 0.0, 1.0)
+
+func request_power():
+	%"Components/Power Components".request_power(self)
 
 func _on_player_input_send_movement_vector(movement_vector):
 	self.movement_vector = movement_vector

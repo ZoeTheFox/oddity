@@ -24,10 +24,11 @@ var integrity : float
 var wear : float
 
 
+var power_priority : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	power_priority = 5
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

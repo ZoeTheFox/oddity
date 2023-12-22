@@ -34,6 +34,12 @@ var rotation_vector : Vector3
 signal send_movement_vector(movement_vector)
 signal send_rotation_vector(rotation_vector)
 
+var power_priority : int
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	power_priority = 10
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	movement_vector.x = 0

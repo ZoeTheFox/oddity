@@ -14,10 +14,13 @@ var model : String
 var size_class : int
 
 @export
-var total_cooling_output : float
+var total_power_storage : float
 
 @export
-var power_per_cool : float
+var heat_per_power : float
+
+@export
+var heat_per_charge : float
 
 @export_category("Structural Information")
 
@@ -27,7 +30,8 @@ var health_points : float
 @export
 var integrity : float
 
-var current_cooling_output : float
+var current_charge : float
+var current_power_output : float
 var current_heat : float
 var wear : float
 
@@ -35,9 +39,4 @@ var power_priority : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	power_priority = 0
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	power_priority = 8

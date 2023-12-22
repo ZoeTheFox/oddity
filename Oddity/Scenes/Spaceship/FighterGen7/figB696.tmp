@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=118 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/SFCS/ThrusterControl.gd" id="1_hkveg"]
@@ -29,7 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://b4lc3783rrexa" path="res://Scenes/Spaceship/Common/Thruster/Thrusters.tscn" id="18_dj4rr"]
 [ext_resource type="PackedScene" uid="uid://bxnepkoil8so3" path="res://Scenes/Spaceship/Common/SFCS/SimpleFlightControlSystem.tscn" id="18_fkptq"]
 [ext_resource type="PackedScene" uid="uid://bl7fyywe4oqux" path="res://Scenes/Spaceship/Common/Thruster/Thruster_Component/Thruster.tscn" id="19_mnngf"]
-[ext_resource type="Script" path="res://Scenes/Spaceship/Common/Components/PowerTickRate.gd" id="30_0svyr"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/FighterGen7/Animation/InteriorAnimationTree.gd" id="34_qmx8t"]
 
 [sub_resource type="Animation" id="Animation_b1nji"]
@@ -1762,6 +1761,13 @@ node_connections = [&"Add2", 0, &"Pitch", &"Add2", 1, &"Add2 2", &"Add2 2", 0, &
 
 [node name="FighterGen7" type="Node3D"]
 
+[node name="ShipBody_Components_Battery#PlaceholderBattery" parent="." instance=ExtResource("16_cnnct")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469446, 0, -2.71534)
+
+[node name="ShipBody_Components_Power Plants#Powerplant" parent="." instance=ExtResource("10_soc1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154652, -2.31333)
+fuel_per_power = 0.02
+
 [node name="ShipBody" type="RigidBody3D" parent="."]
 mass = 10.0
 gravity_scale = 0.0
@@ -1859,7 +1865,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.99823)
 [node name="PlaceholderBattery" parent="ShipBody/Components/Power Components/Battery" index="0" instance=ExtResource("16_cnnct")]
 
 [node name="Powerplant" parent="ShipBody/Components/Power Components/Power Plants" index="0" instance=ExtResource("10_soc1f")]
-fuel_per_power = 0.01
 
 [node name="Thrusters" parent="ShipBody" instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
@@ -2124,7 +2129,6 @@ libraries = {
 }
 
 [node name="PlayerInput" parent="ShipBody" instance=ExtResource("16_dljen")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596864, 0, -3.12915)
 is_throttle_axis = false
 mouse_sensitivity = 0.1
@@ -2166,11 +2170,6 @@ shape = SubResource("ConvexPolygonShape3D_jbudj")
 [node name="ShipStats" parent="." instance=ExtResource("17_obsua")]
 unique_name_in_owner = true
 test = 10.0
-
-[node name="PowerTickRateRelay" type="Node3D" parent="."]
-script = ExtResource("30_0svyr")
-
-[node name="PowerTickRate" type="Timer" parent="PowerTickRateRelay"]
 
 [node name="InteriorAnimations" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ShipBody/Components/Fuel Tanks")
@@ -2244,7 +2243,6 @@ parameters/Yaw/Blend3/blend_amount = 0
 [connection signal="output_torque_vector" from="ShipBody/SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_torque_vector"]
 [connection signal="output_unit_thrust_vector" from="ShipBody/SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_unit_thrust_vector"]
 [connection signal="output_unit_torque_vector" from="ShipBody/SimpleFlightControlSystem" to="ShipBody" method="_on_simple_flight_control_system_output_unit_torque_vector"]
-[connection signal="timeout" from="PowerTickRateRelay/PowerTickRate" to="PowerTickRateRelay" method="_on_power_tick_rate_timeout"]
 
 [editable path="ShipBody/Mesh/fighterGen7"]
 [editable path="ShipBody/Components"]
