@@ -38,7 +38,8 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if (current_fuel < 0):
+		current_fuel = 0
 
 func use_fuel(amount : float):
 	current_fuel -= amount * get_process_delta_time()

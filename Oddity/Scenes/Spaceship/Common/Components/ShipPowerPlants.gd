@@ -16,7 +16,8 @@ func _process(delta):
 	current_power_output = count_current_power_output()
 	current_fuel_usage = calculate_fuel_usage()
 	
-	fuel_tanks.use_fuel(current_fuel_usage)
+	if (fuel_tanks.current_fuel_capacity > 0):
+		fuel_tanks.use_fuel(current_fuel_usage)
 
 	
 func calculate_fuel_usage() -> float:

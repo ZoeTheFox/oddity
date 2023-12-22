@@ -39,6 +39,14 @@ func set_fuel_usage():
 	$Timer.start()
 
 func calculate_range(fuel_usage : float):
+	if (fuel_usage < 0):
+		$"Range Estimate".text = "Refueling"
+		return
+		
+	if (fuel_tank.current_fuel_capacity == 0):
+		$"Range Estimate".text = "Out of fuel" 
+		return
+		
 	# Calculate the total flight time in seconds
 	var total_time_seconds = fuel_tank.current_fuel_capacity / fuel_usage
 

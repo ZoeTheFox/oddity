@@ -1513,11 +1513,11 @@ script = null
 
 [node name="FuelTank2" parent="ShipBody/Components/Fuel Tanks" index="0" instance=ExtResource("9_yecg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383516, -0.731441, 0)
-fuel_capacity = 12000.0
+fuel_capacity = 10.0
 
 [node name="FuelTank" parent="ShipBody/Components/Fuel Tanks" index="1" instance=ExtResource("9_yecg1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.661099, -0.729032, 0)
-fuel_capacity = 12000.0
+fuel_capacity = 50.0
 
 [node name="Powerplant" parent="ShipBody/Components/Power Plants" index="0" instance=ExtResource("10_soc1f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154652, -2.31333)

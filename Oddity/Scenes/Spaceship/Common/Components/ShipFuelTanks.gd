@@ -24,7 +24,7 @@ func _process(delta):
 	if (Input.is_key_pressed(KEY_2)):
 		select_fuel_tank(2)
 	
-	#print(str($FuelTank) + " " + str($FuelTank.fuel_efficiency) + " " + str($FuelTank.fuel_power) + " " + str($FuelTank.fuel_heat_generation) + " " + str("Fuel tank 1: ") + str($FuelTank.current_fuel) + str(" Fuel Tank 2: ") + str($FuelTank2.current_fuel))
+	print(str($FuelTank) + " " + str($FuelTank.fuel_efficiency) + " " + str($FuelTank.fuel_power) + " " + str($FuelTank.fuel_heat_generation) + " " + str("Fuel tank 1: ") + str($FuelTank.current_fuel) + str(" Fuel Tank 2: ") + str($FuelTank2.current_fuel))
 
 func count_fuel() -> float:
 	var fuel : float
@@ -43,8 +43,11 @@ func select_fuel_tank_automatically():
 	for fuel_tank in get_children():
 		if (fuel_tank.current_fuel > 0):
 			current_active_fuel_tank = fuel_tank
+			return
 
 func use_fuel(amount : float):
+	if (current_fuel_capacity <= 0):
+		return
 	
 	if (current_active_fuel_tank.current_fuel - amount < 0):
 		amount = amount - current_active_fuel_tank.current_fuel
