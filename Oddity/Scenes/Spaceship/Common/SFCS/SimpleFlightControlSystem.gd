@@ -57,11 +57,11 @@ var velocity : Vector3
 var acceleration : Vector3
 var local_angular_velocity : Vector3
 
-
-signal output(output_thrusters : Dictionary)
-
 signal output_thrust_vector(thrust_vector : Vector3)
 signal output_torque_vector(torque_vector : Vector3)
+
+signal output_unit_thrust_vector(thrust_vector : Vector3)
+signal output_unit_torque_vector(torque_vector : Vector3)
 
 var thrust_vector : Vector3
 var torque_vector : Vector3
@@ -207,16 +207,25 @@ func _process(delta):
 		else:
 			yaw_ship_right(abs(rotation_vector.y))
 
-	%ThrusterAnimationTree.set("parameters/Pitch/Blend3/blend_amount", -unit_torque_vector.x )
-	%ThrusterAnimationTree.set("parameters/Vertical/Blend3/blend_amount", -unit_thrust_vector.y)
-	%ThrusterAnimationTree.set("parameters/Forwards/Blend3/blend_amount", unit_thrust_vector.z)
-	%ThrusterAnimationTree.set("parameters/Lateral/Blend3/blend_amount", unit_thrust_vector.x)
-	%ThrusterAnimationTree.set("parameters/Yaw/Blend3/blend_amount", -unit_torque_vector.y)
-	%ThrusterAnimationTree.set("parameters/Roll/Blend3/blend_amount", -unit_torque_vector.z)
+	if (%"Components/Fuel Tanks".current_fuel_capacity > 0):
+		%ThrusterAnimationTree.set("parameters/Pitch/Blend3/blend_amount", -unit_torque_vector.x )
+		%ThrusterAnimationTree.set("parameters/Vertical/Blend3/blend_amount", -unit_thrust_vector.y)
+		%ThrusterAnimationTree.set("parameters/Forwards/Blend3/blend_amount", unit_thrust_vector.z)
+		%ThrusterAnimationTree.set("parameters/Lateral/Blend3/blend_amount", unit_thrust_vector.x)
+		%ThrusterAnimationTree.set("parameters/Yaw/Blend3/blend_amount", -unit_torque_vector.y)
+		%ThrusterAnimationTree.set("parameters/Roll/Blend3/blend_amount", -unit_torque_vector.z)
+	else:
+		%ThrusterAnimationTree.set("parameters/Pitch/Blend3/blend_amount", 0)
+		%ThrusterAnimationTree.set("parameters/Vertical/Blend3/blend_amount", 0)
+		%ThrusterAnimationTree.set("parameters/Forwards/Blend3/blend_amount", 0)
+		%ThrusterAnimationTree.set("parameters/Lateral/Blend3/blend_amount", 0)
+		%ThrusterAnimationTree.set("parameters/Yaw/Blend3/blend_amount", 0)
+		%ThrusterAnimationTree.set("parameters/Roll/Blend3/blend_amount", 0)
 	
 	output_thrust_vector.emit(thrust_vector)
 	output_torque_vector.emit(torque_vector)
-	output.emit(output_thrusters)
+	output_unit_thrust_vector.emit(unit_thrust_vector)
+	output_unit_torque_vector.emit(unit_torque_vector)
 
 func move_ship_left(thrust_percentage : float):
 	thrust_vector.x = %Thrusters.right_thrust_force * -thrust_percentage

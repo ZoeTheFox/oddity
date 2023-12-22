@@ -8,6 +8,9 @@ var thruster_force : float
 @export
 var thruster_health_points : float
 
+@export
+var thruster_fuel_consumption : float
+
 func take_damage(damage):
 	thruster_health_points -= damage
 	thruster_health_points = clamp(thruster_health_points, 0, thruster_health_points)

@@ -46,7 +46,7 @@ func _process(delta):
 	## Throttle
 	
 	if (is_throttle_axis):
-		movement_vector.z = Input.get_axis("throttle-backwards", "throttle-forwards")
+		movement_vector.z = Input.get_axis("throttle-forwards", "throttle-backwards")
 	else:
 		if (Input.is_action_pressed("throttle-forwards")):
 			movement_vector.z -= throttle_sensitivity * delta
@@ -87,7 +87,7 @@ func _process(delta):
 		rotation_vector.x = clamp(mouse_pitch, -1, 1)
 		rotation_vector.x = rotation_vector.x * mouse_sensitivity_curve.sample(abs(rotation_vector.x)) 
 	else:
-		rotation_vector.x = Input.get_axis("pitch-down", "pitch-up")
+		rotation_vector.x = Input.get_axis("pitch-up", "pitch-down")
 	
 	if %CameraPivots.is_look_around_on and use_mouse_for_movement:
 		rotation_vector = Vector3.ZERO
