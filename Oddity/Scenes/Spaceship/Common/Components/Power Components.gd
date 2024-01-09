@@ -14,5 +14,11 @@ func _process(delta):
 	#print(component_list)
 
 func request_power(component : Node3D):
-	pass
+	var requested_power = component.required_power
+	
+	
+
+	
 	#component_list.append(component)
+
+

@@ -19,6 +19,8 @@ func _process(delta):
 	if (fuel_tanks.current_fuel_capacity > 0):
 		fuel_tanks.use_fuel(current_fuel_usage)
 
+func request_power(power : float) -> float:
+	
 	
 func calculate_fuel_usage() -> float:
 	var fuel = 0.0

@@ -36,6 +36,9 @@ signal send_rotation_vector(rotation_vector)
 
 var power_priority : int
 
+@export
+var required_power : float
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	power_priority = 10

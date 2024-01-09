@@ -41,6 +41,9 @@ var current_power_output : float
 var current_heat : float
 var wear : float
 
+@export
+var required_power : float
+
 var power_priority : int
 
 # Called when the node enters the scene tree for the first time.

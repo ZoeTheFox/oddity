@@ -23,6 +23,8 @@ var integrity : float
 
 var wear : float
 
+@export
+var required_power : float
 
 var power_priority : int
 

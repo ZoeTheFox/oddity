@@ -1861,7 +1861,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.99823)
 required_power = 15.0
 
 [node name="PlaceholderBattery" parent="ShipBody/Components/Power Components/Battery" index="0" instance=ExtResource("16_cnnct")]
-required_power = 40.0
 
 [node name="Powerplant" parent="ShipBody/Components/Power Components/Power Plants" index="0" instance=ExtResource("10_soc1f")]
 fuel_per_power = 0.01

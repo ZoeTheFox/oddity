@@ -88,11 +88,19 @@ var pitch_down_thrust_fuel_consumption : float
 var yaw_right_thrust_fuel_consumption : float
 var yaw_left_thrust_fuel_consumption : float
 
+var power_priority : int
+
+@export_category("Power")
+
+@export
+var required_power : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_thruster_force_values()
 	update_thruster_fuel_consumption_values()
+	
+	power_priority = 0
 
 func update_thruster_force_values():
 	for t in main_thrusters:

@@ -1,18 +1,11 @@
 extends Node3D
 
-@export_category("Power Requesters")
-
 var powered_components : Array
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	powered_components = get_powered_components()
-	
-	for t in powered_components:
-		print(t.power_priority)
-	
-	print(powered_components)
 
 func get_powered_components() -> Array:
 	var components : Array
@@ -30,6 +23,8 @@ func get_powered_components() -> Array:
 	
 	for battery in %"Components/Power Components/Battery".get_children():
 		components.append(battery)
+	
+	components.append(%Thrusters)
 	
 	return sort_components(components)
 
@@ -52,4 +47,5 @@ func _process(delta):
 
 
 func _on_power_tick_rate_timeout():
-	pass
+	for component in powered_components:
+		%"Components/Power Components".request_power(component)
