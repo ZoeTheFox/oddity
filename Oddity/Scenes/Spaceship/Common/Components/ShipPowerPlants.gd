@@ -20,8 +20,20 @@ func _process(delta):
 		fuel_tanks.use_fuel(current_fuel_usage)
 
 func request_power(power : float) -> float:
+	var recieved_power : float
 	
+	for power_plant in get_children():
+		recieved_power += power_plant.use_power(power)
+		
+		if (recieved_power == power):
+			break
 	
+	return recieved_power
+	
+func reset_power_on_tick():
+	for p in get_children():
+		p.current_power_output = 0
+
 func calculate_fuel_usage() -> float:
 	var fuel = 0.0
 	

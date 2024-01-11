@@ -1863,11 +1863,8 @@ required_power = 15.0
 [node name="PlaceholderBattery" parent="ShipBody/Components/Power Components/Battery" index="0" instance=ExtResource("16_cnnct")]
 required_power = 40.0
 
-[node name="Powerplant2" parent="ShipBody/Components/Power Components/Power Plants" index="0" instance=ExtResource("10_soc1f")]
-total_power_output = 60.0
-
-[node name="Powerplant" parent="ShipBody/Components/Power Components/Power Plants" index="1" instance=ExtResource("10_soc1f")]
-total_power_output = 100.0
+[node name="Powerplant" parent="ShipBody/Components/Power Components/Power Plants" index="0" instance=ExtResource("10_soc1f")]
+fuel_per_power = 0.01
 
 [node name="Thrusters" parent="ShipBody" instance=ExtResource("18_dj4rr")]
 unique_name_in_owner = true
@@ -1883,7 +1880,7 @@ pitch_up_thrusters = [NodePath("RCSBottomThruster1"), NodePath("RCSTopThruster4"
 pitch_down_thrusters = [NodePath("RCSTopThruster1"), NodePath("RCSBottomThruster4"), NodePath("RCSBottomThruster5")]
 yaw_right_thrusters = [NodePath("RCSLeftThruster1"), NodePath("RCSRightThruster3")]
 yaw_left_thrusters = [NodePath("RCSRightThruster1"), NodePath("RCSLeftThruster3")]
-required_power = 11.0
+required_power = 4.0
 
 [node name="MainThruster" parent="ShipBody/Thrusters" instance=ExtResource("19_mnngf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.03356)

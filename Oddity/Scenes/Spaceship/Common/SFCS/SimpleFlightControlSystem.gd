@@ -94,14 +94,13 @@ var rotation_control_curve : Curve
 @export
 var required_power : float
 
-var current_power_input : float
+var recieved_power : float 
 
 var power_priority : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_power_input = 10
-	power_priority = 10
+	power_priority = 1
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -116,7 +115,7 @@ func _process(delta):
 	var velocity_delta = 0
 	var desired_thrust = 0
 	
-	if (flight_assist and current_power_input == required_power):
+	if (flight_assist and recieved_power == required_power):
 		
 		## LATERAL
 		

@@ -48,12 +48,16 @@ func available_power() -> float:
 	return total_power_output - current_power_output
 
 func use_power(power : float) -> float:
-	if (available_power() > 0):
+	var available = available_power()
+	
+	if (available > 0):
 		if ((current_power_output + power) <= total_power_output):
 			current_power_output += power
 			return power
 		
-		return available_power()
+		current_power_output += available
+		
+		return available
 	
 	return 0
 			

@@ -39,6 +39,8 @@ var power_priority : int
 @export
 var required_power : float
 
+var recieved_power : float
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	power_priority = 10
