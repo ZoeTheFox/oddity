@@ -1,4 +1,4 @@
-extends Node3D
+extends "res://Scenes/Spaceship/Common/Interfaces/I_PoweredComponent.gd"
 
 @export_category("Throttle")
 
@@ -33,13 +33,6 @@ var rotation_vector : Vector3
 
 signal send_movement_vector(movement_vector)
 signal send_rotation_vector(rotation_vector)
-
-var power_priority : int
-
-@export
-var required_power : float
-
-var recieved_power : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -119,3 +112,6 @@ func _input(event):
 func _on_throttle_deadzone_timer_timeout():
 	if (abs(movement_vector.z) < throttle_deadzone):
 		movement_vector.z = 0
+
+func recieve_power(power : float):
+	recieved_power = power

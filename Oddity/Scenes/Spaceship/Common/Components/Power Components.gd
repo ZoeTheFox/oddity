@@ -10,16 +10,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-	#print(component_list)
+	print("Power Usage")
+	print("Powerplant: " + str($"Power Plants".current_power_output) + " / " + str($"Power Plants".total_power_output))
+	print("Battery: " + str($Battery.total_stored_power) + " / " + str($Battery.total_power_storage))
 
 func request_power(component : Node3D):	
-	return $"Power Plants".request_power(component.required_power)
+	var powerplant_power = $"Power Plants".request_power(component.required_power)
+	
+	if (powerplant_power == 0):
+		return $Battery.request_power(component.required_power)
+	
+	return powerplant_power
+	 
 	
 func reset_power():
 	$"Power Plants".reset_power_on_tick()
-
-	
-	#component_list.append(component)
 
 

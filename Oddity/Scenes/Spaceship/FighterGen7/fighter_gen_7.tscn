@@ -1864,7 +1864,7 @@ required_power = 15.0
 required_power = 40.0
 
 [node name="Powerplant2" parent="ShipBody/Components/Power Components/Power Plants" index="0" instance=ExtResource("10_soc1f")]
-total_power_output = 60.0
+total_power_output = 100.0
 
 [node name="Powerplant" parent="ShipBody/Components/Power Components/Power Plants" index="1" instance=ExtResource("10_soc1f")]
 total_power_output = 100.0

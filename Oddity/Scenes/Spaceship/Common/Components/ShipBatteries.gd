@@ -1,11 +1,31 @@
 extends Node3D
 
+var total_power_storage : float
+var total_stored_power : float
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	total_power_storage = 0
+	
+	for battery in get_children():
+		total_power_storage += battery.total_power_storage
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	calculate_total_stored_power()
+
+func request_power(power : float) -> float:
+	var recieved_power : float
+	
+	for battery in get_children():
+		recieved_power += battery.use_power(power)
+		
+		if (recieved_power == power):
+			break
+	
+	return recieved_power
+
+func calculate_total_stored_power():
+	total_stored_power = 0
+	
+	for battery in get_children():
+		total_stored_power += battery.current_charge

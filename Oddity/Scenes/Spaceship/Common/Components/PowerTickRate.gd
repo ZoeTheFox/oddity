@@ -46,10 +46,14 @@ func _process(delta):
 	pass
 
 
-func _on_power_tick_rate_timeout():
+func _on_power_tick_rate_timeout():	
 	%"Components/Power Components".reset_power()
 	
 	for component in powered_components:
 		var recieved_power = %"Components/Power Components".request_power(component)
 		
-		component.recieved_power = recieved_power
+		component.recieve_power(recieved_power)
+		
+		print()
+		print(str(component) + " " + str(component.recieved_power))
+		

@@ -1,4 +1,4 @@
-extends Node3D
+extends "res://Scenes/Spaceship/Common/Interfaces/I_PoweredComponent.gd"
 
 @onready
 var ship_stats = %ShipStats
@@ -90,13 +90,6 @@ var controller_curve : Curve
 var rotation_control_curve : Curve
 
 @export_category("Component Information")
-
-@export
-var required_power : float
-
-var recieved_power : float 
-
-var power_priority : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -216,7 +209,7 @@ func _process(delta):
 		else:
 			yaw_ship_right(abs(rotation_vector.y))
 
-	if (%"Components/Fuel Tanks".current_fuel_capacity > 0):
+	if (%"Components/Fuel Tanks".current_fuel_capacity > 0 and %Thrusters.recieved_power == %Thrusters.required_power):
 		%ThrusterAnimationTree.set("parameters/Pitch/Blend3/blend_amount", -unit_torque_vector.x )
 		%ThrusterAnimationTree.set("parameters/Vertical/Blend3/blend_amount", -unit_thrust_vector.y)
 		%ThrusterAnimationTree.set("parameters/Forwards/Blend3/blend_amount", unit_thrust_vector.z)
@@ -328,3 +321,6 @@ func _on_fighter_gen_7_output_velocity(velocity):
 
 func _on_fighter_gen_7_output_local_angular_velocity(local_angular_velocity):
 	self.local_angular_velocity = local_angular_velocity
+
+func recieve_power(power : float):
+	recieved_power = power

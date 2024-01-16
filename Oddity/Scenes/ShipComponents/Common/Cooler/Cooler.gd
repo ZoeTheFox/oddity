@@ -1,4 +1,4 @@
-extends Node3D
+extends "res://Scenes/Spaceship/Common/Interfaces/I_PoweredComponent.gd"
 
 @export_category("Manufacturer Information")
 
@@ -31,17 +31,12 @@ var current_cooling_output : float
 var current_heat : float
 var wear : float
 
-@export
-var required_power : float
-
-var recieved_power : float
-
-var power_priority : int
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	power_priority = 0
 
+func recieve_power(power : float):
+	recieved_power = power
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
