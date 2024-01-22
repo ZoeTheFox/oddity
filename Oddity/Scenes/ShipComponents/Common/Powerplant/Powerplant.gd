@@ -37,9 +37,27 @@ var wear : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_power_output = 60
+	current_power_output = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	current_fuel_usage = fuel_per_power * current_power_output
+
+func available_power() -> float:
+	return total_power_output - current_power_output
+
+func use_power(power : float) -> float:
+	var available = available_power()
+	
+	if (available > 0):
+		if ((current_power_output + power) <= total_power_output):
+			current_power_output += power
+			return power
+		
+		current_power_output += available
+		
+		return available
+	
+	return 0
+			

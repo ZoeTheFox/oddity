@@ -10,7 +10,7 @@ model = "Powerplant"
 size_class = 1
 total_power_output = 500.0
 heat_per_power = 40.0
-fuel_per_power = 1.0
+fuel_per_power = 0.01
 health_points = 50.0
 integrity = 1.0
 

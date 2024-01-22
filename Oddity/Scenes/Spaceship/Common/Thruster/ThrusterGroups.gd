@@ -1,4 +1,4 @@
-extends Node3D
+extends "res://Scenes/Spaceship/Common/Interfaces/I_PoweredComponent.gd"
 
 @export_category("Thruster Groups")
 
@@ -89,10 +89,16 @@ var yaw_right_thrust_fuel_consumption : float
 var yaw_left_thrust_fuel_consumption : float
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_thruster_force_values()
 	update_thruster_fuel_consumption_values()
+	
+	power_priority = 0
+
+func recieve_power(power : float):
+	recieved_power = power
 
 func update_thruster_force_values():
 	for t in main_thrusters:
@@ -130,19 +136,6 @@ func update_thruster_force_values():
 
 	for t in yaw_left_thrusters:
 		yaw_left_thrust_force += get_thruster_force(t)
-
-	print("Main Thrust Force: ", main_thrust_force)
-	print("Retro Thrust Force: ", retro_thrust_force)
-	print("Left Thrust Force: ", left_thrust_force)
-	print("Right Thrust Force: ", right_thrust_force)
-	print("Top Thrust Force: ", top_thrust_force)
-	print("Bottom Thrust Force: ", bottom_thrust_force)
-	print("Roll Right Thrust Force: ", roll_right_thrust_force)
-	print("Roll Left Thrust Force: ", roll_left_thrust_force)
-	print("Pitch Up Thrust Force: ", pitch_up_thrust_force)
-	print("Pitch Down Thrust Force: ", pitch_down_thrust_force)
-	print("Yaw Right Thrust Force: ", yaw_right_thrust_force)
-	print("Yaw Left Thrust Force: ", yaw_left_thrust_force)
 
 func update_thruster_fuel_consumption_values():
 	# Resetting the fuel consumption values to 0 before calculation
@@ -194,19 +187,6 @@ func update_thruster_fuel_consumption_values():
 
 	for t in yaw_left_thrusters:
 		yaw_left_thrust_fuel_consumption += get_thruster_fuel_consumption(t)
-
-	print("Main Thrust Fuel Consumption: ", main_thrust_fuel_consumption)
-	print("Retro Thrust Fuel Consumption: ", retro_thrust_fuel_consumption)
-	print("Left Thrust Fuel Consumption: ", left_thrust_fuel_consumption)
-	print("Right Thrust Fuel Consumption: ", right_thrust_fuel_consumption)
-	print("Top Thrust Fuel Consumption: ", top_thrust_fuel_consumption)
-	print("Bottom Thrust Fuel Consumption: ", bottom_thrust_fuel_consumption)
-	print("Roll Right Thrust Fuel Consumption: ", roll_right_thrust_fuel_consumption)
-	print("Roll Left Thrust Fuel Consumption: ", roll_left_thrust_fuel_consumption)
-	print("Pitch Up Thrust Fuel Consumption: ", pitch_up_thrust_fuel_consumption)
-	print("Pitch Down Thrust Fuel Consumption: ", pitch_down_thrust_fuel_consumption)
-	print("Yaw Right Thrust Fuel Consumption: ", yaw_right_thrust_fuel_consumption)
-	print("Yaw Left Thrust Fuel Consumption: ", yaw_left_thrust_fuel_consumption)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -9,7 +9,7 @@ var fuel_tanks : Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	total_power_output = count_total_power_output()
-	fuel_tanks = get_parent_node_3d().get_child(0)
+	fuel_tanks = get_parent_node_3d().get_parent_node_3d().get_child(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,7 +19,21 @@ func _process(delta):
 	if (fuel_tanks.current_fuel_capacity > 0):
 		fuel_tanks.use_fuel(current_fuel_usage)
 
+func request_power(power : float) -> float:
+	var recieved_power : float
 	
+	for power_plant in get_children():
+		recieved_power += power_plant.use_power(power)
+		
+		if (recieved_power == power):
+			break
+	
+	return recieved_power
+	
+func reset_power_on_tick():
+	for p in get_children():
+		p.current_power_output = 0
+
 func calculate_fuel_usage() -> float:
 	var fuel = 0.0
 	

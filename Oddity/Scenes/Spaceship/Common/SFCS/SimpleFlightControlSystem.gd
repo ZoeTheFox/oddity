@@ -1,4 +1,4 @@
-extends Node3D
+extends "res://Scenes/Spaceship/Common/Interfaces/I_PoweredComponent.gd"
 
 @onready
 var ship_stats = %ShipStats
@@ -89,10 +89,12 @@ var controller_curve : Curve
 @export
 var rotation_control_curve : Curve
 
+@export_category("Component Information")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
+	power_priority = 1
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	thrust_vector = Vector3.ZERO
@@ -106,7 +108,7 @@ func _process(delta):
 	var velocity_delta = 0
 	var desired_thrust = 0
 	
-	if (flight_assist):
+	if (flight_assist and recieved_power == required_power):
 		
 		## LATERAL
 		
@@ -207,7 +209,7 @@ func _process(delta):
 		else:
 			yaw_ship_right(abs(rotation_vector.y))
 
-	if (%"Components/Fuel Tanks".current_fuel_capacity > 0):
+	if (%"Components/Fuel Tanks".current_fuel_capacity > 0 and %Thrusters.recieved_power == %Thrusters.required_power):
 		%ThrusterAnimationTree.set("parameters/Pitch/Blend3/blend_amount", -unit_torque_vector.x )
 		%ThrusterAnimationTree.set("parameters/Vertical/Blend3/blend_amount", -unit_thrust_vector.y)
 		%ThrusterAnimationTree.set("parameters/Forwards/Blend3/blend_amount", unit_thrust_vector.z)
@@ -298,6 +300,9 @@ func calculate_desired_torque(velocity_delta : float, max_angular_velocity : flo
 	
 	return clamp(thrust, 0.0, 1.0)
 
+func request_power():
+	%"Components/Power Components".request_power(self)
+
 func _on_player_input_send_movement_vector(movement_vector):
 	self.movement_vector = movement_vector
 
@@ -316,3 +321,6 @@ func _on_fighter_gen_7_output_velocity(velocity):
 
 func _on_fighter_gen_7_output_local_angular_velocity(local_angular_velocity):
 	self.local_angular_velocity = local_angular_velocity
+
+func recieve_power(power : float):
+	recieved_power = power
