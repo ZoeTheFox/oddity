@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://cpb2nlkghtm13"]
+[gd_scene load_steps=120 format=3 uid="uid://cpb2nlkghtm13"]
 
 [ext_resource type="PackedScene" uid="uid://ci6pe2jfbwwi1" path="res://Assets/Spaceships/FighterGen7/fighter_gen_7_model.tscn" id="1_fr140"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/SFCS/ThrusterControl.gd" id="1_hkveg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cq8467stblljy" path="res://Scenes/Spaceship/FighterGen7/UI/InteriorUI/Fuel/FuelBar.tscn" id="6_td6pj"]
 [ext_resource type="PackedScene" uid="uid://y7nouloq56us" path="res://Scenes/Spaceship/FighterGen7/UI/ExteriorUI/ExteriorUI.tscn" id="6_uelne"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/Common/Camera/CameraScripts/CameraShake.gd" id="7_1k7xb"]
+[ext_resource type="PackedScene" uid="uid://d0ikyjy0j6pev" path="res://Scenes/Spaceship/FighterGen7/UI/InteriorUI/Power/PowerUI.tscn" id="7_sqyq5"]
 [ext_resource type="Script" path="res://Scenes/Spaceship/FighterGen7/UI/ExteriorUI/ExteriorUI.gd" id="7_wip5u"]
 [ext_resource type="PackedScene" uid="uid://cv7jdo4pxmx3g" path="res://Scenes/Spaceship/Common/Components/Components.tscn" id="8_y26dh"]
 [ext_resource type="PackedScene" uid="uid://chtrvx6ohr6xy" path="res://Scenes/ShipComponents/Placeholder Components/placeholder_cooler.tscn" id="9_q8q8c"]
@@ -1820,6 +1821,9 @@ is_first_person_crosshair = true
 transform = Transform3D(0.137946, 0.0155861, -0.0689415, -0.00361303, 0.152542, 0.0272568, 0.070589, -0.0226509, 0.136122, 0.372908, 0.494616, 0.546384)
 fuel_tank = NodePath("../../../Components/Fuel Tanks")
 
+[node name="PowerUi" parent="ShipBody/UI/InteriorUI" instance=ExtResource("7_sqyq5")]
+transform = Transform3D(0.010231, 0, -0.149651, 0, 0.15, 0, 0.149651, 0, 0.010231, 0.787679, 0.780597, 1.11101)
+
 [node name="ExteriorUI" type="Node3D" parent="ShipBody/UI"]
 
 [node name="ExteriorUI" parent="ShipBody/UI/ExteriorUI" instance=ExtResource("6_uelne")]
@@ -2239,6 +2243,8 @@ parameters/Yaw/Blend3/blend_amount = 0
 [connection signal="output_velocity" from="ShipBody" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="output_velocity" from="ShipBody" to="ShipBody/SimpleFlightControlSystem" method="_on_fighter_gen_7_output_velocity"]
 [connection signal="set_fuel_tank" from="ShipBody/Components/Fuel Tanks" to="ShipBody/UI/InteriorUI/FuelBar" method="_on_fuel_tanks_set_fuel_tank"]
+[connection signal="battery_ui_signal" from="ShipBody/Components/Power Components" to="ShipBody/UI/InteriorUI/PowerUi" method="_on_power_components_battery_ui_signal"]
+[connection signal="powerplant_ui_signal" from="ShipBody/Components/Power Components" to="ShipBody/UI/InteriorUI/PowerUi" method="_on_power_components_powerplant_ui_signal"]
 [connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/UI/ExteriorUI/ExteriorUI" method="_on_cameras_is_first_person_signal"]
 [connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D" method="_on_cameras_is_first_person_signal"]
 [connection signal="is_first_person_signal" from="ShipBody/Cameras" to="ShipBody/Cameras/CameraPivots/TwistPivot/PitchPivot/Camera3D/Crosshair" method="_on_cameras_is_first_person_signal"]
